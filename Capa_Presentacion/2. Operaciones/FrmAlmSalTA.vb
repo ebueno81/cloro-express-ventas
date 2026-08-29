@@ -895,13 +895,17 @@
                             If Val(.Rows(Fila).Cells("c_fact_guia").Value) = 0 Then
                                 If ValidarCierre(.Rows(Fila).Cells("Fecha Despacho").Value) = True Then
                                     If ValidarGuiaTransferencia(.Rows(Fila).Cells("Nro.").Value, .Rows(Fila).Cells("Salida").Value) = True Then
-                                        Tbc01.SelectedTab = Tab02
-                                        Call Mostrar_SalidaTA(Dgv01.Rows(Fila).Cells("Nro.").Value, Dgv01.Rows(Fila).Cells("Salida").Value) : Pan10.Enabled = True
-                                        Call Dgv02_SelectionChanged(Nothing, Nothing) : BtnGrabar.Enabled = True : TxtAbv_Clie.Enabled = False : CboCliente.Enabled = True
-                                        CboSerie.Enabled = False : CboPlaca.Focus() : TxtCod_Mt.Enabled = False : TxtNro_Ing.Enabled = False
-                                        DtpFecha_Traslado.Enabled = True
-                                        If TxtCod_Mt.Text = "16" Then
-                                            TxtCod_Mt.Enabled = False : CboMot.Enabled = False
+                                        If Val(.Rows(Fila).Cells("c_opc_estado").Value) = 0 Then
+                                            Tbc01.SelectedTab = Tab02
+                                            Call Mostrar_SalidaTA(Dgv01.Rows(Fila).Cells("Nro.").Value, Dgv01.Rows(Fila).Cells("Salida").Value) : Pan10.Enabled = True
+                                            Call Dgv02_SelectionChanged(Nothing, Nothing) : BtnGrabar.Enabled = True : TxtAbv_Clie.Enabled = False : CboCliente.Enabled = True
+                                            CboSerie.Enabled = False : CboPlaca.Focus() : TxtCod_Mt.Enabled = False : TxtNro_Ing.Enabled = False
+                                            DtpFecha_Traslado.Enabled = True
+                                            If TxtCod_Mt.Text = "16" Then
+                                                TxtCod_Mt.Enabled = False : CboMot.Enabled = False
+                                            End If
+                                        Else
+                                            MsgBox(" La orden de trabajo ya fue Procesada...", vbExclamation, Compañia)
                                         End If
                                     End If
                                 End If
