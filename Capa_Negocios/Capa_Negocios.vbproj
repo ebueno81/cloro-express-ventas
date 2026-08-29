@@ -89,6 +89,7 @@
     <Compile Include="1. Mantenimiento\Neg_MnSeriesGuias.vb" />
     <Compile Include="1. Mantenimiento\Neg_MnSFamilia.vb" />
     <Compile Include="1. Mantenimiento\Neg_MnStatusLetra.vb" />
+    <Compile Include="1. Mantenimiento\Neg_MnTblDetraccion.vb" />
     <Compile Include="1. Mantenimiento\Neg_MnTeñido.vb" />
     <Compile Include="1. Mantenimiento\Neg_MnTpoCambio.vb" />
     <Compile Include="1. Mantenimiento\Neg_MnTpoDoc.vb" />

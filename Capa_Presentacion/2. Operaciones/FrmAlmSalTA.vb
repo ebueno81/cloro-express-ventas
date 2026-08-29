@@ -708,6 +708,7 @@
             .Columns("c_anula_reg").Visible = False
             .Columns("c_opc_guia").Visible = False
             .Columns("c_fact_guia").Visible = False
+            .Columns("c_opc_estado").Visible = False
             ' Alineacion '
             .Columns("Nro.").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
             .Columns("Salida").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -943,23 +944,27 @@
                             If Val(Dgv01.Rows(Fila).Cells("c_anula_reg").Value) = 0 Then
                                 If ValidarCierre(.Rows(Fila).Cells("Fecha Despacho").Value) = True Then
                                     If ValidarGuiaTransferencia(.Rows(Fila).Cells("Nro.").Value, .Rows(Fila).Cells("Salida").Value) = True Then
-                                        Dim F As String = MsgBox("¿Desea Eliminar el Registro?", vbYesNo + vbQuestion, Compañia)
-                                        If F = vbYes Then
-                                            TxtNro_Guia.Text = Dgv01.Rows(Fila).Cells("Salida").Value
-                                            TxtNro_MosGuia.Text = Dgv01.Rows(Fila).Cells("Salida").Value
-                                            For i = 0 To CboSerie.Items.Count - 1
-                                                'MsgBox(CboSerie.Items(i).ToString)
-                                                If CboSerie.Items(i).ToString = Dgv01.Rows(Fila).Cells("Nro.").Value Then
-                                                    CboSerie.SelectedIndex = i : i = CboSerie.Items.Count
-                                                End If
-                                            Next
-                                            Call Mostrar_SalidaTA(CboSerie.Text, TxtNro_Guia.Text)
-                                            With Dgv02
-                                                For i = 0 To .RowCount - 1
-                                                    Call Grabar_SalidaTADet(i, "DEL")
+                                        If Val(.Rows(Fila).Cells("c_opc_estado").Value) = 0 Then
+                                            Dim F As String = MsgBox("¿Desea Eliminar el Registro?", vbYesNo + vbQuestion, Compañia)
+                                            If F = vbYes Then
+                                                TxtNro_Guia.Text = Dgv01.Rows(Fila).Cells("Salida").Value
+                                                TxtNro_MosGuia.Text = Dgv01.Rows(Fila).Cells("Salida").Value
+                                                For i = 0 To CboSerie.Items.Count - 1
+                                                    'MsgBox(CboSerie.Items(i).ToString)
+                                                    If CboSerie.Items(i).ToString = Dgv01.Rows(Fila).Cells("Nro.").Value Then
+                                                        CboSerie.SelectedIndex = i : i = CboSerie.Items.Count
+                                                    End If
                                                 Next
-                                            End With
-                                            Call Grabar_SalidaTA("DEL") : Call BtnMostrar_Click(Nothing, Nothing)
+                                                Call Mostrar_SalidaTA(CboSerie.Text, TxtNro_Guia.Text)
+                                                With Dgv02
+                                                    For i = 0 To .RowCount - 1
+                                                        Call Grabar_SalidaTADet(i, "DEL")
+                                                    Next
+                                                End With
+                                                Call Grabar_SalidaTA("DEL") : Call BtnMostrar_Click(Nothing, Nothing)
+                                            End If
+                                        Else
+                                            MsgBox(" La orden de trabajo ya fue Procesada...", vbCritical, Compañia)
                                         End If
                                     End If
                                 End If

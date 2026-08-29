@@ -794,7 +794,7 @@
       <Project>{054454C4-270D-4C1C-9189-98CA3C18A385}</Project>
       <Name>Capa_Entidades</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Capa_Negocios %281%29\Capa_Negocios.vbproj">
+    <ProjectReference Include="..\Capa_Negocios\Capa_Negocios.vbproj">
       <Project>{49377db1-35d1-4684-9e8a-4ec0d8f48b80}</Project>
       <Name>Capa_Negocios</Name>
     </ProjectReference>
