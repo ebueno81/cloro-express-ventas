@@ -13,6 +13,7 @@
         Call Limpiar_Texto(Pan01) : Dgv01.Enabled = False
         ChkInterno.Checked = False
         ChkElectronico.Checked = False
+        ChkEsMedxpress.Checked = False
     End Sub
     'Cancelar Registro...
     Private Sub Cancelar_Registro()

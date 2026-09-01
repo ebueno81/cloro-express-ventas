@@ -22,8 +22,8 @@ Partial Class FrmMnSeriesDoc
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMnSeriesDoc))
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Dgv01 = New System.Windows.Forms.DataGridView()
@@ -46,6 +46,7 @@ Partial Class FrmMnSeriesDoc
         Me.TxtSerie = New System.Windows.Forms.TextBox()
         Me.BtnGrabar = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
+        Me.ChkEsMedxpress = New System.Windows.Forms.CheckBox()
         CType(Me.Dgv01, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Pan02.SuspendLayout()
         CType(Me.Pcb01, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,22 +71,22 @@ Partial Class FrmMnSeriesDoc
         'Dgv01
         '
         Me.Dgv01.AllowUserToAddRows = False
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.Blue
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dgv01.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Blue
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dgv01.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.Dgv01.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Dgv01.EnableHeadersVisualStyles = False
         Me.Dgv01.Location = New System.Drawing.Point(0, 60)
         Me.Dgv01.Name = "Dgv01"
         Me.Dgv01.ReadOnly = True
         Me.Dgv01.RowHeadersWidth = 15
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.Dgv01.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.Dgv01.Size = New System.Drawing.Size(387, 217)
         Me.Dgv01.TabIndex = 3
@@ -187,6 +188,7 @@ Partial Class FrmMnSeriesDoc
         'Pan01
         '
         Me.Pan01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Pan01.Controls.Add(Me.ChkEsMedxpress)
         Me.Pan01.Controls.Add(Me.CboDoc)
         Me.Pan01.Controls.Add(Me.Label4)
         Me.Pan01.Controls.Add(Me.Label3)
@@ -311,6 +313,17 @@ Partial Class FrmMnSeriesDoc
         Me.Panel2.Size = New System.Drawing.Size(173, 30)
         Me.Panel2.TabIndex = 2
         '
+        'ChkEsMedxpress
+        '
+        Me.ChkEsMedxpress.AutoSize = True
+        Me.ChkEsMedxpress.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChkEsMedxpress.Location = New System.Drawing.Point(279, 49)
+        Me.ChkEsMedxpress.Name = "ChkEsMedxpress"
+        Me.ChkEsMedxpress.Size = New System.Drawing.Size(103, 17)
+        Me.ChkEsMedxpress.TabIndex = 206
+        Me.ChkEsMedxpress.Text = "Es MedXpress"
+        Me.ChkEsMedxpress.UseVisualStyleBackColor = True
+        '
         'FrmMnSeriesDoc
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -361,4 +374,5 @@ Partial Class FrmMnSeriesDoc
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents BtnGrabar As System.Windows.Forms.Button
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
+    Friend WithEvents ChkEsMedxpress As CheckBox
 End Class

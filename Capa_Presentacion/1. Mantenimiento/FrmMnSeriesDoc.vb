@@ -14,7 +14,8 @@
             .Columns("Doc").Width = 40
             .Columns("Serie").Width = 45
             .Columns("Documento").Width = 65
-            .Columns("Descripcion").Width = 195
+            .Columns("Descripcion").Width = 125
+            .Columns("Medxpress").Width = 70
             .Columns("c_anula_reg").Visible = False
             'Alineacion
             .Columns("Doc").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -36,6 +37,7 @@
             .c_nro_doc = TxtGuia.Text
             .c_desc_serie = TxtDesc.Text
             .copcion = cOpcion
+            .c_opc_medxpress = IIf(ChkEsMedxpress.Checked = True, 1, Nothing)
             c_Neg_MnSeriesDoc.set_Series_Save(c_Ent_SeriesDoc, FrmMenu.TxtCod_Emp.Text)
         End With
     End Sub
@@ -77,6 +79,7 @@
                     TxtGuia.Text = .Rows(fila).Cells("documento").Value.ToString
                     TxtDesc.Text = .Rows(fila).Cells("Descripcion").Value
                     CboDoc.SelectedValue = .Rows(fila).Cells("Doc").Value
+                    ChkEsMedxpress = IIf(Val(.Rows(fila).Cells("MedXpress").Value) = 1, True, False)
                     Call nuevo_registro() : TxtSerie.Enabled = False
                     CboDoc.Enabled = False
                 End If
@@ -87,6 +90,7 @@
         Dgv01.Size = New Size(387, 123)
         BtnGrabar.Enabled = True
         BtnEditar.Enabled = False : BtnCerrar.Text = "Cancelar"
+        ChkEsMedxpress.Checked = False
     End Sub
     ' Nuevo Registro '
     Private Sub BtnNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnNuevo.Click

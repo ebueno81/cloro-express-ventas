@@ -44,4 +44,14 @@
             _copcion = value
         End Set
     End Property
+
+    Private _c_opc_medxpress As Integer?
+    Public Property c_opc_medxpress As Integer?
+        Get
+            Return _c_opc_medxpress
+        End Get
+        Set(ByVal value As Integer?)
+            _c_opc_medxpress = value
+        End Set
+    End Property
 End Class

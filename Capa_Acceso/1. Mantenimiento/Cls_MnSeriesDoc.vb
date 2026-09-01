@@ -21,6 +21,8 @@ Public Class Cls_MnSeriesDoc
             cmd.Parameters.Add("@c_nro_doc", OleDbType.VarChar, 7).Value = ent.c_nro_doc
             cmd.Parameters.Add("@c_desc_serie", OleDbType.VarChar, 30).Value = ent.c_desc_serie
             cmd.Parameters.Add("@copcion", OleDbType.VarChar, 3).Value = ent.copcion
+
+            cmd.Parameters.Add("@c_opc_medxpress", OleDbType.Integer).Value = ent.c_opc_medxpress
             'ejecutamos query
             cmd.ExecuteNonQuery()
 
