@@ -906,7 +906,7 @@
                                                 TxtCod_Mt.Enabled = False : CboMot.Enabled = False
                                             End If
                                         Else
-                                            MsgBox(" La orden de trabajo ya fue Procesada...", vbExclamation, Compañia)
+                                            MsgBox(" La orden de trabajo ya fue Procesada...", vbCritical, Compañia)
                                         End If
                                     End If
                                 End If

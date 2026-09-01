@@ -31,6 +31,8 @@ Partial Class FrmMnSeriesGuia
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Pan01 = New System.Windows.Forms.Panel()
         Me.Dgv01 = New System.Windows.Forms.DataGridView()
+        Me.ChkInterno = New System.Windows.Forms.CheckBox()
+        Me.ChkElectronico = New System.Windows.Forms.CheckBox()
         Me.TxtDescripcion = New System.Windows.Forms.TextBox()
         Me.TxtNro_Doc = New System.Windows.Forms.TextBox()
         Me.TxtSerie = New System.Windows.Forms.TextBox()
@@ -41,8 +43,7 @@ Partial Class FrmMnSeriesGuia
         Me.Pan03 = New System.Windows.Forms.Panel()
         Me.BtnGrabar = New System.Windows.Forms.Button()
         Me.BtnCerrar = New System.Windows.Forms.Button()
-        Me.ChkElectronico = New System.Windows.Forms.CheckBox()
-        Me.ChkInterno = New System.Windows.Forms.CheckBox()
+        Me.ChkEsMedxpress = New System.Windows.Forms.CheckBox()
         Me.Panel7.SuspendLayout()
         CType(Me.Pcb01, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Pan01.SuspendLayout()
@@ -60,7 +61,7 @@ Partial Class FrmMnSeriesGuia
         Me.Panel7.Controls.Add(Me.Label15)
         Me.Panel7.Location = New System.Drawing.Point(2, 2)
         Me.Panel7.Name = "Panel7"
-        Me.Panel7.Size = New System.Drawing.Size(509, 63)
+        Me.Panel7.Size = New System.Drawing.Size(592, 63)
         Me.Panel7.TabIndex = 181
         '
         'Label9
@@ -103,6 +104,7 @@ Partial Class FrmMnSeriesGuia
         '
         Me.Pan01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Pan01.Controls.Add(Me.Dgv01)
+        Me.Pan01.Controls.Add(Me.ChkEsMedxpress)
         Me.Pan01.Controls.Add(Me.ChkInterno)
         Me.Pan01.Controls.Add(Me.ChkElectronico)
         Me.Pan01.Controls.Add(Me.TxtDescripcion)
@@ -110,7 +112,7 @@ Partial Class FrmMnSeriesGuia
         Me.Pan01.Controls.Add(Me.TxtSerie)
         Me.Pan01.Location = New System.Drawing.Point(2, 67)
         Me.Pan01.Name = "Pan01"
-        Me.Pan01.Size = New System.Drawing.Size(509, 238)
+        Me.Pan01.Size = New System.Drawing.Size(592, 238)
         Me.Pan01.TabIndex = 182
         '
         'Dgv01
@@ -135,8 +137,28 @@ Partial Class FrmMnSeriesGuia
         Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.Dgv01.RowTemplate.Height = 20
         Me.Dgv01.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dgv01.Size = New System.Drawing.Size(502, 207)
+        Me.Dgv01.Size = New System.Drawing.Size(585, 207)
         Me.Dgv01.TabIndex = 199
+        '
+        'ChkInterno
+        '
+        Me.ChkInterno.AutoSize = True
+        Me.ChkInterno.Location = New System.Drawing.Point(418, 5)
+        Me.ChkInterno.Name = "ChkInterno"
+        Me.ChkInterno.Size = New System.Drawing.Size(59, 17)
+        Me.ChkInterno.TabIndex = 204
+        Me.ChkInterno.Text = "Interno"
+        Me.ChkInterno.UseVisualStyleBackColor = True
+        '
+        'ChkElectronico
+        '
+        Me.ChkElectronico.AutoSize = True
+        Me.ChkElectronico.Location = New System.Drawing.Point(337, 5)
+        Me.ChkElectronico.Name = "ChkElectronico"
+        Me.ChkElectronico.Size = New System.Drawing.Size(79, 17)
+        Me.ChkElectronico.TabIndex = 203
+        Me.ChkElectronico.Text = "Electronico"
+        Me.ChkElectronico.UseVisualStyleBackColor = True
         '
         'TxtDescripcion
         '
@@ -227,7 +249,7 @@ Partial Class FrmMnSeriesGuia
         Me.Pan03.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Pan03.Controls.Add(Me.BtnGrabar)
         Me.Pan03.Controls.Add(Me.BtnCerrar)
-        Me.Pan03.Location = New System.Drawing.Point(337, 308)
+        Me.Pan03.Location = New System.Drawing.Point(420, 308)
         Me.Pan03.Name = "Pan03"
         Me.Pan03.Size = New System.Drawing.Size(174, 29)
         Me.Pan03.TabIndex = 202
@@ -261,31 +283,21 @@ Partial Class FrmMnSeriesGuia
         Me.BtnCerrar.Text = "&Cerrar"
         Me.BtnCerrar.UseVisualStyleBackColor = False
         '
-        'ChkElectronico
+        'ChkEsMedxpress
         '
-        Me.ChkElectronico.AutoSize = True
-        Me.ChkElectronico.Location = New System.Drawing.Point(337, 4)
-        Me.ChkElectronico.Name = "ChkElectronico"
-        Me.ChkElectronico.Size = New System.Drawing.Size(79, 17)
-        Me.ChkElectronico.TabIndex = 203
-        Me.ChkElectronico.Text = "Electronico"
-        Me.ChkElectronico.UseVisualStyleBackColor = True
-        '
-        'ChkInterno
-        '
-        Me.ChkInterno.AutoSize = True
-        Me.ChkInterno.Location = New System.Drawing.Point(413, 5)
-        Me.ChkInterno.Name = "ChkInterno"
-        Me.ChkInterno.Size = New System.Drawing.Size(59, 17)
-        Me.ChkInterno.TabIndex = 204
-        Me.ChkInterno.Text = "Interno"
-        Me.ChkInterno.UseVisualStyleBackColor = True
+        Me.ChkEsMedxpress.AutoSize = True
+        Me.ChkEsMedxpress.Location = New System.Drawing.Point(483, 5)
+        Me.ChkEsMedxpress.Name = "ChkEsMedxpress"
+        Me.ChkEsMedxpress.Size = New System.Drawing.Size(94, 17)
+        Me.ChkEsMedxpress.TabIndex = 205
+        Me.ChkEsMedxpress.Text = "Es MedXpress"
+        Me.ChkEsMedxpress.UseVisualStyleBackColor = True
         '
         'FrmMnSeriesGuia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(512, 340)
+        Me.ClientSize = New System.Drawing.Size(596, 340)
         Me.Controls.Add(Me.Pan03)
         Me.Controls.Add(Me.Pan02)
         Me.Controls.Add(Me.Pan01)
@@ -324,4 +336,5 @@ Partial Class FrmMnSeriesGuia
     Friend WithEvents BtnGrabar As System.Windows.Forms.Button
     Friend WithEvents ChkInterno As CheckBox
     Friend WithEvents ChkElectronico As CheckBox
+    Friend WithEvents ChkEsMedxpress As CheckBox
 End Class

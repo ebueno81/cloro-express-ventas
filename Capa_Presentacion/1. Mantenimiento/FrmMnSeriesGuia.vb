@@ -7,7 +7,7 @@
     Private Sub Nuevo_Registro()
         With Dgv01
             .Location = New Point(2, 29)
-            .Size = New Size(502, 205)
+            .Size = New Size(585, 207)
         End With
         Pan02.Enabled = False : BtnGrabar.Enabled = True : BtnCerrar.Text = "&Cancelar"
         Call Limpiar_Texto(Pan01) : Dgv01.Enabled = False
@@ -18,7 +18,7 @@
     Private Sub Cancelar_Registro()
         With Dgv01
             .Location = New Point(2, 2)
-            .Size = New Size(502, 231)
+            .Size = New Size(585, 231)
         End With
         Pan02.Enabled = True : BtnGrabar.Enabled = False : BtnCerrar.Text = "&Cerrar"
         Call Limpiar_Texto(Pan01) : Dgv01.Enabled = True
@@ -44,6 +44,7 @@
                         TxtDescripcion.Text = .Rows(Fila).Cells("Descripcion").Value
                         ChkElectronico.Checked = IIf(.Rows(Fila).Cells("Electronico").Value = "SI", True, False)
                         ChkInterno.Checked = IIf(.Rows(Fila).Cells("Interno").Value = "SI", True, False)
+                        ChkEsMedxpress.Checked = IIf(.Rows(Fila).Cells("MedXpress").Value = "SI", True, False)
                     Else
                         MsgBox("Registro se encuentra anulado", vbCritical, Compañia)
                     End If
@@ -69,6 +70,7 @@
             .c_guia_interna = IIf(ChkInterno.Checked = True, 1, 0)
             .c_usuario = FrmMenu.lblusuario.Text
             .copcion = cOpcion
+            .c_opc_medxpress = IIf(ChkEsMedxpress.Checked = True, 1, Nothing)
             c_Neg_MnSeriesGuias.set_Series_Save(c_Ent_MnSeriesGuia, FrmMenu.TxtCod_Emp.Text)
         End With
         Call Cargar_Grid(" order by c_nro_Serie")
@@ -96,8 +98,9 @@
             .Columns("Nro.").Width = 60
             .Columns("Guia").Width = 80
             .Columns("Descripcion").Width = 200
-            .Columns("Electronico").Width = 60
-            .Columns("Interno").Width = 60
+            .Columns("Electronico").Width = 65
+            .Columns("Interno").Width = 65
+            .Columns("MedXpress").Width = 80
             .Columns("c_anula_Reg").Visible = False
             Call Grid_Registros_anulados(Dgv01)
             'Alienacion

@@ -1,5 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.OleDb
+﻿Imports System.Data.OleDb
 Imports Capa_Entidades
 Public Class Cls_Usuarios
     Dim Conexion As New Cls_Conexion
@@ -99,6 +98,7 @@ Public Class Cls_Usuarios
             MsgBox("01. " & ex.Message)
         End Try
     End Function
+
     Public Function Get_Usuario_Datos(ByVal Cadena As String, ByVal vOpt As String) As DataTable
         cmd.Connection = Conex
         cmd.CommandType = CommandType.StoredProcedure
@@ -124,6 +124,7 @@ Public Class Cls_Usuarios
         End Try
         Return Tabla
     End Function
+
     Public Function Get_UsuaPermiso_Datos(ByVal Cadena As String, ByVal vOpt As String) As DataTable
         cmd.Connection = Conex
         cmd.CommandType = CommandType.StoredProcedure

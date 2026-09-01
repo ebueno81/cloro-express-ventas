@@ -50,6 +50,7 @@ Partial Class FrmContraseña
         Me.OK = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.CboEmpresa = New System.Windows.Forms.ComboBox()
+        Me.ChkMedXpress = New System.Windows.Forms.CheckBox()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -94,7 +95,7 @@ Partial Class FrmContraseña
         Me.TxtClave.MaxLength = 10
         Me.TxtClave.Name = "TxtClave"
         Me.TxtClave.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.TxtClave.Size = New System.Drawing.Size(194, 22)
+        Me.TxtClave.Size = New System.Drawing.Size(140, 22)
         Me.TxtClave.TabIndex = 5
         '
         'Label2
@@ -356,14 +357,29 @@ Partial Class FrmContraseña
         Me.CboEmpresa.Items.AddRange(New Object() {"Acceso Local", "Acceso Remoto"})
         Me.CboEmpresa.Location = New System.Drawing.Point(124, 146)
         Me.CboEmpresa.Name = "CboEmpresa"
-        Me.CboEmpresa.Size = New System.Drawing.Size(193, 21)
+        Me.CboEmpresa.Size = New System.Drawing.Size(139, 21)
         Me.CboEmpresa.TabIndex = 6
+        '
+        'ChkMedXpress
+        '
+        Me.ChkMedXpress.AutoSize = True
+        Me.ChkMedXpress.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ChkMedXpress.Checked = True
+        Me.ChkMedXpress.CheckState = System.Windows.Forms.CheckState.Checked
+        Me.ChkMedXpress.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.ChkMedXpress.Location = New System.Drawing.Point(322, 144)
+        Me.ChkMedXpress.Name = "ChkMedXpress"
+        Me.ChkMedXpress.Size = New System.Drawing.Size(137, 20)
+        Me.ChkMedXpress.TabIndex = 24
+        Me.ChkMedXpress.Text = "Modo MedXpress"
+        Me.ChkMedXpress.UseVisualStyleBackColor = True
         '
         'FrmContraseña
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(474, 221)
+        Me.Controls.Add(Me.ChkMedXpress)
         Me.Controls.Add(Me.CboEmpresa)
         Me.Controls.Add(Me.LblCopy2)
         Me.Controls.Add(Me.Cancel2)
@@ -427,4 +443,5 @@ Partial Class FrmContraseña
     Friend WithEvents Ok2 As System.Windows.Forms.Button
     Friend WithEvents LblCopy2 As System.Windows.Forms.Label
     Friend WithEvents CboEmpresa As System.Windows.Forms.ComboBox
+    Friend WithEvents ChkMedXpress As CheckBox
 End Class

@@ -19,10 +19,18 @@ Public Class FrmContraseña
     End Sub
 
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
-        'InputBox("", "", " and c_anula_reg=0 and c_codi_usua='" & TxtUser.Text & "' and c_clave_usua='" & TxtClave.Text & "'")
-        With c_Neg_Usuario.get_Usuario_Datos(" and c_anula_reg=0 and c_codi_usua='" & TxtUser.Text & "' and c_clave_usua='" & TxtClave.Text & "'", "DAT")
+        Dim dtUsuario As DataTable = c_Neg_Usuario.get_Usuario_Datos(" and c_anula_reg=0 " & " and c_codi_usua='" & TxtUser.Text & "'" &
+                                                                     " and c_clave_usua='" & TxtClave.Text & "'", "DAT")
+        With dtUsuario
             If .Rows.Count > 0 Then
                 FrmMenu.Show()
+                If ChkMedXpress.Checked Then
+                    ModoMedXpress = True
+                Else
+                    ModoMedXpress = Nothing
+                End If
+
+                UsuarioActual = .Rows(0)("c_codi_usua").ToString()
                 FrmMenu.lblusuario.Text = .Rows(0)("c_codi_usua").ToString
                 FrmMenu.TxtSerie_Guia.Text = .Rows(0)("c_serie_guia").ToString
                 FrmMenu.TxtSerie_Fact.Text = .Rows(0)("c_serie_fact").ToString

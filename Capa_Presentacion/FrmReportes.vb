@@ -481,21 +481,25 @@ Public Class FrmReportes
     End Sub
     ' Impresion ot'
     Public Sub Impresion_OT(c_nro_serie As String, c_nro_salidaTA As String, tipo As String)
-        Rpt02.ProcessingMode = ProcessingMode.Remote
-        Rpt02.ServerReport.ReportServerUrl = New Uri(FrmMenu.LblRutaReport.Text)
-        Rpt02.ServerReport.ReportPath = FrmMenu.TxtRptCarpeta.Text & "Sca_ImpOT"
+        Try
+            Rpt02.ProcessingMode = ProcessingMode.Remote
+            Rpt02.ServerReport.ReportServerUrl = New Uri(FrmMenu.LblRutaReport.Text)
+            Rpt02.ServerReport.ReportPath = FrmMenu.TxtRptCarpeta.Text & "Sca_ImpOT"
 
-        Dim paramList As New Generic.List(Of ReportParameter)
-        paramList.Add(New ReportParameter("c_nro_serie", c_nro_serie, False))
-        paramList.Add(New ReportParameter("c_nro_salidaTA", c_nro_salidaTA, False))
-        paramList.Add(New ReportParameter("Tipo", tipo, False))
+            Dim paramList As New Generic.List(Of ReportParameter)
+            paramList.Add(New ReportParameter("c_nro_serie", c_nro_serie, False))
+            paramList.Add(New ReportParameter("c_nro_salidaTA", c_nro_salidaTA, False))
+            paramList.Add(New ReportParameter("Tipo", tipo, False))
 
-        Rpt02.ServerReport.Refresh()
-        Rpt02.ServerReport.SetParameters(paramList)
+            Rpt02.ServerReport.Refresh()
+            Rpt02.ServerReport.SetParameters(paramList)
 
-        Rpt02.SetDisplayMode(DisplayMode.PrintLayout)
-        Rpt02.ZoomMode = ZoomMode.Percent
-        Rpt02.ZoomPercent = Val(FrmMenu.TxtZoom.Text)
+            Rpt02.SetDisplayMode(DisplayMode.PrintLayout)
+            Rpt02.ZoomMode = ZoomMode.Percent
+            Rpt02.ZoomPercent = Val(FrmMenu.TxtZoom.Text)
+        Catch ex As Exception
+            MsgBox("Error al imprimir la orden de trabajo: " & ex.Message, MsgBoxStyle.Critical, "Error")
+        End Try
         Me.Show()
     End Sub
     ' Impresion de Planilla d eletras '
