@@ -23,12 +23,12 @@ Partial Class FrmMnClientes
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMnClientes))
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TxtCon = New System.Windows.Forms.TextBox()
         Me.Tbc01 = New System.Windows.Forms.TabControl()
         Me.Tab01 = New System.Windows.Forms.TabPage()
@@ -133,6 +133,12 @@ Partial Class FrmMnClientes
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Dgv03 = New System.Windows.Forms.DataGridView()
         Me.Pan16 = New System.Windows.Forms.Panel()
+        Me.Label37 = New System.Windows.Forms.Label()
+        Me.Label35 = New System.Windows.Forms.Label()
+        Me.Label33 = New System.Windows.Forms.Label()
+        Me.Label32 = New System.Windows.Forms.Label()
+        Me.TxtUbigeo = New System.Windows.Forms.TextBox()
+        Me.Label31 = New System.Windows.Forms.Label()
         Me.TxtDpto_Ofi = New System.Windows.Forms.TextBox()
         Me.TxtDirec_Ofi = New System.Windows.Forms.TextBox()
         Me.TxtProv_Ofi = New System.Windows.Forms.TextBox()
@@ -148,6 +154,8 @@ Partial Class FrmMnClientes
         Me.BtnDel3 = New System.Windows.Forms.Button()
         Me.Label25 = New System.Windows.Forms.Label()
         Me.Pan19 = New System.Windows.Forms.Panel()
+        Me.TxtUbigeo2 = New System.Windows.Forms.TextBox()
+        Me.Label30 = New System.Windows.Forms.Label()
         Me.TxtDistOfi = New System.Windows.Forms.TextBox()
         Me.Label34 = New System.Windows.Forms.Label()
         Me.TxtDptoOfi = New System.Windows.Forms.TextBox()
@@ -161,10 +169,6 @@ Partial Class FrmMnClientes
         Me.TxtCodiOfi = New System.Windows.Forms.TextBox()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.BtnEstado = New System.Windows.Forms.Button()
-        Me.TxtUbigeo2 = New System.Windows.Forms.TextBox()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.TxtUbigeo = New System.Windows.Forms.TextBox()
-        Me.Label31 = New System.Windows.Forms.Label()
         Me.Tbc01.SuspendLayout()
         Me.Tab01.SuspendLayout()
         Me.Panel9.SuspendLayout()
@@ -539,22 +543,22 @@ Partial Class FrmMnClientes
         Me.Dgv01.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle9.BackColor = System.Drawing.Color.Blue
-        DataGridViewCellStyle9.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle9.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dgv01.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Blue
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dgv01.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.Dgv01.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Dgv01.EnableHeadersVisualStyles = False
         Me.Dgv01.Location = New System.Drawing.Point(3, 24)
         Me.Dgv01.Name = "Dgv01"
         Me.Dgv01.ReadOnly = True
         Me.Dgv01.RowHeadersWidth = 15
-        DataGridViewCellStyle10.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.Dgv01.RowTemplate.Height = 19
         Me.Dgv01.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.Dgv01.Size = New System.Drawing.Size(884, 352)
@@ -684,25 +688,25 @@ Partial Class FrmMnClientes
         'Dgv02
         '
         Me.Dgv02.AllowUserToAddRows = False
-        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle11.BackColor = System.Drawing.Color.SteelBlue
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle11.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dgv02.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.SteelBlue
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dgv02.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.Dgv02.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Dgv02.EnableHeadersVisualStyles = False
         Me.Dgv02.Location = New System.Drawing.Point(2, 25)
         Me.Dgv02.Name = "Dgv02"
         Me.Dgv02.ReadOnly = True
         Me.Dgv02.RowHeadersWidth = 15
-        DataGridViewCellStyle12.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Dgv02.RowsDefaultCellStyle = DataGridViewCellStyle12
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Dgv02.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.Dgv02.RowTemplate.Height = 19
         Me.Dgv02.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dgv02.Size = New System.Drawing.Size(429, 196)
+        Me.Dgv02.Size = New System.Drawing.Size(429, 269)
         Me.Dgv02.TabIndex = 187
         '
         'Pan01
@@ -1536,36 +1540,40 @@ Partial Class FrmMnClientes
         Me.Panel1.Controls.Add(Me.Pan17)
         Me.Panel1.Location = New System.Drawing.Point(426, 24)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(468, 181)
+        Me.Panel1.Size = New System.Drawing.Size(468, 245)
         Me.Panel1.TabIndex = 187
         '
         'Dgv03
         '
         Me.Dgv03.AllowUserToAddRows = False
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle7.BackColor = System.Drawing.Color.SteelBlue
-        DataGridViewCellStyle7.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle7.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dgv03.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.SteelBlue
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dgv03.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
         Me.Dgv03.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Dgv03.EnableHeadersVisualStyles = False
-        Me.Dgv03.Location = New System.Drawing.Point(2, 76)
+        Me.Dgv03.Location = New System.Drawing.Point(2, 25)
         Me.Dgv03.Name = "Dgv03"
         Me.Dgv03.ReadOnly = True
         Me.Dgv03.RowHeadersWidth = 15
-        DataGridViewCellStyle8.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Dgv03.RowsDefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Dgv03.RowsDefaultCellStyle = DataGridViewCellStyle6
         Me.Dgv03.RowTemplate.Height = 19
         Me.Dgv03.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dgv03.Size = New System.Drawing.Size(462, 69)
+        Me.Dgv03.Size = New System.Drawing.Size(462, 178)
         Me.Dgv03.TabIndex = 187
         '
         'Pan16
         '
         Me.Pan16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Pan16.Controls.Add(Me.Label37)
+        Me.Pan16.Controls.Add(Me.Label35)
+        Me.Pan16.Controls.Add(Me.Label33)
+        Me.Pan16.Controls.Add(Me.Label32)
         Me.Pan16.Controls.Add(Me.TxtUbigeo)
         Me.Pan16.Controls.Add(Me.Label31)
         Me.Pan16.Controls.Add(Me.TxtDpto_Ofi)
@@ -1575,8 +1583,84 @@ Partial Class FrmMnClientes
         Me.Pan16.Controls.Add(Me.TxtCod_Oficina)
         Me.Pan16.Location = New System.Drawing.Point(2, 25)
         Me.Pan16.Name = "Pan16"
-        Me.Pan16.Size = New System.Drawing.Size(461, 49)
+        Me.Pan16.Size = New System.Drawing.Size(461, 89)
         Me.Pan16.TabIndex = 179
+        '
+        'Label37
+        '
+        Me.Label37.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Label37.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label37.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label37.ForeColor = System.Drawing.Color.White
+        Me.Label37.Location = New System.Drawing.Point(7, 52)
+        Me.Label37.Name = "Label37"
+        Me.Label37.Size = New System.Drawing.Size(75, 22)
+        Me.Label37.TabIndex = 55
+        Me.Label37.Text = "Dpto."
+        Me.Label37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label35
+        '
+        Me.Label35.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Label35.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label35.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label35.ForeColor = System.Drawing.Color.White
+        Me.Label35.Location = New System.Drawing.Point(211, 26)
+        Me.Label35.Name = "Label35"
+        Me.Label35.Size = New System.Drawing.Size(75, 22)
+        Me.Label35.TabIndex = 54
+        Me.Label35.Text = "Provincia"
+        Me.Label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label33
+        '
+        Me.Label33.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Label33.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label33.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label33.ForeColor = System.Drawing.Color.White
+        Me.Label33.Location = New System.Drawing.Point(7, 28)
+        Me.Label33.Name = "Label33"
+        Me.Label33.Size = New System.Drawing.Size(75, 22)
+        Me.Label33.TabIndex = 53
+        Me.Label33.Text = "Distrito"
+        Me.Label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'Label32
+        '
+        Me.Label32.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Label32.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label32.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label32.ForeColor = System.Drawing.Color.White
+        Me.Label32.Location = New System.Drawing.Point(7, 4)
+        Me.Label32.Name = "Label32"
+        Me.Label32.Size = New System.Drawing.Size(75, 22)
+        Me.Label32.TabIndex = 52
+        Me.Label32.Text = "Dirección"
+        Me.Label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'TxtUbigeo
+        '
+        Me.TxtUbigeo.BackColor = System.Drawing.Color.White
+        Me.TxtUbigeo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtUbigeo.Location = New System.Drawing.Point(287, 52)
+        Me.TxtUbigeo.MaxLength = 6
+        Me.TxtUbigeo.Name = "TxtUbigeo"
+        Me.TxtUbigeo.Size = New System.Drawing.Size(80, 20)
+        Me.TxtUbigeo.TabIndex = 5
+        Me.TxtUbigeo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label31
+        '
+        Me.Label31.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Label31.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label31.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label31.ForeColor = System.Drawing.Color.White
+        Me.Label31.Location = New System.Drawing.Point(212, 51)
+        Me.Label31.Name = "Label31"
+        Me.Label31.Size = New System.Drawing.Size(75, 22)
+        Me.Label31.TabIndex = 51
+        Me.Label31.Text = "Ubigeo"
+        Me.Label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TxtDpto_Ofi
         '
@@ -1584,9 +1668,9 @@ Partial Class FrmMnClientes
         Me.TxtDpto_Ofi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDpto_Ofi.Enabled = False
         Me.TxtDpto_Ofi.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDpto_Ofi.Location = New System.Drawing.Point(384, 1)
+        Me.TxtDpto_Ofi.Location = New System.Drawing.Point(83, 53)
         Me.TxtDpto_Ofi.Name = "TxtDpto_Ofi"
-        Me.TxtDpto_Ofi.Size = New System.Drawing.Size(64, 20)
+        Me.TxtDpto_Ofi.Size = New System.Drawing.Size(124, 20)
         Me.TxtDpto_Ofi.TabIndex = 4
         '
         'TxtDirec_Ofi
@@ -1595,9 +1679,9 @@ Partial Class FrmMnClientes
         Me.TxtDirec_Ofi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDirec_Ofi.Enabled = False
         Me.TxtDirec_Ofi.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDirec_Ofi.Location = New System.Drawing.Point(54, 1)
+        Me.TxtDirec_Ofi.Location = New System.Drawing.Point(127, 4)
         Me.TxtDirec_Ofi.Name = "TxtDirec_Ofi"
-        Me.TxtDirec_Ofi.Size = New System.Drawing.Size(184, 20)
+        Me.TxtDirec_Ofi.Size = New System.Drawing.Size(311, 20)
         Me.TxtDirec_Ofi.TabIndex = 1
         '
         'TxtProv_Ofi
@@ -1606,9 +1690,9 @@ Partial Class FrmMnClientes
         Me.TxtProv_Ofi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtProv_Ofi.Enabled = False
         Me.TxtProv_Ofi.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtProv_Ofi.Location = New System.Drawing.Point(312, 1)
+        Me.TxtProv_Ofi.Location = New System.Drawing.Point(287, 27)
         Me.TxtProv_Ofi.Name = "TxtProv_Ofi"
-        Me.TxtProv_Ofi.Size = New System.Drawing.Size(71, 20)
+        Me.TxtProv_Ofi.Size = New System.Drawing.Size(151, 20)
         Me.TxtProv_Ofi.TabIndex = 3
         '
         'TxtDis_Ofi
@@ -1617,9 +1701,9 @@ Partial Class FrmMnClientes
         Me.TxtDis_Ofi.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtDis_Ofi.Enabled = False
         Me.TxtDis_Ofi.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtDis_Ofi.Location = New System.Drawing.Point(239, 1)
+        Me.TxtDis_Ofi.Location = New System.Drawing.Point(84, 28)
         Me.TxtDis_Ofi.Name = "TxtDis_Ofi"
-        Me.TxtDis_Ofi.Size = New System.Drawing.Size(72, 20)
+        Me.TxtDis_Ofi.Size = New System.Drawing.Size(123, 20)
         Me.TxtDis_Ofi.TabIndex = 2
         '
         'TxtCod_Oficina
@@ -1628,7 +1712,7 @@ Partial Class FrmMnClientes
         Me.TxtCod_Oficina.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtCod_Oficina.Enabled = False
         Me.TxtCod_Oficina.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.TxtCod_Oficina.Location = New System.Drawing.Point(11, 1)
+        Me.TxtCod_Oficina.Location = New System.Drawing.Point(84, 4)
         Me.TxtCod_Oficina.Name = "TxtCod_Oficina"
         Me.TxtCod_Oficina.Size = New System.Drawing.Size(42, 20)
         Me.TxtCod_Oficina.TabIndex = 0
@@ -1640,7 +1724,7 @@ Partial Class FrmMnClientes
         Me.Pan18.Controls.Add(Me.BtnCancel3)
         Me.Pan18.Controls.Add(Me.BtnAceptar3)
         Me.Pan18.Enabled = False
-        Me.Pan18.Location = New System.Drawing.Point(305, 146)
+        Me.Pan18.Location = New System.Drawing.Point(305, 209)
         Me.Pan18.Name = "Pan18"
         Me.Pan18.Size = New System.Drawing.Size(158, 29)
         Me.Pan18.TabIndex = 179
@@ -1694,7 +1778,7 @@ Partial Class FrmMnClientes
         Me.Pan17.Controls.Add(Me.BtnEdit3)
         Me.Pan17.Controls.Add(Me.BtnDel3)
         Me.Pan17.Enabled = False
-        Me.Pan17.Location = New System.Drawing.Point(2, 146)
+        Me.Pan17.Location = New System.Drawing.Point(2, 209)
         Me.Pan17.Name = "Pan17"
         Me.Pan17.Size = New System.Drawing.Size(234, 29)
         Me.Pan17.TabIndex = 182
@@ -1774,8 +1858,33 @@ Partial Class FrmMnClientes
         Me.Pan19.Controls.Add(Me.Label43)
         Me.Pan19.Location = New System.Drawing.Point(3, 24)
         Me.Pan19.Name = "Pan19"
-        Me.Pan19.Size = New System.Drawing.Size(421, 181)
+        Me.Pan19.Size = New System.Drawing.Size(421, 245)
         Me.Pan19.TabIndex = 185
+        '
+        'TxtUbigeo2
+        '
+        Me.TxtUbigeo2.BackColor = System.Drawing.Color.White
+        Me.TxtUbigeo2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.TxtUbigeo2.Location = New System.Drawing.Point(350, 6)
+        Me.TxtUbigeo2.MaxLength = 6
+        Me.TxtUbigeo2.Name = "TxtUbigeo2"
+        Me.TxtUbigeo2.ReadOnly = True
+        Me.TxtUbigeo2.Size = New System.Drawing.Size(64, 20)
+        Me.TxtUbigeo2.TabIndex = 48
+        Me.TxtUbigeo2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'Label30
+        '
+        Me.Label30.BackColor = System.Drawing.SystemColors.ControlDarkDark
+        Me.Label30.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label30.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label30.ForeColor = System.Drawing.Color.White
+        Me.Label30.Location = New System.Drawing.Point(275, 5)
+        Me.Label30.Name = "Label30"
+        Me.Label30.Size = New System.Drawing.Size(75, 22)
+        Me.Label30.TabIndex = 49
+        Me.Label30.Text = "Ubigeo"
+        Me.Label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TxtDistOfi
         '
@@ -1936,55 +2045,6 @@ Partial Class FrmMnClientes
         Me.BtnEstado.Text = "ANULADO"
         Me.BtnEstado.UseVisualStyleBackColor = False
         Me.BtnEstado.Visible = False
-        '
-        'TxtUbigeo2
-        '
-        Me.TxtUbigeo2.BackColor = System.Drawing.Color.White
-        Me.TxtUbigeo2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtUbigeo2.Location = New System.Drawing.Point(350, 6)
-        Me.TxtUbigeo2.MaxLength = 6
-        Me.TxtUbigeo2.Name = "TxtUbigeo2"
-        Me.TxtUbigeo2.ReadOnly = True
-        Me.TxtUbigeo2.Size = New System.Drawing.Size(64, 20)
-        Me.TxtUbigeo2.TabIndex = 48
-        Me.TxtUbigeo2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Label30
-        '
-        Me.Label30.BackColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label30.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label30.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label30.ForeColor = System.Drawing.Color.White
-        Me.Label30.Location = New System.Drawing.Point(275, 5)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(75, 22)
-        Me.Label30.TabIndex = 49
-        Me.Label30.Text = "Ubigeo"
-        Me.Label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'TxtUbigeo
-        '
-        Me.TxtUbigeo.BackColor = System.Drawing.Color.White
-        Me.TxtUbigeo.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.TxtUbigeo.Location = New System.Drawing.Point(86, 24)
-        Me.TxtUbigeo.MaxLength = 6
-        Me.TxtUbigeo.Name = "TxtUbigeo"
-        Me.TxtUbigeo.Size = New System.Drawing.Size(64, 20)
-        Me.TxtUbigeo.TabIndex = 50
-        Me.TxtUbigeo.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        '
-        'Label31
-        '
-        Me.Label31.BackColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label31.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label31.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label31.ForeColor = System.Drawing.Color.White
-        Me.Label31.Location = New System.Drawing.Point(11, 23)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(75, 22)
-        Me.Label31.TabIndex = 51
-        Me.Label31.Text = "Ubigeo"
-        Me.Label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'FrmMnClientes
         '
@@ -2172,4 +2232,8 @@ Partial Class FrmMnClientes
     Friend WithEvents Label30 As Label
     Friend WithEvents TxtUbigeo As TextBox
     Friend WithEvents Label31 As Label
+    Friend WithEvents Label37 As Label
+    Friend WithEvents Label35 As Label
+    Friend WithEvents Label33 As Label
+    Friend WithEvents Label32 As Label
 End Class

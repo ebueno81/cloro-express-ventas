@@ -451,14 +451,14 @@
     ' Metodo para agregar nuevo detalles '
     Private Sub Nuevo_Detalles()
         With Dgv02
-            .Size = New Size(429, 171) : .Location = New Point(2, 50) : Call Limpiar_Texto(Pan01) : Pan01.Enabled = True
+            .Size = New Size(429, 241) : .Location = New Point(2, 53) : Call Limpiar_Texto(Pan01) : Pan01.Enabled = True
             Call Activar(Pan01) : Pan02.Enabled = True : Pan04.Enabled = False : CboArticulo.SelectedValue = ""
         End With
     End Sub
     ' Metodo para cancelar Detalles '
     Private Sub Cancelar_Detalles()
         With Dgv02
-            .Size = New Size(429, 196) : .Location = New Point(2, 25) : Call Desactivar(Pan01) : Pan01.Enabled = False
+            .Size = New Size(429, 269) : .Location = New Point(2, 25) : Call Desactivar(Pan01) : Pan01.Enabled = False
             Pan02.Enabled = False : Pan04.Enabled = True
         End With
     End Sub
@@ -604,7 +604,7 @@
     ' Cancelamos detalles '
     Private Sub Cancelar_Detalles_2()
         With Dgv03
-            .Size = New Size(462, 120) : .Location = New Point(2, 25)
+            .Size = New Size(462, 178) : .Location = New Point(2, 25)
             Call Limpiar_Texto(Pan16) : Call Desactivar(Pan16) : Pan17.Enabled = True : Pan18.Enabled = False
             Dgv03.Enabled = True
         End With
@@ -616,7 +616,7 @@
     ' Nuevo Detalles '
     Private Sub Nuevo_Detalles_2()
         With Dgv03
-            .Size = New Size(462, 70) : .Location = New Point(2, 75)
+            .Size = New Size(462, 83) : .Location = New Point(2, 118)
             Call Limpiar_Texto(Pan16) : Call Activar(Pan16) : TxtDirec_Ofi.Focus() : Pan18.Enabled = True : Pan17.Enabled = False
             Dgv03.Enabled = False
         End With
@@ -711,5 +711,15 @@
 
     Private Sub Tab02_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Tab02.Click
 
+    End Sub
+
+    Private Sub TxtUbigeo_TextChanged(sender As Object, e As EventArgs) Handles TxtUbigeo.TextChanged
+
+    End Sub
+
+    Private Sub TxtUbigeo_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtUbigeo.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            Call BtnAceptar3_Click(Nothing, Nothing)
+        End If
     End Sub
 End Class
