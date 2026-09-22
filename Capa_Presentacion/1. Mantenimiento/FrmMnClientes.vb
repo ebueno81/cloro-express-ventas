@@ -1,9 +1,48 @@
 ﻿Public Class FrmMnClientes
+
     Dim x As Integer = 0 : Dim Foco As Integer = 0
-    Private Sub BtnMostrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnMostrar.Click
-        If UCase(CboBusca.Text) = "RAZON SOCIAL" Then Call Cargar_Grid(" And c_desc_clie like '%" & TxtBus.Text.Replace("'", "''") & "%' order by c_desc_clie")
-        If UCase(CboBusca.Text) = "R.U.C." Then Call Cargar_Grid(" And c_ruc_clie like '" & TxtBus.Text.Replace("'", "''") & "%' order by c_desc_clie")
+
+    Public Sub IniciarGrid()
+        Call BtnMostrar_Click(Nothing, Nothing)
     End Sub
+
+    Private Sub BtnMostrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnMostrar.Click
+
+        Dim Filtro As String = ""
+
+        '-------------------------------------------------------
+        'Filtro según modo
+        '-------------------------------------------------------
+        If ModSesion.EsMedXpress Then
+            Filtro = " And ISNULL(c_modo_medxpress, 0) = 1 "
+        End If
+
+        '-------------------------------------------------------
+        'Filtro de búsqueda
+        '-------------------------------------------------------
+        If UCase(CboBusca.Text) = "RAZON SOCIAL" Then
+
+            Filtro &= " And c_desc_clie like '%" &
+                  TxtBus.Text.Replace("'", "''") &
+                  "%' "
+
+        ElseIf UCase(CboBusca.Text) = "R.U.C." Then
+
+            Filtro &= " And c_ruc_clie like '" &
+                  TxtBus.Text.Replace("'", "''") &
+                  "%' "
+
+        End If
+
+        '-------------------------------------------------------
+        'Cargar clientes
+        '-------------------------------------------------------
+        Filtro &= " order by c_desc_clie"
+
+        Call Cargar_Grid(Filtro)
+
+    End Sub
+
     Public Sub Cargar_Grid(ByVal Cadena As String)
         With Dgv01
             .DataSource = c_Neg_MnCliente.get_Cliente_Datos(Cadena, "DG2")
@@ -53,6 +92,7 @@
         On Error Resume Next
         Call Limpiar_Texto(Pan03) : Call Limpiar_Texto(Pan05) : BtnAdd2.Enabled = True : BtnEdit2.Enabled = True : BtnDel2.Enabled = True
         Pan04.Enabled = True : CboVende.SelectedValue = "" : Rdb01.Checked = False : Rdb02.Checked = False : Dgv02.Rows.Clear()
+        ChkMedXpress.Enabled = True
     End Sub
     Private Sub Cancela_Registro()
         On Error Resume Next
@@ -62,6 +102,7 @@
         Call Desactivar(Pan03) : Call Desactivar(Pan05)
         Dgv02.Rows.Clear() : TxtRuc.Focus() : BtnGrabar.Enabled = False
         Pan04.Enabled = False
+        ChkMedXpress.Enabled = False
     End Sub
 
     Private Sub FrmMnClientes_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
@@ -217,6 +258,7 @@
             .c_opc_reten = c_opc_reten
             .c_codi_pago = CboFpago.SelectedValue
             .c_codi_ubigeo = TxtCodUbigeo.Text
+            .c_modo_medxpress = IIf(ChkMedXpress.Checked = True, 1, 0)
             .c_obs = TxtObs.Text
             .c_usuario = FrmMenu.lblusuario.Text
             .copcion = cOpcion
@@ -250,58 +292,137 @@
             End If
         End With
     End Sub
-    Private Sub Mostrar_Cliente(ByVal Fila As Integer)
-        With c_Neg_MnCliente.get_Cliente_Datos(" and c_codi_clie='" & Dgv01.Rows(Fila).Cells("Codigo").Value & "'", "DAT")
-            If .Rows.Count > 0 Then
-                Call Nuevo_Registro()
-                TxtCod_Clie.Text = .Rows(0)("c_codi_clie").ToString
-                TxtRaz.Text = .Rows(0)("c_desc_clie").ToString
-                TxtRuc.Text = .Rows(0)("c_ruc_clie").ToString
-                TxtDni.Text = .Rows(0)("c_dni_clie").ToString
-                TxtCon.Text = .Rows(0)("c_contac_clie").ToString
-                TxtDis.Text = .Rows(0)("c_dist_clie").ToString
-                TxtDir.Text = .Rows(0)("c_direc_clie").ToString
-                TxtProv.Text = .Rows(0)("c_prov_clie").ToString
-                TxtCiu.Text = .Rows(0)("c_ciudad_clie").ToString
-                TxtFono.Text = .Rows(0)("c_telf_clie").ToString
-                TxtCel.Text = .Rows(0)("c_cel_clie").ToString
-                TxtWeb.Text = .Rows(0)("c_web_clie").ToString
-                TxtMail.Text = .Rows(0)("c_mail_clie").ToString
-                TxtUsua_1.Text = .Rows(0)("c_usua_crea").ToString
-                TxtUsua_2.Text = .Rows(0)("c_usua_modi").ToString
-                TxtFec_Crea.Text = .Rows(0)("c_fecha_crea").ToString
-                TxtFec_Mod.Text = .Rows(0)("c_fecha_modi").ToString
-                TxtAbrev.Text = .Rows(0)("c_abrev_clie").ToString
-                CboVende.SelectedValue = .Rows(0)("c_codi_vende").ToString
-                CboFpago.SelectedValue = .Rows(0)("c_codi_pago").ToString
-                TxtCodUbigeo.Text = .Rows(0)("c_codi_ubigeo").ToString
-                TxtObs.Text = .Rows(0)("c_obs").ToString
-                'validamos si cliente es prueba on Fornal
-                If Val(.Rows(0)("c_tpo_clie").ToString) = 0 Then
-                    Rdb01.Checked = True
-                Else
-                    Rdb02.Checked = True
-                End If
-                'si es cliete retenedor
-                If Val(.Rows(0)("c_opc_reten").ToString) = 1 Then
-                    ChkRetencion.Checked = True
-                Else
-                    ChkRetencion.Checked = False
-                End If
 
-                'Seleccionamos el codigo de vendedor...
-                CboVende.SelectedValue = .Rows(0)("c_codi_Vende").ToString
-                Call Cargar_Grid_Servicios()
-                'Validamos si cliente se encuentra activo...
-                If Val(.Rows(0)("c_anula_Reg").ToString) = 1 Then
-                    BtnEstado.Text = "INACTIVO" : BtnEstado.BackColor = Color.Red
-                Else
-                    BtnEstado.Text = "ACTIVO" : BtnEstado.BackColor = Color.Navy
-                End If
-                BtnEstado.Visible = True
+
+    Private Sub Mostrar_Cliente(ByVal Fila As Integer)
+
+        Try
+
+            '-------------------------------------------------------
+            'Validar fila
+            '-------------------------------------------------------
+            If Fila < 0 OrElse Fila >= Dgv01.Rows.Count Then
+                Exit Sub
             End If
-        End With
+
+            Dim CodigoCliente As String = Dgv01.Rows(Fila).Cells("Codigo").Value.ToString()
+
+            If Trim(CodigoCliente) = "" Then
+                Exit Sub
+            End If
+
+
+            '-------------------------------------------------------
+            'Consultar cliente
+            '-------------------------------------------------------
+            Dim dt As DataTable = c_Neg_MnCliente.get_Cliente_Datos(" and c_codi_clie='" & CodigoCliente & "'", "DAT")
+
+            If dt.Rows.Count = 0 Then
+                Exit Sub
+            End If
+
+            Dim row As DataRow = dt.Rows(0)
+
+            '-------------------------------------------------------
+            'Preparar formulario
+            '-------------------------------------------------------
+            Call Nuevo_Registro()
+
+            '-------------------------------------------------------
+            'Datos generales
+            '-------------------------------------------------------
+            TxtCod_Clie.Text = row("c_codi_clie").ToString()
+            TxtRaz.Text = row("c_desc_clie").ToString()
+            TxtRuc.Text = row("c_ruc_clie").ToString()
+            TxtDni.Text = row("c_dni_clie").ToString()
+
+            TxtCon.Text = row("c_contac_clie").ToString()
+
+            TxtDis.Text = row("c_dist_clie").ToString()
+            TxtDir.Text = row("c_direc_clie").ToString()
+            TxtProv.Text = row("c_prov_clie").ToString()
+            TxtCiu.Text = row("c_ciudad_clie").ToString()
+            TxtCodUbigeo.Text = row("c_codi_ubigeo").ToString()
+
+            '-------------------------------------------------------
+            'Contacto
+            '-------------------------------------------------------
+            TxtFono.Text = row("c_telf_clie").ToString()
+            TxtCel.Text = row("c_cel_clie").ToString()
+            TxtWeb.Text = row("c_web_clie").ToString()
+            TxtMail.Text = row("c_mail_clie").ToString()
+
+            '-------------------------------------------------------
+            'Datos comerciales
+            '-------------------------------------------------------
+            TxtAbrev.Text = row("c_abrev_clie").ToString()
+
+            CboVende.SelectedValue = row("c_codi_vende").ToString()
+
+            CboFpago.SelectedValue = row("c_codi_pago").ToString()
+
+            TxtObs.Text = row("c_obs").ToString()
+
+            '-------------------------------------------------------
+            'Modo MedXpress
+            '-------------------------------------------------------
+            ChkMedXpress.Checked = (Val(row("c_modo_medxpress").ToString()) = 1)
+
+            '-------------------------------------------------------
+            'Tipo de cliente
+            '-------------------------------------------------------
+            Dim TipoCliente As Integer = Val(row("c_tpo_clie").ToString())
+
+            Rdb01.Checked = (TipoCliente = 0)
+            Rdb02.Checked = (TipoCliente <> 0)
+
+            '-------------------------------------------------------
+            'Retención
+            '-------------------------------------------------------
+            ChkRetencion.Checked = (Val(row("c_opc_reten").ToString()) = 1)
+
+            '-------------------------------------------------------
+            'Auditoría
+            '-------------------------------------------------------
+            TxtUsua_1.Text = row("c_usua_crea").ToString()
+            TxtUsua_2.Text = row("c_usua_modi").ToString()
+
+            TxtFec_Crea.Text = row("c_fecha_crea").ToString()
+            TxtFec_Mod.Text = row("c_fecha_modi").ToString()
+
+            '-------------------------------------------------------
+            'Servicios del cliente
+            '-------------------------------------------------------
+            Call Cargar_Grid_Servicios()
+
+            '-------------------------------------------------------
+            'Estado del cliente
+            '-------------------------------------------------------
+            Dim Inactivo As Boolean = (Val(row("c_anula_Reg").ToString()) = 1)
+
+            If Inactivo Then
+
+                BtnEstado.Text = "INACTIVO"
+                BtnEstado.BackColor = Color.Red
+
+            Else
+
+                BtnEstado.Text = "ACTIVO"
+                BtnEstado.BackColor = Color.Navy
+
+            End If
+
+            BtnEstado.Visible = True
+
+
+        Catch ex As Exception
+
+            MsgBox("Error al mostrar los datos del cliente." & vbCrLf & vbCrLf & ex.Message, vbCritical, Compañia)
+
+        End Try
+
     End Sub
+
     'Eliminamos registro...
     Private Sub BtnDel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnDel.Click
         With Dgv01

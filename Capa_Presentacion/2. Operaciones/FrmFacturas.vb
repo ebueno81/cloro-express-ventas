@@ -34,20 +34,76 @@
     Private Sub FrmFactVtaMos_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Me.KeyPress
         Call Avanzar_Enter(e)
     End Sub
+
     Private Sub FrmFactVtaMos_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        c_Neg_TpoMoneda.Get_Moneda_Cbo(" ", CboMon) : CboMon.SelectedIndex = -1
+
+        '-------------------------------------------------------
+        'Moneda
+        '-------------------------------------------------------
+        c_Neg_TpoMoneda.Get_Moneda_Cbo(" ", CboMon)
+        CboMon.SelectedIndex = -1
+
         Call DtpFec_Emi_ValueChanged(Nothing, Nothing)
-        c_Neg_MnSeriesDoc.get_Series_Cbo(" And c_codi_doc='01' AND C_anula_reg=0 order by c_nro_serie", CboBus_Serie, FrmMenu.TxtCod_Emp.Text)
-        c_Neg_MnSeriesDoc.get_Series_Cbo(" And c_codi_doc='01' AND C_anula_reg=0 order by c_nro_serie", CboSerie, FrmMenu.TxtCod_Emp.Text)
-        c_Neg_MnCliente.Get_Clientes_Cbo(" And c_anula_reg=0 order by c_desc_clie", CboClie)
+
+        '-------------------------------------------------------
+        'Filtros según modo
+        '-------------------------------------------------------
+        Dim FiltroSerie As String = " And c_codi_doc='01' AND c_anula_reg=0 "
+
+        Dim FiltroCliente As String = " And c_anula_reg=0 "
+
+        '-------------------------------------------------------
+        'Si estamos en MedXpress:
+        ' - Series solo del giro actual
+        ' - Clientes solo MedXpress
+        '-------------------------------------------------------
+        If ModSesion.EsMedXpress Then
+
+            FiltroSerie &=
+            " And c_codi_giro=" &
+            ModSesion.IdGiro.ToString() & " "
+
+            FiltroCliente &=
+            " And ISNULL(c_modo_medxpress,0)=1 "
+
+        End If
+
+        '-------------------------------------------------------
+        'Series de factura
+        '-------------------------------------------------------
+        c_Neg_MnSeriesDoc.get_Series_Cbo(FiltroSerie & " order by c_nro_serie", CboBus_Serie, FrmMenu.TxtCod_Emp.Text)
+
+        c_Neg_MnSeriesDoc.get_Series_Cbo(FiltroSerie & " order by c_nro_serie", CboSerie, FrmMenu.TxtCod_Emp.Text)
+
+        '-------------------------------------------------------
+        'Clientes
+        '-------------------------------------------------------
+        c_Neg_MnCliente.Get_Clientes_Cbo(FiltroCliente & " order by c_desc_clie", CboClie)
+
+        '-------------------------------------------------------
+        'Otros combos
+        '-------------------------------------------------------
         c_Neg_MnVendedor.get_Vendedor_Combo(" and c_anula_reg=0 order by c_nom_vende ", CboVende)
+
         c_Neg_MnTpoPago.Get_Fpago_Cbo(" and c_anula_reg=0 order by c_desc_pago", CboFPago)
+
         c_Neg_StatusLetra.Get_StatusLetra_Cbo(" order by c_desc_stletra", CboStatus)
+
         c_Neg_MnBcos.Get_Bcos_Cbo(" and c_anula_reg=0 order by c_desc_bco ", CboBco)
-        If CboBus_Serie.Items.Count > 0 Then CboBus_Serie.SelectedIndex = 0 : CboBus_Serie.SelectedValue = FrmMenu.TxtSerie_Fact.Text
+
+        '-------------------------------------------------------
+        'Serie inicial
+        '-------------------------------------------------------
+        If CboBus_Serie.Items.Count > 0 Then
+            CboBus_Serie.SelectedIndex = 0
+        End If
+
         Call BtnFin_Click(Nothing, Nothing)
+
         Call Validar_Permiso(Me.Name, BtnNuevo, BtnEditar, BtnEliminar)
+
     End Sub
+
     Private Sub DtpFec_Emi_ValueChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles DtpFec_Emi.ValueChanged
         If DtpFec_Emi.Enabled = True Then
             Call Mostrar_IGV(DtpFec_Emi.Text, TxtCant_IGV)
@@ -182,13 +238,16 @@
         BtnEstado.Text = "PENDIENTE" : BtnEstado.BackColor = Drawing.Color.Maroon
         'Vta mostrador
         TxtFactura.Enabled = False : TxtObs.Enabled = False : BtnCon1.Enabled = True
+
+        If CboSerie.Items.Count > 0 Then CboSerie.SelectedIndex = 0
         Call CboSerie_SelectedIndexChanged(Nothing, Nothing) : CboSerie.Enabled = False
+
         DtpFec_Vcto.Enabled = True : Rdb01.Checked = False : BtnCon1.Focus() : TxtObs.Enabled = True
         DtpFec_Vcto.Text = Now.Date : BtnMostrar.Enabled = True : Rdb02.Checked = True : CboMon.SelectedIndex = -1
         CboMon.Focus() : ChkRetencion.Enabled = True : ChkRetencion.Checked = False : BtnEditar.Enabled = False
         CboFPago.SelectedIndex = -1 : CboFPago.Enabled = True : TxtObs.Clear() : CboTpo.Enabled = True : CboTpo.SelectedIndex = 0
         ChkInaf.Checked = False : ChkInaf.Enabled = True : CboSerie.Enabled = True
-        CboSerie.SelectedValue = FrmMenu.TxtSerie_Fact.Text : CboBus_Serie.SelectedValue = FrmMenu.TxtSerie_Fact.Text
+
         CboStatus.SelectedValue = "00" : CboBco.SelectedValue = "00"
         CboBco.Enabled = True
     End Sub

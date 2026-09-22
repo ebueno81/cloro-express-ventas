@@ -528,7 +528,9 @@
     <Compile Include="FrmReportes.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ItemGiro.vb" />
     <Compile Include="ModCapas.vb" />
+    <Compile Include="ModGiros.vb" />
     <Compile Include="ModSession.vb" />
     <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />

@@ -1,6 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.OleDb
-Imports Capa_Entidades
+﻿Imports System.Data.OleDb
 Imports System.Windows.Forms
 Public Class Cls_MnAlmacen
     Dim Conexion As New Cls_Conexion

@@ -10,33 +10,98 @@
         If e.Control And e.KeyCode = Keys.N Then If BtnNuevo.Enabled = True Then Call BtnNuevo_Click(Nothing, Nothing)
         If e.Control And e.KeyCode = Keys.E Then If BtnEditar.Enabled = True Then Call BtnEditar_Click(Nothing, Nothing)
         If e.Control And e.KeyCode = Keys.G Then If BtnGrabar.Enabled = True Then Call BtnGrabar_Click(Nothing, Nothing)
+        If e.Control And e.KeyCode = Keys.Delete Then If BtnEliminar.Enabled = True Then Call BtnEliminar_Click(Nothing, Nothing)
     End Sub
 
     Private Sub FrmAlmSalTA_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Me.KeyPress
         Call Avanzar_Enter(e)
     End Sub
+
     Private Sub FrmAlmSalTA_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        c_Neg_MnCliente.Get_Clientes_Cbo(" and c_anula_reg=0 order by c_desc_clie ", CboBusClie)
-        c_Neg_MnCliente.Get_Clientes_Cbo(" and c_anula_reg=0 order by c_desc_clie ", CboCliente)
+
+        '-------------------------------------------------------
+        'Filtros según modo / giro
+        '-------------------------------------------------------
+        Dim FiltroCliente As String = " and c_anula_reg=0 "
+        Dim FiltroSerie As String = " and c_anula_reg=0 "
+
+        If ModSesion.EsMedXpress Then
+
+            'Solo clientes MedXpress
+            FiltroCliente &=
+            " and ISNULL(c_modo_medxpress,0)=1 "
+
+            'Solo series correspondientes al giro actual
+            FiltroSerie &=
+            " and c_codi_giro=" &
+            ModSesion.IdGiro.ToString() & " "
+
+        End If
+
+        '-------------------------------------------------------
+        'Clientes
+        '-------------------------------------------------------
+        c_Neg_MnCliente.Get_Clientes_Cbo(FiltroCliente & " order by c_desc_clie ", CboBusClie)
+
+        c_Neg_MnCliente.Get_Clientes_Cbo(FiltroCliente & " order by c_desc_clie ", CboCliente)
+
+        '-------------------------------------------------------
+        'Vendedores
+        '-------------------------------------------------------
         c_Neg_MnVendedor.get_Vendedor_Combo(" and c_anula_reg=0 order by c_nom_vende", CboVende)
+
+        '-------------------------------------------------------
+        'Almacenes
+        '-------------------------------------------------------
         c_Neg_MnAlmacen.get_Almacen_Cbo(" and c_anula_reg=0 order by c_desc_alm", CboAlm)
+
+        '-------------------------------------------------------
+        'Empresa de servicio
+        '-------------------------------------------------------
         c_Neg_MnEmprServ.Get_EmpServ_Cbo(" and c_anula_reg=0 order by c_codi_empserv", CboEmpServ)
+
+        '-------------------------------------------------------
+        'Motivos
+        '-------------------------------------------------------
         c_Neg_mnmtmov.get_MtMov_Cbo(" and c_anula_reg=0 order by c_desc_mt", CboMot)
+
+        '-------------------------------------------------------
+        'Tipos de documento
+        '-------------------------------------------------------
         c_Neg_TpoDoc.Get_TpoDoc_Cbo(" and c_anula_reg=0 order by c_desc_doc", CboTpoDoc)
+
         c_Neg_TpoDoc.Get_TpoDoc_Cbo(" and c_anula_reg=0 order by c_desc_doc", CboDocAnexo)
-        ' Series de Documentos '
-        With c_Neg_MnSeriesGuias.get_Series_Datos(" and c_anula_reg=0 order by c_nro_serie", "DAT", FrmMenu.TxtCod_Emp.Text)
-            CboSerie.Items.Clear() : CboBusSerie.Items.Clear()
+
+        '-------------------------------------------------------
+        'Series de guía
+        '-------------------------------------------------------
+        With c_Neg_MnSeriesGuias.get_Series_Datos(FiltroSerie & " order by c_nro_serie", "DAT", FrmMenu.TxtCod_Emp.Text)
+
+            CboSerie.Items.Clear()
+            CboBusSerie.Items.Clear()
+
             If .Rows.Count > 0 Then
+
+                Dim i As Integer
+
                 For i = 0 To .Rows.Count - 1
-                    CboSerie.Items.Add(.Rows(i)("c_nro_serie").ToString)
-                    CboBusSerie.Items.Add(.Rows(i)("c_nro_serie").ToString)
+
+                    CboSerie.Items.Add(.Rows(i)("c_nro_serie").ToString())
+
+                    CboBusSerie.Items.Add(.Rows(i)("c_nro_serie").ToString())
+
                 Next
+
             End If
+
         End With
+
         Call Cancelar_Detalles()
+
         Call Validar_Permiso(Me.Name, BtnNuevo, BtnEditar, BtnEliminar)
+
     End Sub
+
     Public Sub Cargar_Grid()
         Call BtnMostrar_Click(Nothing, Nothing)
     End Sub
@@ -319,38 +384,93 @@
     End Sub
 
     Private Sub CboTransp_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CboMot.SelectedIndexChanged
+
         Call Combo_Jalar_Codigo(CboMot, TxtCod_Mt)
-        ' Validamos si trabajamos con clientes o proveedores
+
+        '-------------------------------------------------------
+        'Validamos si trabajamos con clientes o proveedores
+        '-------------------------------------------------------
         With c_Neg_mnmtmov.get_MtMov_Datos(" and c_codi_mt='" & TxtCod_Mt.Text & "' ", "DAT")
+
             If .Rows.Count > 0 Then
-                TxtOpc_Prove.Text = Val(.Rows(0)("c_opc_prove").ToString)
+
+                TxtOpc_Prove.Text =
+                Val(.Rows(0)("c_opc_prove").ToString)
+
                 Pan22.Enabled = True
+
             End If
+
         End With
+
         CboVende.SelectedValue = "00"
-        If Val(TxtOpc_Prove.Text) = 1 Then ' Transformaciones '
-            c_Neg_MnProve.get_MtProve_Cbo(" AND C_anula_reg=0 order by c_desc_prov", CboCliente)
+
+        '-------------------------------------------------------
+        'PROVEEDORES
+        '-------------------------------------------------------
+        If Val(TxtOpc_Prove.Text) = 1 Then
+
+            c_Neg_MnProve.get_MtProve_Cbo(" AND c_anula_reg=0 order by c_desc_prov", CboCliente)
+
             LblCliente.Text = "Proveedor"
+
             Pan22.Enabled = False
+
             CboDocAnexo.SelectedIndex = -1
+
             Call Limpiar_Texto(Pan22)
+
         Else
+
+            '---------------------------------------------------
+            'CLIENTES
+            '---------------------------------------------------
             Pan22.Enabled = True
+
             Call Limpiar_Texto(Pan22)
-            c_Neg_MnCliente.Get_Clientes_Cbo(" and c_anula_reg=0 order by c_desc_clie", CboCliente)
-            LblCliente.Text = "Cliente"
-            ' Validamos si es envases '
-            If TxtCod_Mt.Text = "03" Then
-                Pan21.Enabled = True
-            Else
-                If TxtCod_Mt.Text = "09" Then
-                    TxtNro_Ing.Enabled = True
-                Else
-                    Pan21.Enabled = False
-                End If
+
+            '---------------------------------------------------
+            'Cargar clientes según modo
+            '---------------------------------------------------
+            Dim FiltroCliente As String = " and c_anula_reg=0 "
+
+            If ModSesion.EsMedXpress Then
+
+                FiltroCliente &= " and ISNULL(c_modo_medxpress,0)=1 "
+
             End If
+
+            FiltroCliente &= " order by c_desc_clie"
+
+            c_Neg_MnCliente.Get_Clientes_Cbo(FiltroCliente, CboCliente)
+
+            LblCliente.Text = "Cliente"
+
+            '---------------------------------------------------
+            'Validamos si es envases
+            '---------------------------------------------------
+            If TxtCod_Mt.Text = "03" Then
+
+                Pan21.Enabled = True
+
+            Else
+
+                If TxtCod_Mt.Text = "09" Then
+
+                    TxtNro_Ing.Enabled = True
+
+                Else
+
+                    Pan21.Enabled = False
+
+                End If
+
+            End If
+
         End If
+
         TxtCod_Clie.Clear()
+
     End Sub
 
     Private Sub CboSerie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CboSerie.SelectedIndexChanged
@@ -680,16 +800,49 @@
     End Sub
 
     Private Sub BtnMostrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnMostrar.Click
-        If Len(CboBusClie.Text) > 0 Then
-            Call Cargar_Grid(" and S.c_fecha_sal>='" & DtpFec_Inicio.Text & "' and S.c_fecha_sal<='" & DateAdd("d", 1, DtpFec_Final.Text) &
-                         "' and Cl.c_desc_clie like '" & CboBusClie.Text & "%' ", "DGC")
-        Else
-            Call Cargar_Grid(" and S.c_fecha_sal>='" & DtpFec_Inicio.Text & "' and S.c_fecha_sal<='" & DateAdd("d", 1, DtpFec_Final.Text) &
-                       "'  ", "DGV")
+
+        Dim Filtro As String = ""
+
+        '-------------------------------------------------------
+        'Filtro por fechas
+        '-------------------------------------------------------
+        Filtro = " and S.c_fecha_sal>='" & DtpFec_Inicio.Text & "'" &
+        " and S.c_fecha_sal<='" & DateAdd("d", 1, DtpFec_Final.Text) & "'"
+
+        '-------------------------------------------------------
+        'Filtro por giro
+        'Solo cuando estamos en modo MedXpress
+        '-------------------------------------------------------
+        If ModSesion.EsMedXpress Then
+
+            Filtro &=
+            " and Se.c_codi_giro=" &
+            ModSesion.IdGiro.ToString()
+
         End If
 
-        TxtBus_Guia.Clear() : TxtBus_Partida.Clear()
+        '-------------------------------------------------------
+        'Filtro por cliente
+        '-------------------------------------------------------
+        If Len(CboBusClie.Text) > 0 Then
+
+            Filtro &= " and Cl.c_desc_clie like '" &
+            CboBusClie.Text.Replace("'", "''") &
+            "%' "
+
+            Call Cargar_Grid(Filtro, "DGC")
+
+        Else
+
+            Call Cargar_Grid(Filtro, "DGV")
+
+        End If
+
+        TxtBus_Guia.Clear()
+        TxtBus_Partida.Clear()
+
     End Sub
+
     ' Metodo que nos permite cargar el Grid '
     Public Sub Cargar_Grid(ByVal Cadena As String, ByVal vOpt As String)
         With Dgv01
@@ -961,7 +1114,10 @@
                                                         Call Grabar_SalidaTADet(i, "DEL")
                                                     Next
                                                 End With
-                                                Call Grabar_SalidaTA("DEL") : Call BtnMostrar_Click(Nothing, Nothing)
+                                                Call Grabar_SalidaTA("DEL") ': Call BtnMostrar_Click(Nothing, Nothing)
+                                                .Rows(Fila).Cells("c_anula_reg").Value = 1
+                                                .Rows(Fila).DefaultCellStyle.BackColor = Color.Gainsboro
+
                                             End If
                                         Else
                                             MsgBox(" La orden de trabajo ya fue Procesada...", vbCritical, Compañia)

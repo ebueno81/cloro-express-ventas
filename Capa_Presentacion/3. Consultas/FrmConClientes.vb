@@ -52,18 +52,42 @@ Public Class FrmConClientes
     Private Sub FrmConClientes_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
     End Sub
+
     Public Sub Cargar_Grid(ByVal Cadena As String)
-        Dgv01.DataSource = c_Neg_Clientes.get_Cliente_Datos(Cadena, "DG3")
+
+        '-------------------------------------------------------
+        'Aplicar filtro según modo
+        '-------------------------------------------------------
+        Dim Filtro As String = ""
+
+        If ModSesion.EsMedXpress Then
+            Filtro = " and ISNULL(c_modo_medxpress,0)=1 "
+        End If
+        Filtro &= Cadena
+        '-------------------------------------------------------
+        'Cargar clientes
+        '-------------------------------------------------------
+        Dgv01.DataSource = c_Neg_Clientes.get_Cliente_Datos(Filtro, "DG3")
+
+        '-------------------------------------------------------
+        'Configurar Grid
+        '-------------------------------------------------------
         With Dgv01
+
             .Columns("Codigo").Width = 60
             .Columns("Cliente").Width = 320
             .Columns("R.U.C.").Width = 90
+
             .Columns(0).HeaderCell.Style.BackColor = Color.Yellow
             .Columns(0).HeaderCell.Style.ForeColor = Color.Blue
-            ' Alineacion '
+
+            'Alineación
             .Columns("Codigo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
             .Columns("R.U.C.").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
         End With
+
     End Sub
 
     Private Sub TxtBuscar_GotFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles TxtBuscar.GotFocus

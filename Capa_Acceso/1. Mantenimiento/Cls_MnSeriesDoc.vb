@@ -1,5 +1,4 @@
-﻿Imports System.Data
-Imports System.Data.OleDb
+﻿Imports System.Data.OleDb
 Imports Capa_Entidades
 Imports System.Windows.Forms
 Public Class Cls_MnSeriesDoc
@@ -22,7 +21,7 @@ Public Class Cls_MnSeriesDoc
             cmd.Parameters.Add("@c_desc_serie", OleDbType.VarChar, 30).Value = ent.c_desc_serie
             cmd.Parameters.Add("@copcion", OleDbType.VarChar, 3).Value = ent.copcion
 
-            cmd.Parameters.Add("@c_opc_medxpress", OleDbType.Integer).Value = ent.c_opc_medxpress
+            cmd.Parameters.Add("@c_codi_giro", OleDbType.Integer).Value = ent.c_codi_giro
             'ejecutamos query
             cmd.ExecuteNonQuery()
 

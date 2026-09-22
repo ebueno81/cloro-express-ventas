@@ -65,13 +65,13 @@
         End Set
     End Property
 
-    Private _c_opc_medxpress As Integer?
-    Public Property c_opc_medxpress As Integer?
+    Private _c_codi_giro As Integer?
+    Public Property c_codi_giro As Integer?
         Get
-            Return _c_opc_medxpress
+            Return _c_codi_giro
         End Get
         Set(ByVal value As Integer?)
-            _c_opc_medxpress = value
+            _c_codi_giro = value
         End Set
     End Property
 End Class

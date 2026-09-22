@@ -1,9 +1,22 @@
 ﻿Imports System.Data.OleDb
 Imports Capa_Entidades
 Public Class Cls_Usuarios
+
     Dim Conexion As New Cls_Conexion
-    Dim Conex As New OleDbConnection(Conexion.GetConexion_Sql)
+    Dim Conex As New OleDbConnection
     Dim cmd As New OleDbCommand
+
+    Private Sub PrepararConexion()
+
+        If Conex.State <> ConnectionState.Closed Then
+            Conex.Close()
+        End If
+
+        Conex.ConnectionString =
+        Conexion.GetConexion_Sql()
+
+    End Sub
+
     Public Function sca_Usuario_Save(ByVal ent As Ent_Usuario) As Boolean
         cmd.Connection = Conex
         cmd.CommandType = CommandType.StoredProcedure
@@ -44,6 +57,7 @@ Public Class Cls_Usuarios
             MsgBox("01. " & ex.Message)
         End Try
     End Function
+
     Public Function Get_Usuarios_Acceso(ByVal Cadena As String) As DataTable
         cmd.Connection = Conex
         cmd.CommandType = CommandType.StoredProcedure
@@ -68,6 +82,7 @@ Public Class Cls_Usuarios
         End Try
         Return Tabla
     End Function
+
     Public Function sca_UsuaPermiso_Save(ByVal ent As Ent_UsuaPermiso) As Boolean
         cmd.Connection = Conex
         cmd.CommandType = CommandType.StoredProcedure
@@ -100,29 +115,45 @@ Public Class Cls_Usuarios
     End Function
 
     Public Function Get_Usuario_Datos(ByVal Cadena As String, ByVal vOpt As String) As DataTable
-        cmd.Connection = Conex
-        cmd.CommandType = CommandType.StoredProcedure
-        cmd.CommandText = "Sp_Sca_Datos_Usuario"
 
         Dim Tabla As New DataTable
-        Dim aD As New OleDbDataAdapter
+
         Try
-            If Conex.State = ConnectionState.Closed Then
-                Conex.Open()
-            End If
+
+            'Tomar la conexión LOCAL/REMOTO actual
+            PrepararConexion()
+
+            cmd.Connection = Conex
+            cmd.CommandType = CommandType.StoredProcedure
+            cmd.CommandText = "Sp_Sca_Datos_Usuario"
+
             cmd.Parameters.Clear()
+
             cmd.Parameters.Add("@Cadena", OleDbType.VarChar, 500).Value = Cadena
             cmd.Parameters.Add("@vOpt", OleDbType.VarChar, 3).Value = vOpt
 
-            aD = New OleDbDataAdapter(cmd)
-            Tabla = New DataTable
-            aD.Fill(Tabla)
+            If Conex.State = ConnectionState.Closed Then
+                Conex.Open()
+            End If
 
-            Conex.Close()
+            Using aD As New OleDbDataAdapter(cmd)
+                aD.Fill(Tabla)
+            End Using
+
         Catch ex As Exception
+
             MsgBox(ex.Message)
+
+        Finally
+
+            If Conex.State <> ConnectionState.Closed Then
+                Conex.Close()
+            End If
+
         End Try
+
         Return Tabla
+
     End Function
 
     Public Function Get_UsuaPermiso_Datos(ByVal Cadena As String, ByVal vOpt As String) As DataTable

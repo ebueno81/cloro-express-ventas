@@ -8,7 +8,7 @@ Public Class FrmMenu
     ' --> Mantenimiento  de clientes <-- '
     Private Sub MnuMnCliente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MnuMnCliente.Click
         With FrmMnClientes
-            .MdiParent = Me : .Show() : .Cargar_Grid(" order by c_codi_clie")
+            .MdiParent = Me : .Show() : .IniciarGrid()
         End With
     End Sub
     ' --> Mantenimiento de Vendedores <-- '

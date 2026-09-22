@@ -1,126 +1,449 @@
-﻿Imports System.IO
+﻿Imports Capa_Negocios
+
 Public Class FrmContraseña
+
     Dim x As Integer = 0
-    Private Sub FrmContraseña_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
+
+    Private NegConexion As New Neg_Conexion
+
+    '===============================================================
+    ' TECLADO
+    '===============================================================
+    Private Sub FrmContraseña_KeyDown(
+        ByVal sender As Object,
+        ByVal e As System.Windows.Forms.KeyEventArgs
+    ) Handles Me.KeyDown
+
         If e.KeyCode = Keys.Escape Then End
+
     End Sub
 
-    Private Sub FrmContraseña_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles Me.KeyPress
+
+    Private Sub FrmContraseña_KeyPress(
+        ByVal sender As Object,
+        ByVal e As System.Windows.Forms.KeyPressEventArgs
+    ) Handles Me.KeyPress
+
         Call Avanzar_Enter(e)
+
     End Sub
 
+
+    '===============================================================
+    ' CARGAR FORMULARIO
+    '===============================================================
     Private Sub FrmContraseña_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
-        'c_Neg_MnEmpresa.Get_Empresa_Cbo(" And E.c_anula_reg=0 order by c_codi_emp", CboEmpresa)
-        'If CboEmpresa.Items.Count > 0 Then CboEmpresa.SelectedIndex = 0
+
+        CargarTipoConexion()
+
+        CargarGiros(CboGiro)
+
+        If CboGiro.Items.Count > 0 Then CboGiro.SelectedIndex = 0
+
+    End Sub
+
+    '===============================================================
+    ' CARGAR TIPO DE CONEXIÓN
+    '===============================================================
+    Private Sub CargarTipoConexion()
+
+        Try
+
+            CboTipoConexion.Items.Clear()
+
+            CboTipoConexion.Items.Add("LOCAL")
+            CboTipoConexion.Items.Add("REMOTO")
+
+            Dim tipoActual As String =
+            NegConexion.GetTipoConexion()
+
+            If tipoActual = "LOCAL" OrElse
+           tipoActual = "REMOTO" Then
+
+                CboTipoConexion.SelectedItem = tipoActual
+
+            Else
+
+                CboTipoConexion.SelectedIndex = 0
+
+            End If
+
+        Catch ex As Exception
+
+            MsgBox(
+            "Error al cargar el tipo de conexión: " &
+            ex.Message,
+            vbCritical,
+            Compañia)
+
+        End Try
+
     End Sub
 
     Private Sub Cancel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Cancel.Click
         End
     End Sub
 
+    '===============================================================
+    ' LOGIN
+    '===============================================================
     Private Sub OK_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles OK.Click
-        Dim dtUsuario As DataTable = c_Neg_Usuario.get_Usuario_Datos(" and c_anula_reg=0 " & " and c_codi_usua='" & TxtUser.Text & "'" &
-                                                                     " and c_clave_usua='" & TxtClave.Text & "'", "DAT")
-        With dtUsuario
-            If .Rows.Count > 0 Then
-                FrmMenu.Show()
-                If ChkMedXpress.Checked Then
-                    ModoMedXpress = True
-                Else
-                    ModoMedXpress = Nothing
-                End If
 
-                UsuarioActual = .Rows(0)("c_codi_usua").ToString()
-                FrmMenu.lblusuario.Text = .Rows(0)("c_codi_usua").ToString
-                FrmMenu.TxtSerie_Guia.Text = .Rows(0)("c_serie_guia").ToString
-                FrmMenu.TxtSerie_Fact.Text = .Rows(0)("c_serie_fact").ToString
-                FrmMenu.TxtSerie_Bol.Text = .Rows(0)("c_serie_bol").ToString
-                FrmMenu.TxtSerie_Nc.Text = .Rows(0)("c_serie_nc").ToString
-                FrmMenu.TxtSerie_ND.Text = .Rows(0)("c_serie_nd").ToString
-                ' Validamos el usuario admin '
-                If Val(.Rows(0)("c_usua_admin").ToString) = 1 Then
-                    FrmMenu.ChkUsuaAdmin.Checked = True
-                Else
-                    FrmMenu.ChkUsuaAdmin.Checked = False
-                End If
-                ' Validamos el usuario precio '
-                If Val(.Rows(0)("c_usua_precio").ToString) = 1 Then
-                    FrmMenu.ChkUsuaPrecio.Checked = True
-                Else
-                    FrmMenu.ChkUsuaPrecio.Checked = False
-                End If
+        Try
+
+            '-------------------------------------------------------
+            '1. Validar tipo de conexión
+            '-------------------------------------------------------
+            If CboTipoConexion.SelectedIndex = -1 Then
+
+                MsgBox(
+                "Debe seleccionar el tipo de conexión.",
+                vbExclamation,
+                Compañia)
+
+                CboTipoConexion.Focus()
+                Exit Sub
+
+            End If
 
 
-                Me.Hide()
-                With c_Neg_MnEmpresa.get_Empresa_Datos(" AND E.c_codi_emp='FA' ", "DAT")
-                    If .Rows.Count > 0 Then
-                        FrmMenu.TxtRuta_Concar.Text = .Rows(0)("c_ruta_concar").ToString
-                        FrmMenu.TxtEmpresa.Text = .Rows(0)("c_raz_emp").ToString
-                        FrmMenu.TxtRuc.Text = .Rows(0)("c_ruc_emp").ToString
+            '-------------------------------------------------------
+            '2. Guardar LOCAL / REMOTO
+            '-------------------------------------------------------
+            NegConexion.GuardarTipoConexion(
+            CboTipoConexion.Text)
+
+
+            '-------------------------------------------------------
+            '3. Probar conexión
+            '-------------------------------------------------------
+            Dim mensajeConexion As String = ""
+
+            If Not NegConexion.ProbarConexion(mensajeConexion) Then
+
+                Dim tipo As String =
+                NegConexion.GetTipoConexion()
+
+                If tipo = "LOCAL" Then
+
+                    MsgBox(
+                    "No fue posible conectarse al servidor LOCAL." &
+                    vbCrLf & vbCrLf &
+                    "Si se encuentra fuera de la oficina, " &
+                    "seleccione REMOTO (Internet)." &
+                    vbCrLf & vbCrLf &
+                    "Detalle técnico:" &
+                    vbCrLf &
+                    mensajeConexion,
+                    vbExclamation,
+                    Compañia)
+
+                Else
+
+                    MsgBox(
+                    "No fue posible conectarse al servidor REMOTO." &
+                    vbCrLf & vbCrLf &
+                    "Verifique su conexión a Internet." &
+                    vbCrLf & vbCrLf &
+                    "Detalle técnico:" &
+                    vbCrLf &
+                    mensajeConexion,
+                    vbExclamation,
+                    Compañia)
+
+                End If
+
+                Exit Sub
+
+            End If
+
+            '-------------------------------------------------------
+            '5. Validar giro
+            '-------------------------------------------------------
+            If CboGiro.SelectedIndex = -1 Then
+
+                MsgBox("Debe seleccionar el giro de negocio.", vbExclamation, Compañia)
+                CboGiro.Focus()
+                Exit Sub
+
+            End If
+
+
+            '-------------------------------------------------------
+            '6. Validar usuario
+            '-------------------------------------------------------
+            Dim dtUsuario As DataTable =
+            c_Neg_Usuario.get_Usuario_Datos(
+                " and c_anula_reg=0 " &
+                " and c_codi_usua='" & TxtUser.Text & "'" &
+                " and c_clave_usua='" & TxtClave.Text & "'",
+                "DAT")
+
+
+            With dtUsuario
+
+                If .Rows.Count > 0 Then
+
+                    '-----------------------------------------------
+                    'Usuario correcto
+                    '-----------------------------------------------
+                    UsuarioActual =
+                    .Rows(0)("c_codi_usua").ToString()
+
+
+                    FrmMenu.lblusuario.Text =
+                    .Rows(0)("c_codi_usua").ToString()
+
+                    FrmMenu.TxtSerie_Guia.Text =
+                    .Rows(0)("c_serie_guia").ToString()
+
+                    FrmMenu.TxtSerie_Fact.Text =
+                    .Rows(0)("c_serie_fact").ToString()
+
+                    FrmMenu.TxtSerie_Bol.Text =
+                    .Rows(0)("c_serie_bol").ToString()
+
+                    FrmMenu.TxtSerie_Nc.Text =
+                    .Rows(0)("c_serie_nc").ToString()
+
+                    FrmMenu.TxtSerie_ND.Text =
+                    .Rows(0)("c_serie_nd").ToString()
+
+
+                    '-----------------------------------------------
+                    'Usuario administrador
+                    '-----------------------------------------------
+                    If Val(.Rows(0)("c_usua_admin").ToString()) = 1 Then
+                        FrmMenu.ChkUsuaAdmin.Checked = True
+                    Else
+                        FrmMenu.ChkUsuaAdmin.Checked = False
                     End If
-                End With
-                FrmMenu.TxtCod_Emp.Text = "FA"
-                'Cargamos los permisos por usuarios para ver si el usuario puede grabar editar eliminar...
-                FrmMenu.Dgv01.DataSource = c_Neg_Usuario.get_UsuaPermiso_Datos(" And P.c_codi_usua='" & TxtUser.Text & "' and P.c_anula_reg=0 and M.c_anula_reg=0", "DAT")
-                FrmMenu.Validar_Menu()
-                Call Cargar_Archivo() ': Call Cargar_Datos_BD()
-            Else
-                x = x + 1
-                MsgBox("Usuario o Clave son incorrectos...", MsgBoxStyle.Critical, Compañia)
-                If x = 3 Then
-                    MsgBox("Excedio el número de intentos...", vbCritical, Compañia)
-                    End
+
+
+                    '-----------------------------------------------
+                    'Usuario precio
+                    '-----------------------------------------------
+                    If Val(.Rows(0)("c_usua_precio").ToString()) = 1 Then
+                        FrmMenu.ChkUsuaPrecio.Checked = True
+                    Else
+                        FrmMenu.ChkUsuaPrecio.Checked = False
+                    End If
+
+
+                    '-----------------------------------------------
+                    'Empresa
+                    '-----------------------------------------------
+                    With c_Neg_MnEmpresa.get_Empresa_Datos(
+                    " AND E.c_codi_emp='FA' ",
+                    "DAT")
+
+                        If .Rows.Count > 0 Then
+
+                            FrmMenu.TxtRuta_Concar.Text =
+                            .Rows(0)("c_ruta_concar").ToString()
+
+                            FrmMenu.TxtEmpresa.Text =
+                            .Rows(0)("c_raz_emp").ToString()
+
+                            FrmMenu.TxtRuc.Text =
+                            .Rows(0)("c_ruc_emp").ToString()
+
+                        End If
+
+                    End With
+
+                    FrmMenu.TxtCod_Emp.Text = "FA"
+
+
+                    '-----------------------------------------------
+                    'Permisos
+                    '-----------------------------------------------
+                    FrmMenu.Dgv01.DataSource =
+                    c_Neg_Usuario.get_UsuaPermiso_Datos(
+                        " And P.c_codi_usua='" &
+                        TxtUser.Text &
+                        "' and P.c_anula_reg=0 " &
+                        "and M.c_anula_reg=0",
+                        "DAT")
+
+                    FrmMenu.Validar_Menu()
+
+                    Call Cargar_Archivo()
+
+
+                    '-----------------------------------------------
+                    'Mostrar sistema
+                    '-----------------------------------------------
+                    FrmMenu.Show()
+                    Me.Hide()
+
+                Else
+
+                    x = x + 1
+
+                    MsgBox(
+                    "Usuario o Clave son incorrectos...",
+                    MsgBoxStyle.Critical,
+                    Compañia)
+
+                    If x = 3 Then
+
+                        MsgBox(
+                        "Excedió el número de intentos...",
+                        vbCritical,
+                        Compañia)
+
+                        End
+
+                    End If
+
                 End If
-            End If
-        End With
+
+            End With
+
+
+        Catch ex As Exception
+
+            MsgBox(
+            "No fue posible iniciar sesión." &
+            vbCrLf & vbCrLf &
+            ex.Message,
+            vbCritical,
+            Compañia)
+
+        End Try
+
     End Sub
+
+    '===============================================================
+    ' CARGAR CONFIGURACIÓN
+    '===============================================================
     Private Sub Cargar_Archivo()
-        Dim fic As String = My.Application.Info.DirectoryPath & "\config.ini"
-        Dim texto As String = ""
-        Dim objReader As New StreamReader(fic)
-        Dim sLine As String = ""
-        Dim arrText As New ArrayList()
 
-        Do
-            sLine = objReader.ReadLine()
-            If Not sLine Is Nothing Then
-                arrText.Add(sLine)
+        Try
+
+            '-------------------------------------------------------
+            'Tipo de conexión
+            '-------------------------------------------------------
+            Dim TipoConexion As String =
+                NegConexion.GetTipoConexion()
+
+
+            '-------------------------------------------------------
+            'Determinar servidor
+            '-------------------------------------------------------
+            Dim Servidor As String
+
+            If TipoConexion = "LOCAL" Then
+
+                Servidor =
+                    NegConexion.LeerConfiguracion("ServidorLocal")
+
+            Else
+
+                Servidor =
+                    NegConexion.LeerConfiguracion("ServidorRemoto")
+
             End If
-        Loop Until sLine Is Nothing
-        objReader.Close()
-        'Leemos Archivos
-        Dim Servidor_Reportes As String = "" : Dim Carpeta_Reporte As String = "" : Dim Zoom As String = ""
-        Dim Factura_Electronica As String = "" : Dim Ruta_PDF As String = ""
-        Servidor_Reportes = Trim(Mid(arrText.Item(13).ToString, 10, 50))
-        Carpeta_Reporte = Trim(Mid(arrText.Item(18).ToString, 13, 70))
-        Zoom = Replace(arrText.Item(19).ToString, "Zoom=", "")
-        Factura_Electronica = Replace(arrText.Item(22).ToString, "Facturas.Electronico=", "")
-        Ruta_PDF = Replace(arrText.Item(23).ToString, "Ruta.PDF=", "")
 
 
-        'Enviamos Ruta Para el servidor de Reportes...
-        FrmMenu.LblRutaReport.Text = Servidor_Reportes
-        FrmMenu.TxtRptCarpeta.Text = Carpeta_Reporte
-        FrmMenu.TxtZoom.Text = Zoom
-        FrmMenu.TxtRuta_Pdf.Text = Ruta_PDF
-
-        'Enviamos la ruta de la base de datos...
-        Dim Servidor, DbProcesos, Usuario, Password, Timeout, Provider As String
+            '-------------------------------------------------------
+            'Base de datos
+            '-------------------------------------------------------
+            Dim DbProcesos As String =
+                NegConexion.LeerConfiguracion("DbProcesos")
 
 
-        Servidor = Trim(Mid(arrText.Item(7).ToString, 10, 30))
-        DbProcesos = Trim(Mid(arrText.Item(8).ToString, 12, 30))
-        Usuario = Trim(Mid(arrText.Item(9).ToString, 9, 30))
-        Password = Trim(Mid(arrText.Item(10).ToString, 10, 30))
-        Timeout = Trim(Mid(arrText.Item(11).ToString, 9, 30))
-        Provider = Trim(Mid(arrText.Item(12).ToString, 10, 30))
+            '-------------------------------------------------------
+            'Servidor de reportes
+            '-------------------------------------------------------
+            Dim Servidor_Reportes As String
 
-        Dim Conex As String = "Data Source=" & Servidor & ";Initial Catalog=" & DbProcesos & ";User Id=" & fEncripta_Key(Usuario, False).ToString & _
-        ";Password=" & fEncripta_Key(Password, False).ToString & ";Connect Timeout=" & Timeout
-        FrmMenu.lblsqlruta.Text = Conex
-        FrmMenu.Text = "Sistema Administrativo de Ventas 3.0 - [\\" & Servidor & "\" & DbProcesos & "]"
-        If UCase(Factura_Electronica) = "SI" Then FrmMenu.ChkElectronico.Checked = True
+            If TipoConexion = "LOCAL" Then
+
+                Servidor_Reportes =
+                    NegConexion.LeerConfiguracion("ReportesLocal")
+
+            Else
+
+                Servidor_Reportes =
+                    NegConexion.LeerConfiguracion("ReportesRemoto")
+
+            End If
+
+
+            '-------------------------------------------------------
+            'Otras configuraciones
+            '-------------------------------------------------------
+            Dim Carpeta_Reporte As String =
+                NegConexion.LeerConfiguracion("Carpeta.Reporte")
+
+            Dim Zoom As String =
+                NegConexion.LeerConfiguracion("Zoom")
+
+            Dim Factura_Electronica As String =
+                NegConexion.LeerConfiguracion(
+                    "Facturas.Electronico")
+
+            Dim Ruta_PDF As String =
+                NegConexion.LeerConfiguracion("Ruta.PDF")
+
+
+            '-------------------------------------------------------
+            'Configuración del menú
+            '-------------------------------------------------------
+            FrmMenu.LblRutaReport.Text =
+                Servidor_Reportes
+
+            FrmMenu.TxtRptCarpeta.Text =
+                Carpeta_Reporte
+
+            FrmMenu.TxtZoom.Text =
+                Zoom
+
+            FrmMenu.TxtRuta_Pdf.Text =
+                Ruta_PDF
+
+            '-------------------------------------------------------
+            'Título del ERP
+            '-------------------------------------------------------
+            FrmMenu.Text =
+                "Sistema Administrativo de Ventas 3.0 - [" &
+                TipoConexion &
+                " - \\" &
+                Servidor &
+                "\" &
+                DbProcesos &
+                "]"
+
+
+            '-------------------------------------------------------
+            'Factura electrónica
+            '-------------------------------------------------------
+            If UCase(Factura_Electronica) = "SI" Then
+
+                FrmMenu.ChkElectronico.Checked = True
+
+            Else
+
+                FrmMenu.ChkElectronico.Checked = False
+
+            End If
+
+
+        Catch ex As Exception
+
+            MsgBox(
+                "Error al cargar la configuración." &
+                vbCrLf & vbCrLf &
+                ex.Message,
+                vbCritical,
+                Compañia)
+
+        End Try
+
     End Sub
+
     Private Sub Opcion_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Opcion.Click
         With c_Neg_Usuario.get_Usuario_Datos(" And c_anula_reg=0 and c_codi_usua='" & TxtUser.Text & "'", "DAT")
             If .Rows.Count > 0 Then
@@ -191,11 +514,38 @@ Public Class FrmContraseña
         If e.KeyCode = Keys.Enter Then Call OK_Click(Nothing, Nothing)
     End Sub
 
-    Private Sub TxtClave_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TxtClave.TextChanged
+    Private Sub CboGiro_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CboGiro.SelectedIndexChanged
+
+        If CboGiro.SelectedIndex = -1 Then
+            Exit Sub
+        End If
+
+        Dim item As ItemGiro =
+        TryCast(CboGiro.SelectedItem, ItemGiro)
+
+        If item Is Nothing Then
+            Exit Sub
+        End If
+
+        'Guardar giro en la sesión
+        ModSesion.IdGiro = item.IdGiro
+        ModSesion.GiroActual = item.Descripcion
+
+        'Determinar modo automáticamente
+        If item.Modo = "MEDXPRESS" Then
+
+            ModSesion.ModoMedXpress = True
+
+        ElseIf item.Modo = "CLOROEXPRESS" Then
+
+            ModSesion.ModoMedXpress = False
+
+        Else
+
+            ModSesion.ModoMedXpress = Nothing
+
+        End If
 
     End Sub
 
-    Private Sub TxtUser_TextChanged(sender As Object, e As EventArgs) Handles TxtUser.TextChanged
-
-    End Sub
 End Class

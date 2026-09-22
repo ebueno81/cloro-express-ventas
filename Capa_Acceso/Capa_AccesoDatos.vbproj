@@ -75,6 +75,7 @@
     <Compile Include="1. Mantenimiento\Cls_MnEmpServ.vb" />
     <Compile Include="1. Mantenimiento\Cls_MnFamilia.vb" />
     <Compile Include="1. Mantenimiento\Cls_MnGamaCol.vb" />
+    <Compile Include="1. Mantenimiento\Cls_MnGiroNegocio.vb" />
     <Compile Include="1. Mantenimiento\Cls_MnIGV.vb" />
     <Compile Include="1. Mantenimiento\Cls_MnIntenso.vb" />
     <Compile Include="1. Mantenimiento\Cls_MnLinea.vb" />

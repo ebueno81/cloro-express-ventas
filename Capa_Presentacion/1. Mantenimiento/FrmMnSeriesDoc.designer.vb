@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmMnSeriesDoc
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FrmMnSeriesDoc
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -36,6 +36,8 @@ Partial Class FrmMnSeriesDoc
         Me.BtnNuevo = New System.Windows.Forms.Button()
         Me.BtnCerrar = New System.Windows.Forms.Button()
         Me.Pan01 = New System.Windows.Forms.Panel()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.CboGiro = New System.Windows.Forms.ComboBox()
         Me.CboDoc = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -46,7 +48,6 @@ Partial Class FrmMnSeriesDoc
         Me.TxtSerie = New System.Windows.Forms.TextBox()
         Me.BtnGrabar = New System.Windows.Forms.Button()
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.ChkEsMedxpress = New System.Windows.Forms.CheckBox()
         CType(Me.Dgv01, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Pan02.SuspendLayout()
         CType(Me.Pcb01, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -63,7 +64,7 @@ Partial Class FrmMnSeriesDoc
         Me.Label22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.Label22.Location = New System.Drawing.Point(0, 39)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(388, 21)
+        Me.Label22.Size = New System.Drawing.Size(478, 21)
         Me.Label22.TabIndex = 179
         Me.Label22.Text = "Series"
         Me.Label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -88,7 +89,7 @@ Partial Class FrmMnSeriesDoc
         DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.Dgv01.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dgv01.Size = New System.Drawing.Size(387, 217)
+        Me.Dgv01.Size = New System.Drawing.Size(478, 217)
         Me.Dgv01.TabIndex = 3
         '
         'Pan02
@@ -99,7 +100,7 @@ Partial Class FrmMnSeriesDoc
         Me.Pan02.Controls.Add(Me.Label2)
         Me.Pan02.Location = New System.Drawing.Point(0, 2)
         Me.Pan02.Name = "Pan02"
-        Me.Pan02.Size = New System.Drawing.Size(387, 36)
+        Me.Pan02.Size = New System.Drawing.Size(478, 36)
         Me.Pan02.TabIndex = 180
         '
         'Label5
@@ -138,7 +139,7 @@ Partial Class FrmMnSeriesDoc
         Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel1.Controls.Add(Me.BtnEditar)
         Me.Panel1.Controls.Add(Me.BtnNuevo)
-        Me.Panel1.Location = New System.Drawing.Point(0, 279)
+        Me.Panel1.Location = New System.Drawing.Point(0, 281)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(187, 30)
         Me.Panel1.TabIndex = 0
@@ -188,7 +189,8 @@ Partial Class FrmMnSeriesDoc
         'Pan01
         '
         Me.Pan01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Pan01.Controls.Add(Me.ChkEsMedxpress)
+        Me.Pan01.Controls.Add(Me.Label6)
+        Me.Pan01.Controls.Add(Me.CboGiro)
         Me.Pan01.Controls.Add(Me.CboDoc)
         Me.Pan01.Controls.Add(Me.Label4)
         Me.Pan01.Controls.Add(Me.Label3)
@@ -199,8 +201,31 @@ Partial Class FrmMnSeriesDoc
         Me.Pan01.Controls.Add(Me.TxtSerie)
         Me.Pan01.Location = New System.Drawing.Point(0, 183)
         Me.Pan01.Name = "Pan01"
-        Me.Pan01.Size = New System.Drawing.Size(387, 94)
+        Me.Pan01.Size = New System.Drawing.Size(478, 94)
         Me.Pan01.TabIndex = 1
+        '
+        'Label6
+        '
+        Me.Label6.BackColor = System.Drawing.SystemColors.Control
+        Me.Label6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label6.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label6.Location = New System.Drawing.Point(267, 47)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(87, 20)
+        Me.Label6.TabIndex = 207
+        Me.Label6.Text = "Giro Negocio:"
+        Me.Label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        '
+        'CboGiro
+        '
+        Me.CboGiro.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.CboGiro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CboGiro.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.CboGiro.FormattingEnabled = True
+        Me.CboGiro.Location = New System.Drawing.Point(357, 46)
+        Me.CboGiro.Name = "CboGiro"
+        Me.CboGiro.Size = New System.Drawing.Size(98, 21)
+        Me.CboGiro.TabIndex = 206
         '
         'CboDoc
         '
@@ -243,7 +268,7 @@ Partial Class FrmMnSeriesDoc
         Me.TxtDesc.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.TxtDesc.Location = New System.Drawing.Point(98, 69)
         Me.TxtDesc.Name = "TxtDesc"
-        Me.TxtDesc.Size = New System.Drawing.Size(284, 21)
+        Me.TxtDesc.Size = New System.Drawing.Size(357, 21)
         Me.TxtDesc.TabIndex = 3
         '
         'Label9
@@ -308,27 +333,16 @@ Partial Class FrmMnSeriesDoc
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel2.Controls.Add(Me.BtnGrabar)
         Me.Panel2.Controls.Add(Me.BtnCerrar)
-        Me.Panel2.Location = New System.Drawing.Point(213, 279)
+        Me.Panel2.Location = New System.Drawing.Point(305, 281)
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(173, 30)
         Me.Panel2.TabIndex = 2
-        '
-        'ChkEsMedxpress
-        '
-        Me.ChkEsMedxpress.AutoSize = True
-        Me.ChkEsMedxpress.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ChkEsMedxpress.Location = New System.Drawing.Point(279, 49)
-        Me.ChkEsMedxpress.Name = "ChkEsMedxpress"
-        Me.ChkEsMedxpress.Size = New System.Drawing.Size(103, 17)
-        Me.ChkEsMedxpress.TabIndex = 206
-        Me.ChkEsMedxpress.Text = "Es MedXpress"
-        Me.ChkEsMedxpress.UseVisualStyleBackColor = True
         '
         'FrmMnSeriesDoc
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(387, 311)
+        Me.ClientSize = New System.Drawing.Size(480, 317)
         Me.Controls.Add(Me.Dgv01)
         Me.Controls.Add(Me.Panel2)
         Me.Controls.Add(Me.Pan01)
@@ -374,5 +388,6 @@ Partial Class FrmMnSeriesDoc
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents BtnGrabar As System.Windows.Forms.Button
     Friend WithEvents Panel2 As System.Windows.Forms.Panel
-    Friend WithEvents ChkEsMedxpress As CheckBox
+    Friend WithEvents Label6 As Label
+    Friend WithEvents CboGiro As ComboBox
 End Class

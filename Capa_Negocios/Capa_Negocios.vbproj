@@ -66,6 +66,7 @@
     <Import Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="1. Mantenimiento\Neg_Conexion.vb" />
     <Compile Include="1. Mantenimiento\Neg_MnChofer.vb" />
     <Compile Include="1. Mantenimiento\Neg_MnClienteOfi.vb" />
     <Compile Include="1. Mantenimiento\Neg_MnAlmacen.vb" />
@@ -79,6 +80,7 @@
     <Compile Include="1. Mantenimiento\Neg_MnEmpServ.vb" />
     <Compile Include="1. Mantenimiento\Neg_MnFamilia.vb" />
     <Compile Include="1. Mantenimiento\Neg_MnGamaCol.vb" />
+    <Compile Include="1. Mantenimiento\Neg_MnGiroNegocio.vb" />
     <Compile Include="1. Mantenimiento\Neg_MnIntenso.vb" />
     <Compile Include="1. Mantenimiento\Neg_MnLinea.vb" />
     <Compile Include="1. Mantenimiento\Neg_MnLstPrecios.vb" />

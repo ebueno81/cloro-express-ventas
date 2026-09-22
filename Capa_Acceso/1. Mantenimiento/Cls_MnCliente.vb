@@ -38,6 +38,7 @@ Public Class Cls_MnCliente
             cmd.Parameters.Add("@c_opc_reten", OleDbType.Integer).Value = ent.c_opc_reten
             cmd.Parameters.Add("@c_codi_pago", OleDbType.VarChar, 2).Value = ent.c_codi_pago
             cmd.Parameters.Add("@c_codi_ubigeo", OleDbType.VarChar, 6).Value = ent.c_codi_ubigeo
+            cmd.Parameters.Add("@c_modo_medxpress", OleDbType.Integer).Value = ent.c_modo_medxpress
 
             cmd.Parameters.Add("@c_obs", OleDbType.VarChar, 300).Value = ent.c_obs
             cmd.Parameters.Add("@c_usuario", OleDbType.VarChar, 10).Value = ent.c_usuario

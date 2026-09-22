@@ -1,5 +1,7 @@
-﻿Public Class FrmMnSeriesDoc
-    
+﻿Imports Capa_Negocios
+
+Public Class FrmMnSeriesDoc
+
     Private Sub FrmMnSalSeries_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.Escape Then Me.Close()
     End Sub
@@ -9,13 +11,17 @@
     End Sub
 
     Private Sub FrmMnSalSeries_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
         Dgv01.DataSource = c_Neg_MnSeriesDoc.get_Series_Datos(" and c_anula_reg=0 order by c_nro_serie", "DGV", FrmMenu.TxtCod_Emp.Text)
+
         With Dgv01
             .Columns("Doc").Width = 40
             .Columns("Serie").Width = 45
             .Columns("Documento").Width = 65
             .Columns("Descripcion").Width = 125
-            .Columns("Medxpress").Width = 70
+            .Columns("Giro").Width = 140
+            .Columns("c_codi_giro").Visible = False
+
             .Columns("c_anula_reg").Visible = False
             'Alineacion
             .Columns("Doc").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
@@ -25,10 +31,17 @@
             .Columns("Doc").HeaderCell.Style.BackColor = Color.Yellow
             .Columns("Doc").HeaderCell.Style.ForeColor = Color.Blue
         End With
+
         c_Neg_TpoDoc.Get_TpoDoc_Cbo(" and c_anula_Reg=0 order by c_desc_doc", CboDoc)
+
+        CargarGiros(CboGiro)
+
+        ConfigurarGiroSesion(CboGiro)
+
         Call Validar_Permiso(Me.Name, BtnNuevo, BtnEditar, BtnEditar)
+
     End Sub
-    
+
     ' Grabar Registro '
     Private Sub Grabar_Serie(ByVal cOpcion As String)
         With c_Ent_SeriesDoc
@@ -37,7 +50,7 @@
             .c_nro_doc = TxtGuia.Text
             .c_desc_serie = TxtDesc.Text
             .copcion = cOpcion
-            .c_opc_medxpress = IIf(ChkEsMedxpress.Checked = True, 1, Nothing)
+            .c_codi_giro = ObtenerIdGiro(CboGiro)
             c_Neg_MnSeriesDoc.set_Series_Save(c_Ent_SeriesDoc, FrmMenu.TxtCod_Emp.Text)
         End With
     End Sub
@@ -50,53 +63,91 @@
         End If
     End Sub
     Private Sub Cancelar_Registro()
-        Dgv01.Size = New Size(387, 217) : BtnNuevo.Text = "&Agregar" : BtnEditar.Enabled = True
+        Dgv01.Size = New Size(478, 217) : BtnNuevo.Text = "&Agregar" : BtnEditar.Enabled = True
         BtnCerrar.Text = "&Cerrar" : BtnNuevo.Enabled = True ': Call Validar_Permisos()
         Call Validar_Permiso(Me.Name, BtnNuevo, BtnEditar, BtnEditar) : BtnGrabar.Enabled = False
+        Dgv01.Enabled = True
     End Sub
     Private Sub TxtGuia_LostFocus(ByVal sender As Object, ByVal e As System.EventArgs) Handles TxtGuia.LostFocus
         TxtGuia.Text = Strings.Right(Val(TxtGuia.Text) + 10000000, 7)
     End Sub
 
-    Private Sub TxtGuia_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TxtGuia.TextChanged
-
-    End Sub
-
-    Private Sub Dgv01_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles Dgv01.CellContentClick
-
-    End Sub
     'Editamos registro...
     Private Sub Dgv01_DoubleClick(ByVal sender As Object, ByVal e As System.EventArgs) Handles Dgv01.DoubleClick
         If BtnEditar.Enabled = True Then Call BtnEditar_Click(Nothing, Nothing)
     End Sub
-    'Editamos registro...
+
     Private Sub BtnEditar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEditar.Click
+
         With Dgv01
+
             If .RowCount > 0 Then
+
                 Dim fila As Integer = .CurrentCellAddress.Y
+
                 If fila > -1 Then
-                    TxtSerie.Text = .Rows(fila).Cells("Serie").Value
-                    TxtGuia.Text = .Rows(fila).Cells("documento").Value.ToString
-                    TxtDesc.Text = .Rows(fila).Cells("Descripcion").Value
-                    CboDoc.SelectedValue = .Rows(fila).Cells("Doc").Value
-                    ChkEsMedxpress = IIf(Val(.Rows(fila).Cells("MedXpress").Value) = 1, True, False)
-                    Call nuevo_registro() : TxtSerie.Enabled = False
+
+                    '-----------------------------------------
+                    'Primero preparar formulario para edición
+                    '-----------------------------------------
+                    Call nuevo_registro()
+
+                    TxtSerie.Enabled = False
                     CboDoc.Enabled = False
+
+                    '-----------------------------------------
+                    'Cargar datos
+                    '-----------------------------------------
+                    TxtSerie.Text = .Rows(fila).Cells("Serie").Value
+
+                    TxtGuia.Text = .Rows(fila).Cells("Documento").Value.ToString()
+
+                    TxtDesc.Text = .Rows(fila).Cells("Descripcion").Value
+
+                    CboDoc.SelectedValue = .Rows(fila).Cells("Doc").Value
+
+                    '-----------------------------------------
+                    'Cargar giro DEL REGISTRO
+                    '-----------------------------------------
+                    Dim IdGiro As Integer = Val(.Rows(fila).Cells("c_codi_giro").Value.ToString())
+
+                    SeleccionarGiro(
+                    CboGiro,
+                    IdGiro)
+
+                    '-----------------------------------------
+                    'Solo controlar si puede modificarlo
+                    'NO volver a configurar la selección
+                    '-----------------------------------------
+                    If ModSesion.EsMedXpress Then
+                        CboGiro.Enabled = False
+                    Else
+                        CboGiro.Enabled = True
+                    End If
+
                 End If
+
             End If
+
         End With
+
     End Sub
+
     Private Sub nuevo_registro()
-        Dgv01.Size = New Size(387, 123)
+        Dgv01.Size = New Size(478, 117)
+        Dgv01.Enabled = False
         BtnGrabar.Enabled = True
         BtnEditar.Enabled = False : BtnCerrar.Text = "Cancelar"
-        ChkEsMedxpress.Checked = False
     End Sub
+
     ' Nuevo Registro '
     Private Sub BtnNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnNuevo.Click
         Call Limpiar_Texto(Pan01) : Call nuevo_registro()
+        ConfigurarGiroSesion(CboGiro)
         TxtSerie.Enabled = True : CboDoc.Enabled = True : CboDoc.Focus()
+        If CboGiro.Items.Count > 0 Then CboGiro.SelectedIndex = 0
     End Sub
+
     ' Metodo para validar la grabacion del registro '
     Private Function ValidarDatos() As Boolean
         If CboDoc.SelectedIndex > -1 Then
@@ -138,7 +189,4 @@
         If e.KeyCode = Keys.Enter Then If BtnGrabar.Enabled = True Then Call BtnGrabar_Click(Nothing, Nothing)
     End Sub
 
-    Private Sub TxtDesc_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TxtDesc.TextChanged
-
-    End Sub
 End Class

@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmMnSeriesGuia
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FrmMnSeriesGuia
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMnSeriesGuia))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -30,6 +30,7 @@ Partial Class FrmMnSeriesGuia
         Me.Pcb01 = New System.Windows.Forms.PictureBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Pan01 = New System.Windows.Forms.Panel()
+        Me.CboGiro = New System.Windows.Forms.ComboBox()
         Me.Dgv01 = New System.Windows.Forms.DataGridView()
         Me.ChkInterno = New System.Windows.Forms.CheckBox()
         Me.ChkElectronico = New System.Windows.Forms.CheckBox()
@@ -43,7 +44,6 @@ Partial Class FrmMnSeriesGuia
         Me.Pan03 = New System.Windows.Forms.Panel()
         Me.BtnGrabar = New System.Windows.Forms.Button()
         Me.BtnCerrar = New System.Windows.Forms.Button()
-        Me.ChkEsMedxpress = New System.Windows.Forms.CheckBox()
         Me.Panel7.SuspendLayout()
         CType(Me.Pcb01, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.Pan01.SuspendLayout()
@@ -104,16 +104,27 @@ Partial Class FrmMnSeriesGuia
         '
         Me.Pan01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Pan01.Controls.Add(Me.Dgv01)
-        Me.Pan01.Controls.Add(Me.ChkEsMedxpress)
         Me.Pan01.Controls.Add(Me.ChkInterno)
         Me.Pan01.Controls.Add(Me.ChkElectronico)
         Me.Pan01.Controls.Add(Me.TxtDescripcion)
         Me.Pan01.Controls.Add(Me.TxtNro_Doc)
         Me.Pan01.Controls.Add(Me.TxtSerie)
+        Me.Pan01.Controls.Add(Me.CboGiro)
         Me.Pan01.Location = New System.Drawing.Point(2, 67)
         Me.Pan01.Name = "Pan01"
         Me.Pan01.Size = New System.Drawing.Size(592, 238)
         Me.Pan01.TabIndex = 182
+        '
+        'CboGiro
+        '
+        Me.CboGiro.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.CboGiro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CboGiro.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.CboGiro.FormattingEnabled = True
+        Me.CboGiro.Location = New System.Drawing.Point(483, 3)
+        Me.CboGiro.Name = "CboGiro"
+        Me.CboGiro.Size = New System.Drawing.Size(98, 21)
+        Me.CboGiro.TabIndex = 205
         '
         'Dgv01
         '
@@ -283,16 +294,6 @@ Partial Class FrmMnSeriesGuia
         Me.BtnCerrar.Text = "&Cerrar"
         Me.BtnCerrar.UseVisualStyleBackColor = False
         '
-        'ChkEsMedxpress
-        '
-        Me.ChkEsMedxpress.AutoSize = True
-        Me.ChkEsMedxpress.Location = New System.Drawing.Point(483, 5)
-        Me.ChkEsMedxpress.Name = "ChkEsMedxpress"
-        Me.ChkEsMedxpress.Size = New System.Drawing.Size(94, 17)
-        Me.ChkEsMedxpress.TabIndex = 205
-        Me.ChkEsMedxpress.Text = "Es MedXpress"
-        Me.ChkEsMedxpress.UseVisualStyleBackColor = True
-        '
         'FrmMnSeriesGuia
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -336,5 +337,5 @@ Partial Class FrmMnSeriesGuia
     Friend WithEvents BtnGrabar As System.Windows.Forms.Button
     Friend WithEvents ChkInterno As CheckBox
     Friend WithEvents ChkElectronico As CheckBox
-    Friend WithEvents ChkEsMedxpress As CheckBox
+    Friend WithEvents CboGiro As ComboBox
 End Class

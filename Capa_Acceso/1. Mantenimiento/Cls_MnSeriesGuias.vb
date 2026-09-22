@@ -25,7 +25,7 @@ Public Class Cls_MnSeriesGuias
             cmd.Parameters.Add("@c_usuario", OleDbType.VarChar, 10).Value = ent.c_usuario
             cmd.Parameters.Add("@copcion", OleDbType.VarChar, 3).Value = ent.copcion
 
-            cmd.Parameters.Add("@c_opc_medxpress", OleDbType.Integer).Value = ent.c_opc_medxpress
+            cmd.Parameters.Add("@c_codi_giro", OleDbType.Integer).Value = ent.c_codi_giro
             'Ejecutamos query
             If cmd.ExecuteNonQuery() > 0 Then
                 Return True

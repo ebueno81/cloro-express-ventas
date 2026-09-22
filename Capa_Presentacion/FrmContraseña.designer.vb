@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class FrmContraseña
     Inherits System.Windows.Forms.Form
 
     'Form reemplaza a Dispose para limpiar la lista de componentes.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class FrmContraseña
     'NOTA: el Diseñador de Windows Forms necesita el siguiente procedimiento
     'Se puede modificar usando el Diseñador de Windows Forms.  
     'No lo modifique con el editor de código.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmContraseña))
         Me.Label1 = New System.Windows.Forms.Label()
@@ -49,8 +49,9 @@ Partial Class FrmContraseña
         Me.Cancel = New System.Windows.Forms.Button()
         Me.OK = New System.Windows.Forms.Button()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.CboEmpresa = New System.Windows.Forms.ComboBox()
-        Me.ChkMedXpress = New System.Windows.Forms.CheckBox()
+        Me.CboTipoConexion = New System.Windows.Forms.ComboBox()
+        Me.CboGiro = New System.Windows.Forms.ComboBox()
+        Me.LblGiro = New System.Windows.Forms.Label()
         Me.GroupBox1.SuspendLayout()
         Me.Panel1.SuspendLayout()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,7 +124,7 @@ Partial Class FrmContraseña
         Me.Label5.BackColor = System.Drawing.SystemColors.ActiveCaptionText
         Me.Label5.Font = New System.Drawing.Font("Tahoma", 20.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.White
-        Me.Label5.Location = New System.Drawing.Point(2, 173)
+        Me.Label5.Location = New System.Drawing.Point(2, 207)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(466, 2)
         Me.Label5.TabIndex = 13
@@ -158,7 +159,7 @@ Partial Class FrmContraseña
         Me.LblCopy.BackColor = System.Drawing.Color.Transparent
         Me.LblCopy.Font = New System.Drawing.Font("Tahoma", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblCopy.ForeColor = System.Drawing.Color.Blue
-        Me.LblCopy.Location = New System.Drawing.Point(2, 208)
+        Me.LblCopy.Location = New System.Drawing.Point(2, 242)
         Me.LblCopy.Name = "LblCopy"
         Me.LblCopy.Size = New System.Drawing.Size(182, 10)
         Me.LblCopy.TabIndex = 17
@@ -182,7 +183,7 @@ Partial Class FrmContraseña
         Me.GroupBox1.Controls.Add(Me.TxtClave_Ant)
         Me.GroupBox1.Controls.Add(Me.Label10)
         Me.GroupBox1.ForeColor = System.Drawing.Color.Blue
-        Me.GroupBox1.Location = New System.Drawing.Point(19, 223)
+        Me.GroupBox1.Location = New System.Drawing.Point(19, 257)
         Me.GroupBox1.Name = "GroupBox1"
         Me.GroupBox1.Size = New System.Drawing.Size(449, 114)
         Me.GroupBox1.TabIndex = 19
@@ -270,7 +271,7 @@ Partial Class FrmContraseña
         Me.LblCopy2.BackColor = System.Drawing.Color.Transparent
         Me.LblCopy2.Font = New System.Drawing.Font("Tahoma", 6.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.LblCopy2.ForeColor = System.Drawing.Color.Blue
-        Me.LblCopy2.Location = New System.Drawing.Point(2, 376)
+        Me.LblCopy2.Location = New System.Drawing.Point(2, 410)
         Me.LblCopy2.Name = "LblCopy2"
         Me.LblCopy2.Size = New System.Drawing.Size(182, 10)
         Me.LblCopy2.TabIndex = 23
@@ -282,7 +283,7 @@ Partial Class FrmContraseña
         Me.Cancel2.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.Cancel2.Image = CType(resources.GetObject("Cancel2.Image"), System.Drawing.Image)
         Me.Cancel2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Cancel2.Location = New System.Drawing.Point(222, 342)
+        Me.Cancel2.Location = New System.Drawing.Point(222, 376)
         Me.Cancel2.Name = "Cancel2"
         Me.Cancel2.Size = New System.Drawing.Size(94, 25)
         Me.Cancel2.TabIndex = 21
@@ -292,7 +293,7 @@ Partial Class FrmContraseña
         '
         Me.Ok2.Image = CType(resources.GetObject("Ok2.Image"), System.Drawing.Image)
         Me.Ok2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Ok2.Location = New System.Drawing.Point(122, 342)
+        Me.Ok2.Location = New System.Drawing.Point(122, 376)
         Me.Ok2.Name = "Ok2"
         Me.Ok2.Size = New System.Drawing.Size(94, 25)
         Me.Ok2.TabIndex = 20
@@ -305,7 +306,7 @@ Partial Class FrmContraseña
         Me.Opcion.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Opcion.Image = CType(resources.GetObject("Opcion.Image"), System.Drawing.Image)
         Me.Opcion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Opcion.Location = New System.Drawing.Point(374, 179)
+        Me.Opcion.Location = New System.Drawing.Point(374, 213)
         Me.Opcion.Name = "Opcion"
         Me.Opcion.Size = New System.Drawing.Size(94, 25)
         Me.Opcion.TabIndex = 9
@@ -318,10 +319,10 @@ Partial Class FrmContraseña
         Me.Cancel.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Cancel.Image = CType(resources.GetObject("Cancel.Image"), System.Drawing.Image)
         Me.Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.Cancel.Location = New System.Drawing.Point(219, 179)
+        Me.Cancel.Location = New System.Drawing.Point(219, 213)
         Me.Cancel.Name = "Cancel"
         Me.Cancel.Size = New System.Drawing.Size(94, 25)
-        Me.Cancel.TabIndex = 8
+        Me.Cancel.TabIndex = 9
         Me.Cancel.Text = "&Cancelar"
         '
         'OK
@@ -330,10 +331,10 @@ Partial Class FrmContraseña
         Me.OK.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.OK.Image = CType(resources.GetObject("OK.Image"), System.Drawing.Image)
         Me.OK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
-        Me.OK.Location = New System.Drawing.Point(123, 179)
+        Me.OK.Location = New System.Drawing.Point(123, 213)
         Me.OK.Name = "OK"
         Me.OK.Size = New System.Drawing.Size(94, 25)
-        Me.OK.TabIndex = 7
+        Me.OK.TabIndex = 8
         Me.OK.Text = "&Aceptar"
         '
         'PictureBox1
@@ -348,39 +349,47 @@ Partial Class FrmContraseña
         Me.PictureBox1.TabIndex = 1
         Me.PictureBox1.TabStop = False
         '
-        'CboEmpresa
+        'CboTipoConexion
         '
-        Me.CboEmpresa.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.CboEmpresa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
-        Me.CboEmpresa.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.CboEmpresa.FormattingEnabled = True
-        Me.CboEmpresa.Items.AddRange(New Object() {"Acceso Local", "Acceso Remoto"})
-        Me.CboEmpresa.Location = New System.Drawing.Point(124, 146)
-        Me.CboEmpresa.Name = "CboEmpresa"
-        Me.CboEmpresa.Size = New System.Drawing.Size(139, 21)
-        Me.CboEmpresa.TabIndex = 6
+        Me.CboTipoConexion.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.CboTipoConexion.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CboTipoConexion.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.CboTipoConexion.FormattingEnabled = True
+        Me.CboTipoConexion.Items.AddRange(New Object() {"LOCAL", "REMOTO"})
+        Me.CboTipoConexion.Location = New System.Drawing.Point(123, 146)
+        Me.CboTipoConexion.Name = "CboTipoConexion"
+        Me.CboTipoConexion.Size = New System.Drawing.Size(139, 21)
+        Me.CboTipoConexion.TabIndex = 6
         '
-        'ChkMedXpress
+        'CboGiro
         '
-        Me.ChkMedXpress.AutoSize = True
-        Me.ChkMedXpress.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ChkMedXpress.Checked = True
-        Me.ChkMedXpress.CheckState = System.Windows.Forms.CheckState.Checked
-        Me.ChkMedXpress.Font = New System.Drawing.Font("Tahoma", 9.75!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ChkMedXpress.Location = New System.Drawing.Point(322, 144)
-        Me.ChkMedXpress.Name = "ChkMedXpress"
-        Me.ChkMedXpress.Size = New System.Drawing.Size(137, 20)
-        Me.ChkMedXpress.TabIndex = 24
-        Me.ChkMedXpress.Text = "Modo MedXpress"
-        Me.ChkMedXpress.UseVisualStyleBackColor = True
+        Me.CboGiro.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
+        Me.CboGiro.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CboGiro.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.CboGiro.FormattingEnabled = True
+        Me.CboGiro.Location = New System.Drawing.Point(122, 173)
+        Me.CboGiro.Name = "CboGiro"
+        Me.CboGiro.Size = New System.Drawing.Size(139, 21)
+        Me.CboGiro.TabIndex = 7
+        '
+        'LblGiro
+        '
+        Me.LblGiro.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.LblGiro.Location = New System.Drawing.Point(5, 170)
+        Me.LblGiro.Name = "LblGiro"
+        Me.LblGiro.Size = New System.Drawing.Size(120, 23)
+        Me.LblGiro.TabIndex = 25
+        Me.LblGiro.Text = "Giro Negocio         :"
+        Me.LblGiro.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
         '
         'FrmContraseña
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(474, 221)
-        Me.Controls.Add(Me.ChkMedXpress)
-        Me.Controls.Add(Me.CboEmpresa)
+        Me.ClientSize = New System.Drawing.Size(474, 255)
+        Me.Controls.Add(Me.CboGiro)
+        Me.Controls.Add(Me.LblGiro)
+        Me.Controls.Add(Me.CboTipoConexion)
         Me.Controls.Add(Me.LblCopy2)
         Me.Controls.Add(Me.Cancel2)
         Me.Controls.Add(Me.Ok2)
@@ -442,6 +451,7 @@ Partial Class FrmContraseña
     Friend WithEvents Cancel2 As System.Windows.Forms.Button
     Friend WithEvents Ok2 As System.Windows.Forms.Button
     Friend WithEvents LblCopy2 As System.Windows.Forms.Label
-    Friend WithEvents CboEmpresa As System.Windows.Forms.ComboBox
-    Friend WithEvents ChkMedXpress As CheckBox
+    Friend WithEvents CboTipoConexion As System.Windows.Forms.ComboBox
+    Friend WithEvents CboGiro As ComboBox
+    Friend WithEvents LblGiro As Label
 End Class

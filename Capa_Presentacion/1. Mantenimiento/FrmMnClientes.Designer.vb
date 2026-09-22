@@ -169,6 +169,7 @@ Partial Class FrmMnClientes
         Me.TxtCodiOfi = New System.Windows.Forms.TextBox()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.BtnEstado = New System.Windows.Forms.Button()
+        Me.ChkMedXpress = New System.Windows.Forms.CheckBox()
         Me.Tbc01.SuspendLayout()
         Me.Tab01.SuspendLayout()
         Me.Panel9.SuspendLayout()
@@ -581,9 +582,12 @@ Partial Class FrmMnClientes
         '
         Me.Tab02.BackColor = System.Drawing.SystemColors.ButtonFace
         Me.Tab02.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Tab02.Controls.Add(Me.Label12)
         Me.Tab02.Controls.Add(Me.Panel3)
+        Me.Tab02.Controls.Add(Me.Rdb02)
         Me.Tab02.Controls.Add(Me.Label21)
         Me.Tab02.Controls.Add(Me.Pan09)
+        Me.Tab02.Controls.Add(Me.Rdb01)
         Me.Tab02.Controls.Add(Me.Pan12)
         Me.Tab02.Controls.Add(Me.Pan03)
         Me.Tab02.Location = New System.Drawing.Point(4, 22)
@@ -682,7 +686,7 @@ Partial Class FrmMnClientes
         Me.Pan12.Controls.Add(Me.Pan04)
         Me.Pan12.Location = New System.Drawing.Point(460, 23)
         Me.Pan12.Name = "Pan12"
-        Me.Pan12.Size = New System.Drawing.Size(435, 331)
+        Me.Pan12.Size = New System.Drawing.Size(435, 361)
         Me.Pan12.TabIndex = 2
         '
         'Dgv02
@@ -698,7 +702,7 @@ Partial Class FrmMnClientes
         Me.Dgv02.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.Dgv02.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Dgv02.EnableHeadersVisualStyles = False
-        Me.Dgv02.Location = New System.Drawing.Point(2, 25)
+        Me.Dgv02.Location = New System.Drawing.Point(2, 26)
         Me.Dgv02.Name = "Dgv02"
         Me.Dgv02.ReadOnly = True
         Me.Dgv02.RowHeadersWidth = 15
@@ -771,7 +775,7 @@ Partial Class FrmMnClientes
         Me.Pan02.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Pan02.Controls.Add(Me.BtnCancel)
         Me.Pan02.Controls.Add(Me.BtnAceptar)
-        Me.Pan02.Location = New System.Drawing.Point(273, 298)
+        Me.Pan02.Location = New System.Drawing.Point(273, 325)
         Me.Pan02.Name = "Pan02"
         Me.Pan02.Size = New System.Drawing.Size(158, 29)
         Me.Pan02.TabIndex = 179
@@ -824,7 +828,7 @@ Partial Class FrmMnClientes
         Me.Pan04.Controls.Add(Me.BtnAdd2)
         Me.Pan04.Controls.Add(Me.BtnEdit2)
         Me.Pan04.Controls.Add(Me.BtnDel2)
-        Me.Pan04.Location = New System.Drawing.Point(2, 298)
+        Me.Pan04.Location = New System.Drawing.Point(2, 325)
         Me.Pan04.Name = "Pan04"
         Me.Pan04.Size = New System.Drawing.Size(234, 29)
         Me.Pan04.TabIndex = 182
@@ -875,6 +879,7 @@ Partial Class FrmMnClientes
         '
         Me.Pan03.BackColor = System.Drawing.SystemColors.Control
         Me.Pan03.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Pan03.Controls.Add(Me.ChkMedXpress)
         Me.Pan03.Controls.Add(Me.TxtCodUbigeo)
         Me.Pan03.Controls.Add(Me.Label29)
         Me.Pan03.Controls.Add(Me.CboFpago)
@@ -915,7 +920,7 @@ Partial Class FrmMnClientes
         Me.Pan03.Controls.Add(Me.Label2)
         Me.Pan03.Location = New System.Drawing.Point(3, 23)
         Me.Pan03.Name = "Pan03"
-        Me.Pan03.Size = New System.Drawing.Size(454, 331)
+        Me.Pan03.Size = New System.Drawing.Size(454, 361)
         Me.Pan03.TabIndex = 0
         '
         'TxtCodUbigeo
@@ -973,7 +978,7 @@ Partial Class FrmMnClientes
         Me.TxtObs.BackColor = System.Drawing.Color.White
         Me.TxtObs.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TxtObs.Enabled = False
-        Me.TxtObs.Location = New System.Drawing.Point(73, 227)
+        Me.TxtObs.Location = New System.Drawing.Point(73, 255)
         Me.TxtObs.Multiline = True
         Me.TxtObs.Name = "TxtObs"
         Me.TxtObs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical
@@ -986,7 +991,7 @@ Partial Class FrmMnClientes
         Me.Label27.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Label27.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label27.ForeColor = System.Drawing.Color.Transparent
-        Me.Label27.Location = New System.Drawing.Point(4, 226)
+        Me.Label27.Location = New System.Drawing.Point(4, 254)
         Me.Label27.Name = "Label27"
         Me.Label27.Size = New System.Drawing.Size(69, 51)
         Me.Label27.TabIndex = 178
@@ -1059,16 +1064,13 @@ Partial Class FrmMnClientes
         'Pan05
         '
         Me.Pan05.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Pan05.Controls.Add(Me.Label12)
-        Me.Pan05.Controls.Add(Me.Rdb02)
         Me.Pan05.Controls.Add(Me.Label8)
-        Me.Pan05.Controls.Add(Me.Rdb01)
         Me.Pan05.Controls.Add(Me.TxtFec_Mod)
         Me.Pan05.Controls.Add(Me.TxtFec_Crea)
         Me.Pan05.Controls.Add(Me.TxtUsua_2)
         Me.Pan05.Controls.Add(Me.TxtUsua_1)
         Me.Pan05.Controls.Add(Me.Label7)
-        Me.Pan05.Location = New System.Drawing.Point(3, 278)
+        Me.Pan05.Location = New System.Drawing.Point(3, 306)
         Me.Pan05.Name = "Pan05"
         Me.Pan05.Size = New System.Drawing.Size(443, 48)
         Me.Pan05.TabIndex = 15
@@ -1079,7 +1081,7 @@ Partial Class FrmMnClientes
         Me.Label12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
         Me.Label12.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label12.ForeColor = System.Drawing.Color.White
-        Me.Label12.Location = New System.Drawing.Point(229, 21)
+        Me.Label12.Location = New System.Drawing.Point(312, 390)
         Me.Label12.Name = "Label12"
         Me.Label12.Size = New System.Drawing.Size(69, 21)
         Me.Label12.TabIndex = 190
@@ -1091,7 +1093,7 @@ Partial Class FrmMnClientes
         '
         Me.Rdb02.AutoSize = True
         Me.Rdb02.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Rdb02.Location = New System.Drawing.Point(366, 22)
+        Me.Rdb02.Location = New System.Drawing.Point(385, 390)
         Me.Rdb02.Name = "Rdb02"
         Me.Rdb02.Size = New System.Drawing.Size(72, 19)
         Me.Rdb02.TabIndex = 16
@@ -1117,7 +1119,7 @@ Partial Class FrmMnClientes
         '
         Me.Rdb01.AutoSize = True
         Me.Rdb01.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Rdb01.Location = New System.Drawing.Point(298, 24)
+        Me.Rdb01.Location = New System.Drawing.Point(466, 390)
         Me.Rdb01.Name = "Rdb01"
         Me.Rdb01.Size = New System.Drawing.Size(71, 19)
         Me.Rdb01.TabIndex = 15
@@ -2046,6 +2048,20 @@ Partial Class FrmMnClientes
         Me.BtnEstado.UseVisualStyleBackColor = False
         Me.BtnEstado.Visible = False
         '
+        'ChkMedXpress
+        '
+        Me.ChkMedXpress.AutoSize = True
+        Me.ChkMedXpress.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ChkMedXpress.Enabled = False
+        Me.ChkMedXpress.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.ChkMedXpress.ForeColor = System.Drawing.Color.Blue
+        Me.ChkMedXpress.Location = New System.Drawing.Point(3, 230)
+        Me.ChkMedXpress.Name = "ChkMedXpress"
+        Me.ChkMedXpress.Size = New System.Drawing.Size(177, 18)
+        Me.ChkMedXpress.TabIndex = 184
+        Me.ChkMedXpress.Text = "Cliente Modo MedXpress"
+        Me.ChkMedXpress.UseVisualStyleBackColor = True
+        '
         'FrmMnClientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2071,6 +2087,7 @@ Partial Class FrmMnClientes
         Me.Panel6.ResumeLayout(False)
         CType(Me.Dgv01, System.ComponentModel.ISupportInitialize).EndInit()
         Me.Tab02.ResumeLayout(False)
+        Me.Tab02.PerformLayout()
         Me.Panel3.ResumeLayout(False)
         Me.Pan09.ResumeLayout(False)
         Me.Pan12.ResumeLayout(False)
@@ -2236,4 +2253,5 @@ Partial Class FrmMnClientes
     Friend WithEvents Label35 As Label
     Friend WithEvents Label33 As Label
     Friend WithEvents Label32 As Label
+    Friend WithEvents ChkMedXpress As CheckBox
 End Class
