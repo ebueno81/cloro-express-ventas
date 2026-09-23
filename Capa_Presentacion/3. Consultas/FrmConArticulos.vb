@@ -4,33 +4,58 @@
     Private Sub BtnMostrar_Click(sender As System.Object, e As System.EventArgs) Handles BtnMostrar.Click
         Call Dgv01_DoubleClick(Nothing, Nothing)
     End Sub
+
     Public Sub Cargar_Grid(ByVal Cadena As String)
+
+        Dim Filtro As String = ""
+
+        '-------------------------------------------------------
+        'En modo MedXpress mostramos solamente el giro actual
+        'En modo Cloro Express no se aplica filtro por giro
+        '-------------------------------------------------------
+        If ModSesion.EsMedXpress Then
+
+            Filtro =
+            " AND Tg.c_codi_giro=" &
+            ModSesion.IdGiro.ToString() & " "
+
+        End If
+        Filtro &= Cadena
+
         With Dgv01
-            .DataSource = c_Neg_RptStockIQ.get_StockIQ_Datos(Cadena, Year(Now.Date), Month(Now.Date), TxtCod_Alm.Text, "02", "GUI")
+
+            .DataSource = c_Neg_RptStockIQ.get_StockIQ_Datos(Filtro, Year(Now.Date), Month(Now.Date), TxtCod_Alm.Text, "02", "GUI")
+
             .Columns("Mot").Width = 50
             .Columns("Cd").Width = 50
             .Columns("Scd").Width = 50
             .Columns("Codigo I.Q.").Width = 90
             .Columns("Articulo").Width = 290
             .Columns("Cantidad").Width = 80
-            ' Validamos el tipo de moneda '
             .Columns("Total").Width = 70
             .Columns("Precio").Width = 70
-            ' Alineacion '
+
+            'Alineación
             .Columns("Mot").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
             .Columns("Cd").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
             .Columns("Scd").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
             .Columns("Codigo I.Q.").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            ' Validamos el tipo de moneda '
 
             .Columns("Total").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
             .Columns("Precio").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
+
             .Columns("Cantidad").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight
-            ' Visible '
+
+            'Ocultar
             .Columns("Total").Visible = False
             .Columns("Precio").Visible = False
 
         End With
+
     End Sub
 
     Private Sub TxtBus_KeyDown(sender As Object, e As System.Windows.Forms.KeyEventArgs) Handles TxtBus.KeyDown

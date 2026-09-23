@@ -159,10 +159,14 @@
                     CboVende.SelectedValue = .Rows(0)("c_codi_vende").ToString
                     TxtRuc.Text = .Rows(0)("c_ruc_clie").ToString
                     TxtUbigeo.Text = .Rows(0)("c_codi_ubigeo").ToString
+
                     c_Neg_MnClienteOfi.get_ClienteOfi_Cbo(" and O.c_anula_Reg=0 and O.c_codi_clie='" & TxtCod_Clie.Text &
                                                           "' order by c_codi_oficina", CboDireccion)
 
                     If CboDireccion.Items.Count > 0 Then CboDireccion.SelectedIndex = 0
+                    If CboEmpServ.Items.Count > 0 Then CboEmpServ.SelectedIndex = 0
+                    If CboPlaca.Items.Count > 0 Then CboPlaca.SelectedIndex = 0
+                    If CboChofer.Items.Count > 0 Then CboChofer.SelectedIndex = 0
 
                     CboDireccion.Text = StrConv(.Rows(0)("c_direc_clie").ToString, vbProperCase)
                     TxtDist.Text = StrConv(.Rows(0)("c_dist_clie").ToString, vbProperCase)
@@ -317,8 +321,8 @@
                     If TxtCod_Mt.Text = "05" Then
                         ValidarDetalles = True
                     Else
-                        MsgBox("1. Falta Ingresar una Cantidad Valida...", vbCritical, Compañia)
-                        ValidarDetalles = False
+                        'MsgBox("1. Falta Ingresar una Cantidad Valida...", vbCritical, Compañia)
+                        ValidarDetalles = True
                     End If
                 End If
             Else
@@ -1243,7 +1247,7 @@
     Private Sub BtnConArt_Click(sender As System.Object, e As System.EventArgs) Handles BtnConArt.Click
         With FrmConArticulos
             .Show() : .MdiParent = FrmMenu : .TxtVar.Text = 1 : .TxtCod_Alm.Text = TxtCod_Almacen.Text
-            .Cargar_Grid(" and St.c_codi_alm='" & TxtCod_Almacen.Text & "' and st.c_anula_reg=0 and c_cant_stock>0 order by c_desc_articulo")
+            .Cargar_Grid(" and St.c_codi_alm='" & TxtCod_Almacen.Text & "' and st.c_anula_reg=0 order by c_desc_articulo")
         End With
     End Sub
     ' Metodo para cargar Articulo '
