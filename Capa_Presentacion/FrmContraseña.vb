@@ -511,7 +511,7 @@ Public Class FrmContraseña
     End Sub
 
     Private Sub TxtClave_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TxtClave.KeyDown
-        If e.KeyCode = Keys.Enter Then Call OK_Click(Nothing, Nothing)
+        'If e.KeyCode = Keys.Enter Then Call OK_Click(Nothing, Nothing)
     End Sub
 
     Private Sub CboGiro_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CboGiro.SelectedIndexChanged
@@ -548,4 +548,7 @@ Public Class FrmContraseña
 
     End Sub
 
+    Private Sub TxtClave_TextChanged(sender As Object, e As EventArgs) Handles TxtClave.TextChanged
+
+    End Sub
 End Class
