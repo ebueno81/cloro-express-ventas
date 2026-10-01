@@ -17,11 +17,11 @@
         Dgv01.DataSource = c_Neg_mnmtmov.get_MtMov_Datos(" and c_anula_reg=0 order by c_codi_mt", "DGV")
         With Dgv01
             .Columns("Codigo").Width = 60
-            .Columns("Motivo").Width = 320
 
             'alineacion
             .Columns("Codigo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns("Motivo").Width = 320
+            .Columns("Motivo").Width = 280
+            .Columns("MedXpress").Width = 80
             'color
             .Columns("Codigo").HeaderCell.Style.BackColor = Color.Yellow
             .Columns("Codigo").HeaderCell.Style.ForeColor = Color.Blue
@@ -42,7 +42,7 @@
     ' metodo para cancelar registro
     Private Sub Cancelar_Registro()
         With Dgv01
-            .Size = New Size(486, 241) : .Location = New Point(2, 60)
+            .Size = New Size(586, 240) : .Location = New Point(2, 60)
             BtnCerrar.Text = "&Cerrar" : BtnGrabar.Enabled = False : Pan01.Enabled = True
             TxtCod.Clear() : TxtDesc.Clear() : TxtCod_Sunat.Enabled = False
         End With
@@ -74,6 +74,7 @@
             If ChkOpc.Checked = True Then c_opc_prove = 1
             .c_opc_prove = c_opc_prove
             .c_codi_sunat = TxtCod_Sunat.Text
+            .c_modo_medxpress = IIf(ChkMedXpress.Checked, 1, 0)
             .c_usuario = FrmMenu.lblusuario.Text
             .copcion = cOpcion
             c_Neg_mnmtmov.set_MnMtMov_Save(c_Ent_MnMtMov)
@@ -86,10 +87,11 @@
     ' metodo para un nuevo registro
     Private Sub Nuevo_Registro()
         With Dgv01
-            .Size = New Size(486, 218) : .Location = New Point(2, 83)
+            .Size = New Size(586, 215) : .Location = New Point(2, 87)
             BtnCerrar.Text = "&Cerrar" : BtnGrabar.Enabled = False : Pan01.Enabled = True
             TxtCod.Clear() : TxtDesc.Clear() : Pan01.Enabled = False : BtnGrabar.Enabled = True
             BtnCerrar.Text = "Cancelar" : ChkOpc.Checked = False : TxtCod_Sunat.Enabled = True
+            ChkMedXpress.Checked = False
         End With
     End Sub
     ' Editamos registro '
@@ -103,6 +105,7 @@
                         TxtCod.Text = .Rows(Fila).Cells("Codigo").Value
                         TxtDesc.Text = .Rows(Fila).Cells("Motivo").Value
                         TxtCod_Sunat.Text = .Rows(Fila).Cells("Sunat").Value
+                        ChkMedXpress.Checked = IIf(.Rows(Fila).Cells("MedXpress").Value = "SI", True, False)
                         ' Validamos si trabaja con los proveedores '
                         If Val(.Rows(Fila).Cells("c_opc_prove").Value.ToString) = 1 Then
                             ChkOpc.Checked = True
@@ -134,5 +137,9 @@
                 End If
             End If
         End With
+    End Sub
+
+    Private Sub Dgv01_DoubleClick(sender As Object, e As EventArgs) Handles Dgv01.DoubleClick
+
     End Sub
 End Class

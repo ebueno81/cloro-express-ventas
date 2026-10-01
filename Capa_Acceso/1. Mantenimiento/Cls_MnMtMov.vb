@@ -22,6 +22,7 @@ Public Class Cls_MnMtMov
             cmd.Parameters.Add("@c_desc_mt", OleDbType.VarChar, 50).Value = ent.c_desc_mt
             cmd.Parameters.Add("@c_opc_prove", OleDbType.Integer).Value = ent.c_opc_prove
             cmd.Parameters.Add("@c_codi_sunat", OleDbType.VarChar, 2).Value = ent.c_codi_sunat
+            cmd.Parameters.Add("@c_modo_medxpress", OleDbType.Integer).Value = ent.c_modo_medxpress
             cmd.Parameters.Add("@c_usuario", OleDbType.VarChar, 10).Value = ent.c_usuario
             cmd.Parameters.Add("@copcion", OleDbType.VarChar, 3).Value = ent.copcion
 

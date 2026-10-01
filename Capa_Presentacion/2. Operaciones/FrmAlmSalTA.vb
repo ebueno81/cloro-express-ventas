@@ -39,13 +39,6 @@
         End If
 
         '-------------------------------------------------------
-        'Clientes
-        '-------------------------------------------------------
-        c_Neg_MnCliente.Get_Clientes_Cbo(FiltroCliente & " order by c_desc_clie ", CboBusClie)
-
-        c_Neg_MnCliente.Get_Clientes_Cbo(FiltroCliente & " order by c_desc_clie ", CboCliente)
-
-        '-------------------------------------------------------
         'Vendedores
         '-------------------------------------------------------
         c_Neg_MnVendedor.get_Vendedor_Combo(" and c_anula_reg=0 order by c_nom_vende", CboVende)
@@ -63,7 +56,7 @@
         '-------------------------------------------------------
         'Motivos
         '-------------------------------------------------------
-        c_Neg_mnmtmov.get_MtMov_Cbo(" and c_anula_reg=0 order by c_desc_mt", CboMot)
+        c_Neg_mnmtmov.get_MtMov_Cbo(FiltroCliente, CboMot)
 
         '-------------------------------------------------------
         'Tipos de documento
@@ -105,38 +98,16 @@
     Public Sub Cargar_Grid()
         Call BtnMostrar_Click(Nothing, Nothing)
     End Sub
-    Private Sub TxtAbv_Clie_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TxtAbv_Clie.KeyDown
-        If Len(TxtAbv_Clie.Text) > 0 Then
-            If e.KeyCode = Keys.Enter Then
-                With c_Neg_MnCliente.get_Cliente_Datos(" and c_abrev_clie='" & TxtAbv_Clie.Text & "'", "DAT")
-                    If .Rows.Count > 0 Then
-                        TxtCod_Clie.Text = .Rows(0)("c_codi_clie").ToString
-                        CboCliente.SelectedValue = TxtCod_Clie.Text
-                        Focos = 1 : TxtObs.Focus()
 
-                    End If
-                End With
-            End If
-        End If
-    End Sub
-
-    Private Sub TxtAbv_Clie_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TxtAbv_Clie.TextChanged
+    Private Sub TxtAbv_Clie_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
 
     End Sub
 
-    Private Sub CboCliente_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CboCliente.KeyDown
-        If e.KeyCode = Keys.Enter Or e.KeyCode = Keys.F4 Then Call CboCliente_SelectedIndexChanged(Nothing, Nothing)
-        If e.KeyCode = Keys.Enter Then
-            Focos = 1 : CboEmpServ.Focus()
-        End If
-    End Sub
-
-    Private Sub CboCliente_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles CboCliente.KeyPress
+    Private Sub CboCliente_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         e.KeyChar = e.KeyChar.ToString.ToUpper
     End Sub
 
-    Private Sub CboCliente_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CboCliente.SelectedIndexChanged
-        Call Combo_Jalar_Codigo(CboCliente, TxtCod_Clie)
+    Public Sub mostrarDatosClientesProveedores()
         If Val(TxtOpc_Prove.Text) = 1 Then
             CboDireccion.DataSource = Nothing
             Pan22.Enabled = True
@@ -152,7 +123,7 @@
             End With
         Else
             Pan22.Enabled = False
-            Call Mostrar_Cliente_Abrev(TxtCod_Clie.Text, TxtAbv_Clie)
+
             ' Validamos si el cliente es prueba o formal '
             With c_Neg_MnCliente.get_Cliente_Datos(" AND c_codi_clie='" & TxtCod_Clie.Text & "'", "DAT")
                 If .Rows.Count > 0 Then
@@ -165,7 +136,7 @@
 
                     If CboDireccion.Items.Count > 0 Then CboDireccion.SelectedIndex = 0
                     If CboEmpServ.Items.Count > 0 Then CboEmpServ.SelectedIndex = 0
-                    If CboPlaca.Items.Count > 0 Then CboPlaca.SelectedIndex = 0
+                    If CboPlaca.Items.Count > 1 Then CboPlaca.SelectedIndex = 1
                     If CboChofer.Items.Count > 0 Then CboChofer.SelectedIndex = 0
 
                     CboDireccion.Text = StrConv(.Rows(0)("c_direc_clie").ToString, vbProperCase)
@@ -175,8 +146,8 @@
                 End If
             End With
         End If
-
     End Sub
+
     Private Sub CboVende_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles CboVende.KeyDown
         If e.KeyCode = Keys.F4 Or e.KeyCode = Keys.Enter Then Call CboVende_SelectedIndexChanged(Nothing, Nothing)
     End Sub
@@ -414,8 +385,6 @@
         '-------------------------------------------------------
         If Val(TxtOpc_Prove.Text) = 1 Then
 
-            c_Neg_MnProve.get_MtProve_Cbo(" AND c_anula_reg=0 order by c_desc_prov", CboCliente)
-
             LblCliente.Text = "Proveedor"
 
             Pan22.Enabled = False
@@ -445,8 +414,6 @@
             End If
 
             FiltroCliente &= " order by c_desc_clie"
-
-            c_Neg_MnCliente.Get_Clientes_Cbo(FiltroCliente, CboCliente)
 
             LblCliente.Text = "Cliente"
 
@@ -482,8 +449,7 @@
             If .Rows.Count > 0 Then
                 If Len(TxtNro_Guia.Text) = 0 Then
                     TxtNro_MosGuia.Text = Strings.Right(Val(.Rows(0)("c_nro_guia").ToString) + 10000001, 7)
-                    CboCliente.Enabled = True : TxtAbv_Clie.Enabled = True
-                    TxtCod_Clie.Clear() : TxtAbv_Clie.Clear() : CboCliente.Text = ""
+                    TxtCod_Clie.Clear()
                 End If
             End If
         End With
@@ -741,10 +707,11 @@
     End Sub
 
     Private Sub BtnNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnNuevo.Click
-        Tbc01.SelectedTab = Tab02 : Call Nuevo_Registro() : BtnGrabar.Enabled = True : CboCliente.Focus()
+        Tbc01.SelectedTab = Tab02 : Call Nuevo_Registro() : BtnGrabar.Enabled = True : TxtCliente.Focus()
         BtnEstado.Text = "Pendiente" : BtnEstado.BackColor = Color.Maroon
         TxtCod_Mt.Enabled = False : CboAlm.SelectedIndex = 0 : CboVende.SelectedIndex = 0
         CboSerie.SelectedIndex = 1 : DtpFecha_Traslado.Text = Now.Date : DtpFecha_Traslado.Enabled = True
+        BtnConClientes.Enabled = True
         ' Validamos la serie de la guia '
         If Len(FrmMenu.TxtSerie_Guia.Text) > 0 Then
             For i = 0 To CboSerie.Items.Count - 1
@@ -754,7 +721,7 @@
             Next
         End If
 
-        CboCliente.Focus()
+        TxtCliente.Focus()
         With c_Neg_mnmtmov.get_MtMov_Datos(" and c_opc_defecto='1' and c_anula_reg=0", "DAT")
             If .Rows.Count > 0 Then
                 CboMot.SelectedValue = .Rows(0)("c_codi_mt").ToString
@@ -766,12 +733,13 @@
     End Sub
     ' Nuevo Detalle '
     Private Sub Nuevo_Registro()
-        Dgv02.Rows.Clear() : CboCliente.Enabled = True : TxtAbv_Clie.Enabled = True : TxtAbv_Clie.Focus() : TxtObs.Enabled = True
+        Dgv02.Rows.Clear() : TxtObs.Enabled = True
         Call Limpiar_Texto(Pan04) : Call Limpiar_Texto(Pan07) : Call Limpiar_Texto(Pan08) : Call Limpiar_Texto(Grb03) : Call Limpiar_Texto(Grb02)
         TxtNro_Guia.Clear() : TxtNro_MosGuia.Clear() : Pan10.Enabled = True : Pan11.Enabled = False : TxtObs.Clear()
-        TxtAbv_Clie.Clear() : TxtCod_Clie.Clear() : CboCliente.SelectedIndex = -1 : CboCliente.Text = "" : CboAlm.Enabled = True
+        TxtCod_Clie.Clear() : TxtCliente.Text = "" : CboAlm.Enabled = True
         CboVende.SelectedValue = "" : CboAlm.SelectedValue = "" : Call Limpiar_Texto(Pan09) : CboSerie.Enabled = True
         Call Activar(Grb02) : CboSerie.SelectedIndex = -1 : TxtCodiOficina.Enabled = False
+        TxtCliente.Enabled = False
     End Sub
 
     Private Sub BtnVolver_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnVolver.Click
@@ -779,7 +747,8 @@
     End Sub
     ' Cancelar Registro '
     Private Sub Cancela_Registro()
-        Dgv02.Rows.Clear() : CboCliente.Enabled = False : TxtAbv_Clie.Enabled = False : TxtObs.Enabled = False
+        Dgv02.Rows.Clear() : TxtCliente.Enabled = False
+        TxtObs.Enabled = False
         Call Limpiar_Texto(Pan04) : Call Limpiar_Texto(Pan07) : Call Limpiar_Texto(Pan08) : Call Limpiar_Texto(Grb03)
         TxtNro_Guia.Clear() : TxtNro_MosGuia.Clear() : BtnGrabar.Enabled = False : Call Cancelar_Detalles()
         DtpFecha_Traslado.Enabled = False
@@ -828,10 +797,10 @@
         '-------------------------------------------------------
         'Filtro por cliente
         '-------------------------------------------------------
-        If Len(CboBusClie.Text) > 0 Then
+        If Len(TxtBuscarCliente.Text) > 0 Then
 
-            Filtro &= " and Cl.c_desc_clie like '" &
-            CboBusClie.Text.Replace("'", "''") &
+            Filtro &= " and Cl.c_desc_clie COLLATE Modern_Spanish_CI_AI like '" &
+            TxtBuscarCliente.Text.Replace("'", "''") &
             "%' "
 
             Call Cargar_Grid(Filtro, "DGC")
@@ -936,7 +905,7 @@
             Dim Fila As Integer = Dgv01.CurrentCellAddress.Y
             If Fila > -1 Then
                 Call Mostrar_SalidaTA(Dgv01.Rows(Fila).Cells("Nro.").Value, Dgv01.Rows(Fila).Cells("Salida").Value)
-                CboVende.Enabled = False : CboAlm.Enabled = False : CboCliente.Enabled = False : TxtAbv_Clie.Enabled = False
+                CboVende.Enabled = False : CboAlm.Enabled = False : TxtCliente.Enabled = False
                 TxtObs.Enabled = False : Pan10.Enabled = False : Pan11.Enabled = False : BtnGrabar.Enabled = False : Call Desactivar(Grb02)
                 CboSerie.Enabled = False
             End If
@@ -963,8 +932,7 @@
                 CboMot.SelectedValue = .Rows(0)("c_codi_mt").ToString
 
                 TxtCod_Clie.Text = .Rows(0)("c_codi_clie").ToString
-                TxtAbv_Clie.Text = .Rows(0)("c_abrev_clie").ToString
-                CboCliente.Text = .Rows(0)("c_desc_clie").ToString
+                TxtCliente.Text = .Rows(0)("c_desc_clie").ToString
                 CboPlaca.SelectedValue = .Rows(0)("c_codi_placa").ToString
                 TxtVehiculo.Text = .Rows(0)("c_vehiculo_trp").ToString
                 CboChofer.Text = .Rows(0)("c_chofer_trp").ToString
@@ -1056,7 +1024,9 @@
                                         If Val(.Rows(Fila).Cells("c_opc_estado").Value) = 0 Then
                                             Tbc01.SelectedTab = Tab02
                                             Call Mostrar_SalidaTA(Dgv01.Rows(Fila).Cells("Nro.").Value, Dgv01.Rows(Fila).Cells("Salida").Value) : Pan10.Enabled = True
-                                            Call Dgv02_SelectionChanged(Nothing, Nothing) : BtnGrabar.Enabled = True : TxtAbv_Clie.Enabled = False : CboCliente.Enabled = True
+                                            Call Dgv02_SelectionChanged(Nothing, Nothing) : BtnGrabar.Enabled = True
+                                            TxtCliente.Enabled = False
+                                            BtnConClientes.Enabled = False
                                             CboSerie.Enabled = False : CboPlaca.Focus() : TxtCod_Mt.Enabled = False : TxtNro_Ing.Enabled = False
                                             DtpFecha_Traslado.Enabled = True
                                             If TxtCod_Mt.Text = "16" Then
@@ -1184,17 +1154,8 @@
         End If
     End Sub
 
-    Private Sub CboBusClie_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles CboBusClie.KeyPress
+    Private Sub CboBusClie_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs)
         e.KeyChar = e.KeyChar.ToString.ToUpper
-    End Sub
-    ' Buscamos por Codigo de Cliente '
-    Private Sub CboBusClie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CboBusClie.SelectedIndexChanged
-        If Len(CboBusClie.Text) = 0 Then
-
-        Else
-            Call Combo_Jalar_Codigo(CboBusClie, TxtBus_CodClie)
-
-        End If
     End Sub
 
     Private Sub TxtBus_Guia_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles TxtBus_Guia.KeyDown
@@ -1484,7 +1445,6 @@
                 TxtNro_Ing.Text = Strings.Right(Val(TxtNro_Ing.Text) + 10000000, 7)
                 With c_Neg_IngAlmIQ.get_IngAlmIQ_Datos(" and I.c_codi_ing='" & TxtNro_Ing.Text & "' AND I.c_codi_mt='05' and I.c_anula_reg=0 and I.c_estado_ing in (0,2)", "FA", "DAT")
                     If .Rows.Count > 0 Then
-                        CboCliente.SelectedValue = .Rows(0)("c_codi_Clie").ToString
                         With c_Neg_IngAlmIQDet.get_IngAlmIQDet_Datos(" and D.c_codi_ing='" & TxtNro_Ing.Text & "' and D.c_anula_reg=0", "FA", "DAT")
                             Dgv02.Rows.Clear()
                             If .Rows.Count > 0 Then
@@ -1549,4 +1509,37 @@
     Private Sub CboDocAnexo_SelectedIndexChanged(sender As Object, e As EventArgs) Handles CboDocAnexo.SelectedIndexChanged
         Call Combo_Jalar_Codigo(CboDocAnexo, TxtDocAnexo)
     End Sub
+
+    Private Sub BtnConClientes_Click(sender As Object, e As EventArgs) Handles BtnConClientes.Click
+        If Val(TxtOpc_Prove.Text) = 1 Then
+            FrmConProve.Close()
+            FrmConProve.Show()
+            FrmConProve.MdiParent = FrmMenu
+            FrmConProve.Cargar_Grid(" and c_anula_reg=0 order by c_desc_prov")
+            FrmConProve.TxtVar.Text = 1
+        Else
+            FrmConClientes.Close()
+            FrmConClientes.Show()
+            FrmConClientes.MdiParent = FrmMenu
+            If ModSesion.EsMedXpress Then
+
+                'Solo clientes MedXpress
+                FrmConClientes.Cargar_Grid(
+                " and c_anula_reg=0 " &
+                " and ISNULL(c_modo_medxpress,0)=1 " &
+                " order by c_desc_clie ")
+
+            Else
+
+                'Cloro Express - comportamiento histórico
+                FrmConClientes.Cargar_Grid(
+                " and c_anula_reg=0 " &
+                " order by c_desc_clie ")
+
+            End If
+
+            FrmConClientes.TxtVar.Text = 15
+        End If
+    End Sub
+
 End Class

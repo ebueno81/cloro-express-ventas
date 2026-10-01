@@ -86,6 +86,7 @@ Partial Class FrmMenu
         Me.MnuRptRegRetenciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuRptEstadoCuenta = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuRptTransformaVentas = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MnuConListaDocAnticipo = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuConta = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuContaAsientos = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolStripMenuItem1 = New System.Windows.Forms.ToolStripSeparator()
@@ -141,7 +142,6 @@ Partial Class FrmMenu
         Me.TxtEmpresa = New System.Windows.Forms.TextBox()
         Me.TxtRptCarpeta = New System.Windows.Forms.TextBox()
         Me.TxtCta_Nacion = New System.Windows.Forms.TextBox()
-        Me.SkinEngine1 = New Sunisoft.IrisSkin.SkinEngine(CType(Me, System.ComponentModel.Component))
         Me.TxtZoom = New System.Windows.Forms.TextBox()
         Me.ChkElectronico = New System.Windows.Forms.CheckBox()
         Me.TextBox1 = New System.Windows.Forms.TextBox()
@@ -149,7 +149,6 @@ Partial Class FrmMenu
         Me.TxtRuc = New System.Windows.Forms.TextBox()
         Me.ChkUsuaPrecio = New System.Windows.Forms.CheckBox()
         Me.ChkUsuaAdmin = New System.Windows.Forms.CheckBox()
-        Me.MnuConListaDocAnticipo = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.Tool_01.SuspendLayout()
@@ -435,97 +434,97 @@ Partial Class FrmMenu
         '
         Me.MnuRptRegVentas.Image = CType(resources.GetObject("MnuRptRegVentas.Image"), System.Drawing.Image)
         Me.MnuRptRegVentas.Name = "MnuRptRegVentas"
-        Me.MnuRptRegVentas.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRptRegVentas.Size = New System.Drawing.Size(356, 22)
         Me.MnuRptRegVentas.Text = "Registro de Ventas"
         '
         'ToolStripSeparator15
         '
         Me.ToolStripSeparator15.Name = "ToolStripSeparator15"
-        Me.ToolStripSeparator15.Size = New System.Drawing.Size(352, 6)
+        Me.ToolStripSeparator15.Size = New System.Drawing.Size(353, 6)
         '
         'MnuRptSalTA
         '
         Me.MnuRptSalTA.Image = CType(resources.GetObject("MnuRptSalTA.Image"), System.Drawing.Image)
         Me.MnuRptSalTA.Name = "MnuRptSalTA"
-        Me.MnuRptSalTA.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRptSalTA.Size = New System.Drawing.Size(356, 22)
         Me.MnuRptSalTA.Text = "Reportes de Guías Pendientes por Facturar"
         '
         'MnuRptGuiasFactu
         '
         Me.MnuRptGuiasFactu.Name = "MnuRptGuiasFactu"
-        Me.MnuRptGuiasFactu.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRptGuiasFactu.Size = New System.Drawing.Size(356, 22)
         Me.MnuRptGuiasFactu.Text = "Reporte de Guias Facturadas "
         '
         'MnuRptRegLetras
         '
         Me.MnuRptRegLetras.Image = CType(resources.GetObject("MnuRptRegLetras.Image"), System.Drawing.Image)
         Me.MnuRptRegLetras.Name = "MnuRptRegLetras"
-        Me.MnuRptRegLetras.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRptRegLetras.Size = New System.Drawing.Size(356, 22)
         Me.MnuRptRegLetras.Text = "Registro de Letras"
         '
         'ToolStripSeparator17
         '
         Me.ToolStripSeparator17.Name = "ToolStripSeparator17"
-        Me.ToolStripSeparator17.Size = New System.Drawing.Size(352, 6)
+        Me.ToolStripSeparator17.Size = New System.Drawing.Size(353, 6)
         '
         'MnuRepVtasGerencial
         '
         Me.MnuRepVtasGerencial.Name = "MnuRepVtasGerencial"
-        Me.MnuRepVtasGerencial.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRepVtasGerencial.Size = New System.Drawing.Size(356, 22)
         Me.MnuRepVtasGerencial.Text = "Reporte de Ventas - [Gerencial]"
         '
         'MnuRepSalVtas
         '
         Me.MnuRepSalVtas.Name = "MnuRepSalVtas"
-        Me.MnuRepSalVtas.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRepSalVtas.Size = New System.Drawing.Size(356, 22)
         Me.MnuRepSalVtas.Text = "Reporte de Salidas - [Precio-Ventas]"
         '
         'MnuRepSalVtasValor
         '
         Me.MnuRepSalVtasValor.Name = "MnuRepSalVtasValor"
-        Me.MnuRepSalVtasValor.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRepSalVtasValor.Size = New System.Drawing.Size(356, 22)
         Me.MnuRepSalVtasValor.Text = "Reporte de Salidas - [Kardex-Valorizado]"
         '
         'ToolStripMenuItem3
         '
         Me.ToolStripMenuItem3.Name = "ToolStripMenuItem3"
-        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(352, 6)
+        Me.ToolStripMenuItem3.Size = New System.Drawing.Size(353, 6)
         '
         'MnuRepEnvases
         '
         Me.MnuRepEnvases.Name = "MnuRepEnvases"
-        Me.MnuRepEnvases.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRepEnvases.Size = New System.Drawing.Size(356, 22)
         Me.MnuRepEnvases.Text = "Reporte de Envases - [Movimientos]"
         '
         'MnuRepEnvasesClie
         '
         Me.MnuRepEnvasesClie.Name = "MnuRepEnvasesClie"
-        Me.MnuRepEnvasesClie.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRepEnvasesClie.Size = New System.Drawing.Size(356, 22)
         Me.MnuRepEnvasesClie.Text = "Reporte de Envases - [Propiedad del Cliente]"
         '
         'MnuRepEnvasesEstado
         '
         Me.MnuRepEnvasesEstado.Image = CType(resources.GetObject("MnuRepEnvasesEstado.Image"), System.Drawing.Image)
         Me.MnuRepEnvasesEstado.Name = "MnuRepEnvasesEstado"
-        Me.MnuRepEnvasesEstado.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRepEnvasesEstado.Size = New System.Drawing.Size(356, 22)
         Me.MnuRepEnvasesEstado.Text = "Reporte de Estado de Envases"
         '
         'MnuRepSalTransforma
         '
         Me.MnuRepSalTransforma.Image = CType(resources.GetObject("MnuRepSalTransforma.Image"), System.Drawing.Image)
         Me.MnuRepSalTransforma.Name = "MnuRepSalTransforma"
-        Me.MnuRepSalTransforma.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRepSalTransforma.Size = New System.Drawing.Size(356, 22)
         Me.MnuRepSalTransforma.Text = "Reporte de Transformaciones - [ALMACEN GENERAL]"
         '
         'ToolStripMenuItem2
         '
         Me.ToolStripMenuItem2.Name = "ToolStripMenuItem2"
-        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(352, 6)
+        Me.ToolStripMenuItem2.Size = New System.Drawing.Size(353, 6)
         '
         'MnuRptRegRetenciones
         '
         Me.MnuRptRegRetenciones.Name = "MnuRptRegRetenciones"
-        Me.MnuRptRegRetenciones.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRptRegRetenciones.Size = New System.Drawing.Size(356, 22)
         Me.MnuRptRegRetenciones.Text = "Registro de Retenciones"
         '
         'MnuRptEstadoCuenta
@@ -533,15 +532,21 @@ Partial Class FrmMenu
         Me.MnuRptEstadoCuenta.Image = CType(resources.GetObject("MnuRptEstadoCuenta.Image"), System.Drawing.Image)
         Me.MnuRptEstadoCuenta.Name = "MnuRptEstadoCuenta"
         Me.MnuRptEstadoCuenta.ShowShortcutKeys = False
-        Me.MnuRptEstadoCuenta.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRptEstadoCuenta.Size = New System.Drawing.Size(356, 22)
         Me.MnuRptEstadoCuenta.Text = "Reporte de Estado de Cuentas"
         '
         'MnuRptTransformaVentas
         '
         Me.MnuRptTransformaVentas.Image = CType(resources.GetObject("MnuRptTransformaVentas.Image"), System.Drawing.Image)
         Me.MnuRptTransformaVentas.Name = "MnuRptTransformaVentas"
-        Me.MnuRptTransformaVentas.Size = New System.Drawing.Size(355, 22)
+        Me.MnuRptTransformaVentas.Size = New System.Drawing.Size(356, 22)
         Me.MnuRptTransformaVentas.Text = "Reporte de Transformaciones - [VENTAS]"
+        '
+        'MnuConListaDocAnticipo
+        '
+        Me.MnuConListaDocAnticipo.Name = "MnuConListaDocAnticipo"
+        Me.MnuConListaDocAnticipo.Size = New System.Drawing.Size(356, 22)
+        Me.MnuConListaDocAnticipo.Text = "Listado de Documentos - Anticipos"
         '
         'MnuConta
         '
@@ -981,12 +986,6 @@ Partial Class FrmMenu
         Me.TxtCta_Nacion.Text = "00-000-668192"
         Me.TxtCta_Nacion.Visible = False
         '
-        'SkinEngine1
-        '
-        Me.SkinEngine1.SerialNumber = "U4N2UjLguUZs33UR+Vy47JAZ81t2fjIFvut28vc5oHiVeivGb/NZMA=="
-        Me.SkinEngine1.SkinFile = Nothing
-        Me.SkinEngine1.SkinStreamMain = CType(resources.GetObject("SkinEngine1.SkinStreamMain"), System.IO.Stream)
-        '
         'TxtZoom
         '
         Me.TxtZoom.Location = New System.Drawing.Point(657, 271)
@@ -1053,12 +1052,6 @@ Partial Class FrmMenu
         Me.ChkUsuaAdmin.Text = "Usuario Admin"
         Me.ChkUsuaAdmin.UseVisualStyleBackColor = True
         Me.ChkUsuaAdmin.Visible = False
-        '
-        'MnuConListaDocAnticipo
-        '
-        Me.MnuConListaDocAnticipo.Name = "MnuConListaDocAnticipo"
-        Me.MnuConListaDocAnticipo.Size = New System.Drawing.Size(355, 22)
-        Me.MnuConListaDocAnticipo.Text = "Listado de Documentos - Anticipos"
         '
         'FrmMenu
         '
@@ -1210,7 +1203,6 @@ Partial Class FrmMenu
     Friend WithEvents MnuMnSeriesGR As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MnuMnTpoMov As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MnuOpeRetencion As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents SkinEngine1 As Sunisoft.IrisSkin.SkinEngine
     Friend WithEvents MnuRepSalVtas As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MnuMnChoferes As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem1 As System.Windows.Forms.ToolStripSeparator

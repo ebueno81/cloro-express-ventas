@@ -23,17 +23,17 @@ Partial Class FrmAlmSalTA
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmAlmSalTA))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle45 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle46 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle47 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle55 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle48 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle49 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle50 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle51 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle52 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle53 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle54 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.Tbc01 = New System.Windows.Forms.TabControl()
         Me.Tab01 = New System.Windows.Forms.TabPage()
         Me.Panel16 = New System.Windows.Forms.Panel()
@@ -61,7 +61,6 @@ Partial Class FrmAlmSalTA
         Me.Label7 = New System.Windows.Forms.Label()
         Me.TxtBus_CodClie = New System.Windows.Forms.TextBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
-        Me.CboBusClie = New System.Windows.Forms.ComboBox()
         Me.Panel20 = New System.Windows.Forms.Panel()
         Me.BtnMostrar = New System.Windows.Forms.Button()
         Me.TxtBus_Guia = New System.Windows.Forms.TextBox()
@@ -191,12 +190,10 @@ Partial Class FrmAlmSalTA
         Me.Label20 = New System.Windows.Forms.Label()
         Me.TxtNro_Ing = New System.Windows.Forms.TextBox()
         Me.Label18 = New System.Windows.Forms.Label()
-        Me.TxtAbv_Clie = New System.Windows.Forms.TextBox()
         Me.TxtOpc_Prove = New System.Windows.Forms.TextBox()
         Me.TxtCod_Clie = New System.Windows.Forms.TextBox()
         Me.LblCliente = New System.Windows.Forms.Label()
         Me.TxtCod_Mt = New System.Windows.Forms.TextBox()
-        Me.CboCliente = New System.Windows.Forms.ComboBox()
         Me.CboMot = New System.Windows.Forms.ComboBox()
         Me.Label26 = New System.Windows.Forms.Label()
         Me.Pan09 = New System.Windows.Forms.Panel()
@@ -211,6 +208,9 @@ Partial Class FrmAlmSalTA
         Me.CboSerie = New System.Windows.Forms.ComboBox()
         Me.Label6 = New System.Windows.Forms.Label()
         Me.TxtNro_MosGuia = New System.Windows.Forms.TextBox()
+        Me.TxtCliente = New System.Windows.Forms.TextBox()
+        Me.BtnConClientes = New System.Windows.Forms.Button()
+        Me.TxtBuscarCliente = New System.Windows.Forms.TextBox()
         Me.Tbc01.SuspendLayout()
         Me.Tab01.SuspendLayout()
         Me.Panel16.SuspendLayout()
@@ -499,13 +499,13 @@ Partial Class FrmAlmSalTA
         '
         Me.Panel7.BackColor = System.Drawing.Color.White
         Me.Panel7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel7.Controls.Add(Me.TxtBuscarCliente)
         Me.Panel7.Controls.Add(Me.CboBusSerie)
         Me.Panel7.Controls.Add(Me.Label8)
         Me.Panel7.Controls.Add(Me.Pcb01)
         Me.Panel7.Controls.Add(Me.Label7)
         Me.Panel7.Controls.Add(Me.TxtBus_CodClie)
         Me.Panel7.Controls.Add(Me.PictureBox1)
-        Me.Panel7.Controls.Add(Me.CboBusClie)
         Me.Panel7.Controls.Add(Me.Panel20)
         Me.Panel7.Controls.Add(Me.TxtBus_Guia)
         Me.Panel7.Controls.Add(Me.Label21)
@@ -589,15 +589,6 @@ Partial Class FrmAlmSalTA
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 273
         Me.PictureBox1.TabStop = False
-        '
-        'CboBusClie
-        '
-        Me.CboBusClie.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.CboBusClie.FormattingEnabled = True
-        Me.CboBusClie.Location = New System.Drawing.Point(338, 37)
-        Me.CboBusClie.Name = "CboBusClie"
-        Me.CboBusClie.Size = New System.Drawing.Size(253, 21)
-        Me.CboBusClie.TabIndex = 3
         '
         'Panel20
         '
@@ -731,22 +722,22 @@ Partial Class FrmAlmSalTA
         Me.Dgv01.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.SteelBlue
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dgv01.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle45.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle45.BackColor = System.Drawing.Color.SteelBlue
+        DataGridViewCellStyle45.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle45.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle45.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle45.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle45.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dgv01.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle45
         Me.Dgv01.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Dgv01.EnableHeadersVisualStyles = False
         Me.Dgv01.Location = New System.Drawing.Point(3, 91)
         Me.Dgv01.Name = "Dgv01"
         Me.Dgv01.ReadOnly = True
         Me.Dgv01.RowHeadersWidth = 15
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle46.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle46
         Me.Dgv01.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Dgv01.RowTemplate.Height = 18
         Me.Dgv01.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
@@ -885,14 +876,14 @@ Partial Class FrmAlmSalTA
         '
         Me.Dgv02.AllowUserToAddRows = False
         Me.Dgv02.AllowUserToDeleteRows = False
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle3.BackColor = System.Drawing.Color.LightSteelBlue
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dgv02.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
+        DataGridViewCellStyle47.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle47.BackColor = System.Drawing.Color.LightSteelBlue
+        DataGridViewCellStyle47.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle47.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle47.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle47.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle47.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dgv02.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle47
         Me.Dgv02.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Dgv02.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Lote, Me.c_cant_fraccion, Me.Cantidad, Me.Unid, Me.Codigo, Me.Articulo, Me.Bultos, Me.Precio, Me.Anula, Me.Item, Me.Devol, Me.c_obs, Me.Importe, Me.c_codi_unimed, Me.c_opt_fraccion, Me.c_codi_mon, Me.c_correl_ing})
         Me.Dgv02.EnableHeadersVisualStyles = False
@@ -900,8 +891,8 @@ Partial Class FrmAlmSalTA
         Me.Dgv02.Name = "Dgv02"
         Me.Dgv02.ReadOnly = True
         Me.Dgv02.RowHeadersWidth = 15
-        DataGridViewCellStyle11.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Dgv02.RowsDefaultCellStyle = DataGridViewCellStyle11
+        DataGridViewCellStyle55.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Dgv02.RowsDefaultCellStyle = DataGridViewCellStyle55
         Me.Dgv02.RowTemplate.Height = 18
         Me.Dgv02.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
         Me.Dgv02.Size = New System.Drawing.Size(942, 173)
@@ -909,8 +900,8 @@ Partial Class FrmAlmSalTA
         '
         'Lote
         '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.Lote.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle48.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.Lote.DefaultCellStyle = DataGridViewCellStyle48
         Me.Lote.HeaderText = "Lote"
         Me.Lote.Name = "Lote"
         Me.Lote.ReadOnly = True
@@ -919,8 +910,8 @@ Partial Class FrmAlmSalTA
         '
         'c_cant_fraccion
         '
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.c_cant_fraccion.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle49.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.c_cant_fraccion.DefaultCellStyle = DataGridViewCellStyle49
         Me.c_cant_fraccion.HeaderText = "Fraccion"
         Me.c_cant_fraccion.Name = "c_cant_fraccion"
         Me.c_cant_fraccion.ReadOnly = True
@@ -928,8 +919,8 @@ Partial Class FrmAlmSalTA
         '
         'Cantidad
         '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Cantidad.DefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Cantidad.DefaultCellStyle = DataGridViewCellStyle50
         Me.Cantidad.HeaderText = "Cantidad"
         Me.Cantidad.Name = "Cantidad"
         Me.Cantidad.ReadOnly = True
@@ -937,8 +928,8 @@ Partial Class FrmAlmSalTA
         '
         'Unid
         '
-        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.Unid.DefaultCellStyle = DataGridViewCellStyle7
+        DataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.Unid.DefaultCellStyle = DataGridViewCellStyle51
         Me.Unid.HeaderText = "Unid."
         Me.Unid.Name = "Unid"
         Me.Unid.ReadOnly = True
@@ -946,8 +937,8 @@ Partial Class FrmAlmSalTA
         '
         'Codigo
         '
-        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.Codigo.DefaultCellStyle = DataGridViewCellStyle8
+        DataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.Codigo.DefaultCellStyle = DataGridViewCellStyle52
         Me.Codigo.HeaderText = "Codigo"
         Me.Codigo.Name = "Codigo"
         Me.Codigo.ReadOnly = True
@@ -962,8 +953,8 @@ Partial Class FrmAlmSalTA
         '
         'Bultos
         '
-        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Bultos.DefaultCellStyle = DataGridViewCellStyle9
+        DataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Bultos.DefaultCellStyle = DataGridViewCellStyle53
         Me.Bultos.HeaderText = "Bultos"
         Me.Bultos.Name = "Bultos"
         Me.Bultos.ReadOnly = True
@@ -992,8 +983,8 @@ Partial Class FrmAlmSalTA
         '
         'Devol
         '
-        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Devol.DefaultCellStyle = DataGridViewCellStyle10
+        DataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Devol.DefaultCellStyle = DataGridViewCellStyle54
         Me.Devol.HeaderText = "Devolución"
         Me.Devol.Name = "Devol"
         Me.Devol.ReadOnly = True
@@ -2112,21 +2103,21 @@ Partial Class FrmAlmSalTA
         'Pan07
         '
         Me.Pan07.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Pan07.Controls.Add(Me.BtnConClientes)
+        Me.Pan07.Controls.Add(Me.TxtCliente)
         Me.Pan07.Controls.Add(Me.TxtNroOS)
         Me.Pan07.Controls.Add(Me.Label20)
-        Me.Pan07.Controls.Add(Me.TxtNro_Ing)
         Me.Pan07.Controls.Add(Me.Label18)
-        Me.Pan07.Controls.Add(Me.TxtAbv_Clie)
         Me.Pan07.Controls.Add(Me.TxtOpc_Prove)
         Me.Pan07.Controls.Add(Me.TxtCod_Clie)
         Me.Pan07.Controls.Add(Me.LblCliente)
         Me.Pan07.Controls.Add(Me.TxtCod_Mt)
-        Me.Pan07.Controls.Add(Me.CboCliente)
         Me.Pan07.Controls.Add(Me.CboMot)
         Me.Pan07.Controls.Add(Me.Label26)
+        Me.Pan07.Controls.Add(Me.TxtNro_Ing)
         Me.Pan07.Location = New System.Drawing.Point(1, 32)
         Me.Pan07.Name = "Pan07"
-        Me.Pan07.Size = New System.Drawing.Size(628, 48)
+        Me.Pan07.Size = New System.Drawing.Size(652, 48)
         Me.Pan07.TabIndex = 3
         '
         'TxtNroOS
@@ -2180,18 +2171,6 @@ Partial Class FrmAlmSalTA
         Me.Label18.Text = "Nro. Ingreso (Devol.)"
         Me.Label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'TxtAbv_Clie
-        '
-        Me.TxtAbv_Clie.BackColor = System.Drawing.Color.Ivory
-        Me.TxtAbv_Clie.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TxtAbv_Clie.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
-        Me.TxtAbv_Clie.Location = New System.Drawing.Point(164, 23)
-        Me.TxtAbv_Clie.Name = "TxtAbv_Clie"
-        Me.TxtAbv_Clie.Size = New System.Drawing.Size(34, 21)
-        Me.TxtAbv_Clie.TabIndex = 0
-        Me.TxtAbv_Clie.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
-        Me.TxtAbv_Clie.Visible = False
-        '
         'TxtOpc_Prove
         '
         Me.TxtOpc_Prove.Enabled = False
@@ -2240,15 +2219,6 @@ Partial Class FrmAlmSalTA
         Me.TxtCod_Mt.TabIndex = 0
         Me.TxtCod_Mt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
-        'CboCliente
-        '
-        Me.CboCliente.BackColor = System.Drawing.Color.LightBlue
-        Me.CboCliente.FormattingEnabled = True
-        Me.CboCliente.Location = New System.Drawing.Point(352, 1)
-        Me.CboCliente.Name = "CboCliente"
-        Me.CboCliente.Size = New System.Drawing.Size(271, 21)
-        Me.CboCliente.TabIndex = 3
-        '
         'CboMot
         '
         Me.CboMot.FormattingEnabled = True
@@ -2279,9 +2249,9 @@ Partial Class FrmAlmSalTA
         Me.Pan09.Controls.Add(Me.Label10)
         Me.Pan09.Controls.Add(Me.CboAlm)
         Me.Pan09.Controls.Add(Me.CboVende)
-        Me.Pan09.Location = New System.Drawing.Point(630, 32)
+        Me.Pan09.Location = New System.Drawing.Point(656, 32)
         Me.Pan09.Name = "Pan09"
-        Me.Pan09.Size = New System.Drawing.Size(311, 48)
+        Me.Pan09.Size = New System.Drawing.Size(283, 48)
         Me.Pan09.TabIndex = 3
         '
         'TxtCod_Almacen
@@ -2344,7 +2314,7 @@ Partial Class FrmAlmSalTA
         Me.CboAlm.FormattingEnabled = True
         Me.CboAlm.Location = New System.Drawing.Point(99, 24)
         Me.CboAlm.Name = "CboAlm"
-        Me.CboAlm.Size = New System.Drawing.Size(207, 21)
+        Me.CboAlm.Size = New System.Drawing.Size(181, 21)
         Me.CboAlm.TabIndex = 3
         '
         'CboVende
@@ -2354,7 +2324,7 @@ Partial Class FrmAlmSalTA
         Me.CboVende.FormattingEnabled = True
         Me.CboVende.Location = New System.Drawing.Point(99, 2)
         Me.CboVende.Name = "CboVende"
-        Me.CboVende.Size = New System.Drawing.Size(207, 21)
+        Me.CboVende.Size = New System.Drawing.Size(181, 21)
         Me.CboVende.TabIndex = 1
         '
         'TxtObs
@@ -2415,6 +2385,38 @@ Partial Class FrmAlmSalTA
         Me.TxtNro_MosGuia.Size = New System.Drawing.Size(99, 22)
         Me.TxtNro_MosGuia.TabIndex = 247
         Me.TxtNro_MosGuia.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'TxtCliente
+        '
+        Me.TxtCliente.Enabled = False
+        Me.TxtCliente.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.TxtCliente.Location = New System.Drawing.Point(354, 1)
+        Me.TxtCliente.Name = "TxtCliente"
+        Me.TxtCliente.Size = New System.Drawing.Size(268, 21)
+        Me.TxtCliente.TabIndex = 265
+        Me.TxtCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'BtnConClientes
+        '
+        Me.BtnConClientes.Enabled = False
+        Me.BtnConClientes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.BtnConClientes.Image = CType(resources.GetObject("BtnConClientes.Image"), System.Drawing.Image)
+        Me.BtnConClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnConClientes.Location = New System.Drawing.Point(623, 1)
+        Me.BtnConClientes.Name = "BtnConClientes"
+        Me.BtnConClientes.Size = New System.Drawing.Size(25, 21)
+        Me.BtnConClientes.TabIndex = 266
+        Me.BtnConClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.BtnConClientes.UseVisualStyleBackColor = True
+        '
+        'TxtBuscarCliente
+        '
+        Me.TxtBuscarCliente.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.TxtBuscarCliente.Location = New System.Drawing.Point(334, 37)
+        Me.TxtBuscarCliente.Name = "TxtBuscarCliente"
+        Me.TxtBuscarCliente.Size = New System.Drawing.Size(260, 21)
+        Me.TxtBuscarCliente.TabIndex = 277
+        Me.TxtBuscarCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'FrmAlmSalTA
         '
@@ -2530,7 +2532,6 @@ Partial Class FrmAlmSalTA
     Friend WithEvents TxtNro_MosGuia As System.Windows.Forms.TextBox
     Friend WithEvents Pan04 As System.Windows.Forms.Panel
     Friend WithEvents TxtCod_Clie As System.Windows.Forms.TextBox
-    Friend WithEvents TxtAbv_Clie As System.Windows.Forms.TextBox
     Friend WithEvents LblCliente As System.Windows.Forms.Label
     Friend WithEvents Pan05 As System.Windows.Forms.Panel
     Friend WithEvents Grb03 As System.Windows.Forms.GroupBox
@@ -2577,12 +2578,10 @@ Partial Class FrmAlmSalTA
     Friend WithEvents TxtDescripcion As System.Windows.Forms.TextBox
     Friend WithEvents TxtCodigo As System.Windows.Forms.TextBox
     Friend WithEvents TxtCantidad As System.Windows.Forms.TextBox
-    Friend WithEvents CboCliente As System.Windows.Forms.ComboBox
     Friend WithEvents CboSerie As System.Windows.Forms.ComboBox
     Friend WithEvents TxtCod_Almacen As System.Windows.Forms.TextBox
     Friend WithEvents TxtCod_Vende As System.Windows.Forms.TextBox
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
-    Friend WithEvents CboBusClie As System.Windows.Forms.ComboBox
     Friend WithEvents Dgv02 As System.Windows.Forms.DataGridView
     Friend WithEvents TxtCod_Mt As System.Windows.Forms.TextBox
     Friend WithEvents TxtNro_Guia As System.Windows.Forms.TextBox
@@ -2653,4 +2652,7 @@ Partial Class FrmAlmSalTA
     Friend WithEvents Label35 As Label
     Friend WithEvents Label41 As Label
     Friend WithEvents CboDocAnexo As ComboBox
+    Friend WithEvents BtnConClientes As Button
+    Friend WithEvents TxtCliente As TextBox
+    Friend WithEvents TxtBuscarCliente As TextBox
 End Class

@@ -119,7 +119,9 @@ Public Class FrmConClientes
     End Sub
 
     Private Sub TxtBuscar_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TxtBuscar.TextChanged
-        Call Cargar_Grid(" and c_anula_reg=0 and c_desc_clie like '%" & TxtBuscar.Text & "%' order by c_desc_clie ")
+        Dim buscar As String = TxtBuscar.Text.Trim().Replace("'", "''")
+        Call Cargar_Grid(" and c_anula_reg=0 and (c_codi_clie like '%" & buscar & "%' or c_ruc_clie like '%" & buscar &
+                         "%' or c_desc_clie COLLATE  Modern_Spanish_CI_AI like '%" & buscar & "%') order by c_desc_clie ")
     End Sub
 
     Private Sub Dgv01_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Dgv01.Click
@@ -242,11 +244,21 @@ Public Class FrmConClientes
                         FrmRepVtasGerencial.TxtCodClie.Text = .Rows(fila).Cells("Codigo").Value
                         FrmRepVtasGerencial.TxtClie.Text = .Rows(fila).Cells("Cliente").Value
                     End If
+
                     'Reporte de Estado de Cuentas...
                     If Val(TxtVar.Text) = 14 Then
                         FrmRepEstadoCuenta.TxtCod_Clie.Text = .Rows(fila).Cells("Codigo").Value
                         FrmRepEstadoCuenta.TxtClie.Text = .Rows(fila).Cells("Cliente").Value
                     End If
+
+                    'Emision de guias de remision...
+                    If Val(TxtVar.Text) = 15 Then
+                        FrmAlmSalTA.TxtCod_Clie.Text = .Rows(fila).Cells("Codigo").Value
+                        FrmAlmSalTA.TxtCliente.Text = .Rows(fila).Cells("Cliente").Value
+                        FrmAlmSalTA.mostrarDatosClientesProveedores()
+                        FrmAlmSalTA.TxtNroOS.Focus()
+                    End If
+
                     Me.Close()
                 End If
             End If

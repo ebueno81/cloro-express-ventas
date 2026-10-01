@@ -64,7 +64,10 @@ Public Class FrmConProve
                 If fila > -1 Then
                     'Mostramos al formulario Salidas...
                     If Val(TxtVar.Text) = 1 Then
-                        
+                        FrmAlmSalTA.TxtCod_Clie.Text = .Rows(fila).Cells("Codigo").Value
+                        FrmAlmSalTA.TxtCliente.Text = .Rows(fila).Cells("Proveedor").Value
+                        FrmAlmSalTA.mostrarDatosClientesProveedores()
+                        FrmAlmSalTA.TxtNroOS.Focus()
                     End If
                     Me.Close()
                 End If
