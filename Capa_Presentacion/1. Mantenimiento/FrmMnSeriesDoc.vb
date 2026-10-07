@@ -18,8 +18,8 @@ Public Class FrmMnSeriesDoc
             .Columns("Doc").Width = 40
             .Columns("Serie").Width = 45
             .Columns("Documento").Width = 65
-            .Columns("Descripcion").Width = 125
-            .Columns("Giro").Width = 140
+            .Columns("Descripcion").Width = 170
+            .Columns("Giro").Width = 110
             .Columns("c_codi_giro").Visible = False
 
             .Columns("c_anula_reg").Visible = False

@@ -59,12 +59,15 @@ Partial Class FrmMnClientes
         Me.Dgv01 = New System.Windows.Forms.DataGridView()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.Tab02 = New System.Windows.Forms.TabPage()
+        Me.Label12 = New System.Windows.Forms.Label()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.BtnOficinas = New System.Windows.Forms.Button()
+        Me.Rdb02 = New System.Windows.Forms.RadioButton()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.Pan09 = New System.Windows.Forms.Panel()
         Me.BtnGrabar = New System.Windows.Forms.Button()
         Me.BtnCerrar = New System.Windows.Forms.Button()
+        Me.Rdb01 = New System.Windows.Forms.RadioButton()
         Me.Pan12 = New System.Windows.Forms.Panel()
         Me.Dgv02 = New System.Windows.Forms.DataGridView()
         Me.Pan01 = New System.Windows.Forms.Panel()
@@ -81,6 +84,7 @@ Partial Class FrmMnClientes
         Me.BtnEdit2 = New System.Windows.Forms.Button()
         Me.BtnDel2 = New System.Windows.Forms.Button()
         Me.Pan03 = New System.Windows.Forms.Panel()
+        Me.ChkMedXpress = New System.Windows.Forms.CheckBox()
         Me.TxtCodUbigeo = New System.Windows.Forms.TextBox()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.CboFpago = New System.Windows.Forms.ComboBox()
@@ -93,10 +97,7 @@ Partial Class FrmMnClientes
         Me.Label6 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Pan05 = New System.Windows.Forms.Panel()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Rdb02 = New System.Windows.Forms.RadioButton()
         Me.Label8 = New System.Windows.Forms.Label()
-        Me.Rdb01 = New System.Windows.Forms.RadioButton()
         Me.TxtFec_Mod = New System.Windows.Forms.TextBox()
         Me.TxtFec_Crea = New System.Windows.Forms.TextBox()
         Me.TxtUsua_2 = New System.Windows.Forms.TextBox()
@@ -169,7 +170,6 @@ Partial Class FrmMnClientes
         Me.TxtCodiOfi = New System.Windows.Forms.TextBox()
         Me.Label43 = New System.Windows.Forms.Label()
         Me.BtnEstado = New System.Windows.Forms.Button()
-        Me.ChkMedXpress = New System.Windows.Forms.CheckBox()
         Me.Tbc01.SuspendLayout()
         Me.Tab01.SuspendLayout()
         Me.Panel9.SuspendLayout()
@@ -597,6 +597,20 @@ Partial Class FrmMnClientes
         Me.Tab02.TabIndex = 1
         Me.Tab02.Text = "Actualizar"
         '
+        'Label12
+        '
+        Me.Label12.BackColor = System.Drawing.Color.LightSteelBlue
+        Me.Label12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label12.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label12.ForeColor = System.Drawing.Color.White
+        Me.Label12.Location = New System.Drawing.Point(312, 390)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(69, 21)
+        Me.Label12.TabIndex = 190
+        Me.Label12.Text = "Tipo"
+        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Label12.Visible = False
+        '
         'Panel3
         '
         Me.Panel3.BackColor = System.Drawing.Color.White
@@ -620,6 +634,19 @@ Partial Class FrmMnClientes
         Me.BtnOficinas.TabIndex = 0
         Me.BtnOficinas.Text = "Oficinas"
         Me.BtnOficinas.UseVisualStyleBackColor = False
+        '
+        'Rdb02
+        '
+        Me.Rdb02.AutoSize = True
+        Me.Rdb02.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Rdb02.Location = New System.Drawing.Point(385, 390)
+        Me.Rdb02.Name = "Rdb02"
+        Me.Rdb02.Size = New System.Drawing.Size(72, 19)
+        Me.Rdb02.TabIndex = 16
+        Me.Rdb02.TabStop = True
+        Me.Rdb02.Text = "Normal"
+        Me.Rdb02.UseVisualStyleBackColor = True
+        Me.Rdb02.Visible = False
         '
         'Label21
         '
@@ -674,6 +701,19 @@ Partial Class FrmMnClientes
         Me.BtnCerrar.Text = "&Cancelar"
         Me.BtnCerrar.TextAlign = System.Drawing.ContentAlignment.MiddleRight
         Me.BtnCerrar.UseVisualStyleBackColor = False
+        '
+        'Rdb01
+        '
+        Me.Rdb01.AutoSize = True
+        Me.Rdb01.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Rdb01.Location = New System.Drawing.Point(466, 390)
+        Me.Rdb01.Name = "Rdb01"
+        Me.Rdb01.Size = New System.Drawing.Size(71, 19)
+        Me.Rdb01.TabIndex = 15
+        Me.Rdb01.TabStop = True
+        Me.Rdb01.Text = "Prueba"
+        Me.Rdb01.UseVisualStyleBackColor = True
+        Me.Rdb01.Visible = False
         '
         'Pan12
         '
@@ -923,6 +963,20 @@ Partial Class FrmMnClientes
         Me.Pan03.Size = New System.Drawing.Size(454, 361)
         Me.Pan03.TabIndex = 0
         '
+        'ChkMedXpress
+        '
+        Me.ChkMedXpress.AutoSize = True
+        Me.ChkMedXpress.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ChkMedXpress.Enabled = False
+        Me.ChkMedXpress.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.ChkMedXpress.ForeColor = System.Drawing.Color.Blue
+        Me.ChkMedXpress.Location = New System.Drawing.Point(3, 230)
+        Me.ChkMedXpress.Name = "ChkMedXpress"
+        Me.ChkMedXpress.Size = New System.Drawing.Size(177, 18)
+        Me.ChkMedXpress.TabIndex = 184
+        Me.ChkMedXpress.Text = "Cliente Modo MedXpress"
+        Me.ChkMedXpress.UseVisualStyleBackColor = True
+        '
         'TxtCodUbigeo
         '
         Me.TxtCodUbigeo.BackColor = System.Drawing.Color.White
@@ -1075,33 +1129,6 @@ Partial Class FrmMnClientes
         Me.Pan05.Size = New System.Drawing.Size(443, 48)
         Me.Pan05.TabIndex = 15
         '
-        'Label12
-        '
-        Me.Label12.BackColor = System.Drawing.Color.LightSteelBlue
-        Me.Label12.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label12.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label12.ForeColor = System.Drawing.Color.White
-        Me.Label12.Location = New System.Drawing.Point(312, 390)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(69, 21)
-        Me.Label12.TabIndex = 190
-        Me.Label12.Text = "Tipo"
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        Me.Label12.Visible = False
-        '
-        'Rdb02
-        '
-        Me.Rdb02.AutoSize = True
-        Me.Rdb02.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Rdb02.Location = New System.Drawing.Point(385, 390)
-        Me.Rdb02.Name = "Rdb02"
-        Me.Rdb02.Size = New System.Drawing.Size(72, 19)
-        Me.Rdb02.TabIndex = 16
-        Me.Rdb02.TabStop = True
-        Me.Rdb02.Text = "Normal"
-        Me.Rdb02.UseVisualStyleBackColor = True
-        Me.Rdb02.Visible = False
-        '
         'Label8
         '
         Me.Label8.BackColor = System.Drawing.Color.Silver
@@ -1114,19 +1141,6 @@ Partial Class FrmMnClientes
         Me.Label8.TabIndex = 36
         Me.Label8.Text = "Actualiza"
         Me.Label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Rdb01
-        '
-        Me.Rdb01.AutoSize = True
-        Me.Rdb01.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Rdb01.Location = New System.Drawing.Point(466, 390)
-        Me.Rdb01.Name = "Rdb01"
-        Me.Rdb01.Size = New System.Drawing.Size(71, 19)
-        Me.Rdb01.TabIndex = 15
-        Me.Rdb01.TabStop = True
-        Me.Rdb01.Text = "Prueba"
-        Me.Rdb01.UseVisualStyleBackColor = True
-        Me.Rdb01.Visible = False
         '
         'TxtFec_Mod
         '
@@ -1205,6 +1219,7 @@ Partial Class FrmMnClientes
         Me.TxtAbrev.Size = New System.Drawing.Size(39, 20)
         Me.TxtAbrev.TabIndex = 1
         Me.TxtAbrev.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.TxtAbrev.Visible = False
         '
         'Label1
         '
@@ -1231,6 +1246,7 @@ Partial Class FrmMnClientes
         Me.Label10.TabIndex = 50
         Me.Label10.Text = "Abrev."
         Me.Label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.Label10.Visible = False
         '
         'TxtDni
         '
@@ -2047,20 +2063,6 @@ Partial Class FrmMnClientes
         Me.BtnEstado.Text = "ANULADO"
         Me.BtnEstado.UseVisualStyleBackColor = False
         Me.BtnEstado.Visible = False
-        '
-        'ChkMedXpress
-        '
-        Me.ChkMedXpress.AutoSize = True
-        Me.ChkMedXpress.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
-        Me.ChkMedXpress.Enabled = False
-        Me.ChkMedXpress.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.ChkMedXpress.ForeColor = System.Drawing.Color.Blue
-        Me.ChkMedXpress.Location = New System.Drawing.Point(3, 230)
-        Me.ChkMedXpress.Name = "ChkMedXpress"
-        Me.ChkMedXpress.Size = New System.Drawing.Size(177, 18)
-        Me.ChkMedXpress.TabIndex = 184
-        Me.ChkMedXpress.Text = "Cliente Modo MedXpress"
-        Me.ChkMedXpress.UseVisualStyleBackColor = True
         '
         'FrmMnClientes
         '
