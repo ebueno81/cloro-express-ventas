@@ -94,9 +94,7 @@
         '-------------------------------------------------------
         'Serie inicial
         '-------------------------------------------------------
-        If CboBus_Serie.Items.Count > 0 Then
-            CboBus_Serie.SelectedIndex = 0
-        End If
+        CboBus_Serie.SelectedValue = FrmMenu.TxtSerie_Fact.Text
 
         Call BtnFin_Click(Nothing, Nothing)
 
@@ -240,6 +238,9 @@
         TxtFactura.Enabled = False : TxtObs.Enabled = False : BtnCon1.Enabled = True
 
         If CboSerie.Items.Count > 0 Then CboSerie.SelectedIndex = 0
+        CboSerie.SelectedValue = FrmMenu.TxtSerie_Fact.Text
+        CboBus_Serie.SelectedValue = FrmMenu.TxtSerie_Fact.Text
+
         Call CboSerie_SelectedIndexChanged(Nothing, Nothing) : CboSerie.Enabled = False
 
         DtpFec_Vcto.Enabled = True : Rdb01.Checked = False : BtnCon1.Focus() : TxtObs.Enabled = True

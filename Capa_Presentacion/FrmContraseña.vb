@@ -233,9 +233,10 @@ Public Class FrmContraseña
                     '-----------------------------------------------
                     'Empresa
                     '-----------------------------------------------
-                    With c_Neg_MnEmpresa.get_Empresa_Datos(
-                    " AND E.c_codi_emp='FA' ",
-                    "DAT")
+                    Dim dtEmpresa As DataTable = c_Neg_MnEmpresa.get_Empresa_Datos(
+                    " AND E.c_codi_emp='FA' ", "DAT")
+
+                    With dtEmpresa
 
                         If .Rows.Count > 0 Then
 
