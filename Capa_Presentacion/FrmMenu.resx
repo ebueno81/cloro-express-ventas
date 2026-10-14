@@ -474,7 +474,7 @@
   <data name="MnuRepEnvasesEstado.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAAPdJREFUSEvtkyGLhUAUhd9vFX+AUbCZbIIWi5YnmkQFk0URwWBR0CIWDaJBEf/A
+        wAAADsABataJCQAAAPdJREFUSEvtkyGLhUAUhd9vFX+AUbCZbIIWi5YnmkQFk0URwWBR0CIWDaJBEf/A
         WeZG32ORZTe8xQMHJtx7PoaZ83i8kSRJ+InPOW/FBo/jwL7v2LYN67qSl2VB3/eo6xpVVaFtW3Rdh2EY
         MM8zzVyCsCE2PI4jmqZBWZbkJEngOA5M04Rt2wjDEGmaEoyBp2m6Ab8IYI/7ZwAmz/MQBAGFGYZBVhQF
         giCA4zjwPE9nFqiqKizLgu/718LZkizL9B2LokCe5+Q4jvF8PqFpGnRdJ7jruoiiCFmW0c6lG9w9OOe9
@@ -484,7 +484,7 @@
   <data name="MnuRepSalTransforma.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAAi9JREFUOE+Vk8trE1EUxsdHoVDxgQsf4Kou/RsE3RTqQrSLSqXgY+neByWUxhDU
+        wAAADsABataJCQAAAi9JREFUOE+Vk8trE1EUxsdHoVDxgQsf4Kou/RsE3RTqQrSLSqXgY+neByWUxhDU
         timk4Cu1D6MGNIZqDQZM2qhNScKgY6HNJDUhaUOTkjY6kbQpxPvJuVdnDFlUD/w4d84595t7z5mRvn3X
         8NIbwsj41D/jnPiIdGYJEtn1N2uwzjNcCNbSMWnQ5q/lUoihwx5CKpmE1Omr4ogjD8magNSXrGObPVXH
         rqEijtnicLvdkDonymh2lbD9Xg6ND1dq2D1kcGh0VafZVeECw8OjkC57SwinNYzIRZ3BsMA2vVaHOVDA
@@ -499,7 +499,7 @@
   <data name="MnuRptEstadoCuenta.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAARtJREFUWEftlAEOgjAMRTn6jsbNMB38re3aMR1UTfhJgzrY+zzRZfmDbPqDyBD8
+        wAAADsABataJCQAAARtJREFUWEftlAEOgjAMRTn6jsbNMB38re3aMR1UTfhJgzrY+zzRZfmDbPqDyBD8
         awU2ykkBrOuZToanlHobUj0x67r2zh9OgXc2NOEpzRsQcMeAC58t0MAdA/k8HsCNAnjPx4wJ9w1Q6tEp
         IEQ5e5XkrTTcNyBLGAUaeFoGCmi401rALQPqEcnwoQIa/qkB3DW/+6ECGs4MiOFwywCHTxnYL6B/w33w
         WYgBG44CFX6LAR8eYAAFqAymwoMN7K/Jgi4QYABwqf8x8Bi4xICeWiDCgPx5qwIRBlrGWwaOO3QMlHXD
@@ -510,7 +510,7 @@
   <data name="MnuRptTransformaVentas.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wQAADsEBuJFr7QAAActJREFUSEutlclLQlEUxv3LWrRoEQRBFNHCRS2EiCgzkhYWURQhQbNW6ksytYnm
+        wAAADsABataJCQAAActJREFUSEutlclLQlEUxv3LWrRoEQRBFNHCRS2EiCgzkhYWURQhQbNW6ksytYnm
         iQahIKdwyrDMJCJp+h9OfLY695n24H7we5vzvXPvu++79+p0FdS90kzlEP2a1eluonDBWxLURL9mtSsN
         dJ6bodx3mHGUdhJqol+zDM56uny2UfbrhnFwt0ioiX7Naluso0B+gR4+rxi7qTlCTfRrlt5WS4FnO91/
         XDB2UpOEmujXrJbZGrrIzVPq/YSxlbQSaqJfsxonq+k0O0Xxwh5jIzFKqIl+lZBlxA2JwE/DuuLTMTs0

@@ -321,4 +321,32 @@ Public Class Cls_AlmSalTaDet
         End Try
         Return Tabla
     End Function
+
+    ' Actualizar cantidades
+    Public Function set_UpdateCantidad_DetalleGuia(ByVal c_nro_correl As String, ByVal c_nro_cant As Decimal) As DataTable
+        cmd.Connection = Conex
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.CommandTimeout = 6000
+        cmd.CommandText = "Sp_Scal_Fa_upt_SalAlmDet_Cantidad"
+
+        Dim Tabla As New DataTable
+        Dim aD As New OleDbDataAdapter
+        Try
+            If Conex.State = ConnectionState.Closed Then
+                Conex.Open()
+            End If
+            cmd.Parameters.Clear()
+            cmd.Parameters.Add("@c_nro_correl", OleDbType.VarChar, 8).Value = c_nro_correl
+            cmd.Parameters.Add("@c_nro_cant", OleDbType.Decimal, 12, 6).Value = c_nro_cant
+
+            aD = New OleDbDataAdapter(cmd)
+            Tabla = New DataTable
+            aD.Fill(Tabla)
+
+            Conex.Close()
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
+        Return Tabla
+    End Function
 End Class

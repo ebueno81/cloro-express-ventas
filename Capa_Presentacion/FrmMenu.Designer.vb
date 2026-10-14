@@ -25,8 +25,8 @@ Partial Class FrmMenu
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMenu))
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.MnuMn = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuMnIgv = New System.Windows.Forms.ToolStripMenuItem()
@@ -280,20 +280,20 @@ Partial Class FrmMenu
         '
         Me.MnuOpeGuiaR.Image = CType(resources.GetObject("MnuOpeGuiaR.Image"), System.Drawing.Image)
         Me.MnuOpeGuiaR.Name = "MnuOpeGuiaR"
-        Me.MnuOpeGuiaR.Size = New System.Drawing.Size(247, 22)
-        Me.MnuOpeGuiaR.Text = "Generación de Guía de Remisión"
+        Me.MnuOpeGuiaR.Size = New System.Drawing.Size(278, 22)
+        Me.MnuOpeGuiaR.Text = "Generación de Guía de Remisión - O.T."
         '
         'ToolStripSeparator16
         '
         Me.ToolStripSeparator16.Name = "ToolStripSeparator16"
-        Me.ToolStripSeparator16.Size = New System.Drawing.Size(244, 6)
+        Me.ToolStripSeparator16.Size = New System.Drawing.Size(275, 6)
         '
         'MnuOpeFact
         '
         Me.MnuOpeFact.Image = CType(resources.GetObject("MnuOpeFact.Image"), System.Drawing.Image)
         Me.MnuOpeFact.ImageTransparentColor = System.Drawing.Color.Black
         Me.MnuOpeFact.Name = "MnuOpeFact"
-        Me.MnuOpeFact.Size = New System.Drawing.Size(247, 22)
+        Me.MnuOpeFact.Size = New System.Drawing.Size(278, 22)
         Me.MnuOpeFact.Text = "Generación de &Facturas"
         '
         'MnuOpeBol
@@ -301,20 +301,20 @@ Partial Class FrmMenu
         Me.MnuOpeBol.Image = CType(resources.GetObject("MnuOpeBol.Image"), System.Drawing.Image)
         Me.MnuOpeBol.ImageTransparentColor = System.Drawing.Color.Black
         Me.MnuOpeBol.Name = "MnuOpeBol"
-        Me.MnuOpeBol.Size = New System.Drawing.Size(247, 22)
+        Me.MnuOpeBol.Size = New System.Drawing.Size(278, 22)
         Me.MnuOpeBol.Text = "Generación de &Boletas"
         '
         'ToolStripSeparator6
         '
         Me.ToolStripSeparator6.Name = "ToolStripSeparator6"
-        Me.ToolStripSeparator6.Size = New System.Drawing.Size(244, 6)
+        Me.ToolStripSeparator6.Size = New System.Drawing.Size(275, 6)
         '
         'MnuOpeNC
         '
         Me.MnuOpeNC.Image = CType(resources.GetObject("MnuOpeNC.Image"), System.Drawing.Image)
         Me.MnuOpeNC.ImageTransparentColor = System.Drawing.Color.Black
         Me.MnuOpeNC.Name = "MnuOpeNC"
-        Me.MnuOpeNC.Size = New System.Drawing.Size(247, 22)
+        Me.MnuOpeNC.Size = New System.Drawing.Size(278, 22)
         Me.MnuOpeNC.Text = "Generación de Notas de Crédito "
         '
         'MnuOpeND
@@ -322,7 +322,7 @@ Partial Class FrmMenu
         Me.MnuOpeND.Image = CType(resources.GetObject("MnuOpeND.Image"), System.Drawing.Image)
         Me.MnuOpeND.ImageTransparentColor = System.Drawing.Color.Black
         Me.MnuOpeND.Name = "MnuOpeND"
-        Me.MnuOpeND.Size = New System.Drawing.Size(247, 22)
+        Me.MnuOpeND.Size = New System.Drawing.Size(278, 22)
         Me.MnuOpeND.Text = "Generación de Notas de Débito..."
         '
         'MnuOpeLetras
@@ -330,44 +330,44 @@ Partial Class FrmMenu
         Me.MnuOpeLetras.Image = CType(resources.GetObject("MnuOpeLetras.Image"), System.Drawing.Image)
         Me.MnuOpeLetras.ImageTransparentColor = System.Drawing.Color.Black
         Me.MnuOpeLetras.Name = "MnuOpeLetras"
-        Me.MnuOpeLetras.Size = New System.Drawing.Size(247, 22)
+        Me.MnuOpeLetras.Size = New System.Drawing.Size(278, 22)
         Me.MnuOpeLetras.Text = "Generación de Letras"
         '
         'ToolStripSeparator11
         '
         Me.ToolStripSeparator11.Name = "ToolStripSeparator11"
-        Me.ToolStripSeparator11.Size = New System.Drawing.Size(244, 6)
+        Me.ToolStripSeparator11.Size = New System.Drawing.Size(275, 6)
         '
         'MnuOpeLiquidac
         '
         Me.MnuOpeLiquidac.Image = CType(resources.GetObject("MnuOpeLiquidac.Image"), System.Drawing.Image)
         Me.MnuOpeLiquidac.Name = "MnuOpeLiquidac"
-        Me.MnuOpeLiquidac.Size = New System.Drawing.Size(247, 22)
+        Me.MnuOpeLiquidac.Size = New System.Drawing.Size(278, 22)
         Me.MnuOpeLiquidac.Text = "Archivo de Liquidaciones"
         '
         'MnuOpeLetrasMn
         '
         Me.MnuOpeLetrasMn.Image = CType(resources.GetObject("MnuOpeLetrasMn.Image"), System.Drawing.Image)
         Me.MnuOpeLetrasMn.Name = "MnuOpeLetrasMn"
-        Me.MnuOpeLetrasMn.Size = New System.Drawing.Size(247, 22)
+        Me.MnuOpeLetrasMn.Size = New System.Drawing.Size(278, 22)
         Me.MnuOpeLetrasMn.Text = "Mantenimiento de Letras"
         '
         'MnuOpeGenComis
         '
         Me.MnuOpeGenComis.Image = CType(resources.GetObject("MnuOpeGenComis.Image"), System.Drawing.Image)
         Me.MnuOpeGenComis.Name = "MnuOpeGenComis"
-        Me.MnuOpeGenComis.Size = New System.Drawing.Size(247, 22)
+        Me.MnuOpeGenComis.Size = New System.Drawing.Size(278, 22)
         Me.MnuOpeGenComis.Text = "Generación de Comisiones"
         '
         'ToolStripSeparator13
         '
         Me.ToolStripSeparator13.Name = "ToolStripSeparator13"
-        Me.ToolStripSeparator13.Size = New System.Drawing.Size(244, 6)
+        Me.ToolStripSeparator13.Size = New System.Drawing.Size(275, 6)
         '
         'MnuOpeRetencion
         '
         Me.MnuOpeRetencion.Name = "MnuOpeRetencion"
-        Me.MnuOpeRetencion.Size = New System.Drawing.Size(247, 22)
+        Me.MnuOpeRetencion.Size = New System.Drawing.Size(278, 22)
         Me.MnuOpeRetencion.Text = "Ingreso de Retenciones"
         '
         'MnuCon
@@ -921,22 +921,22 @@ Partial Class FrmMenu
         'Dgv01
         '
         Me.Dgv01.AllowUserToAddRows = False
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle5.BackColor = System.Drawing.Color.Blue
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dgv01.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Blue
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dgv01.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.Dgv01.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Dgv01.EnableHeadersVisualStyles = False
         Me.Dgv01.Location = New System.Drawing.Point(39, 145)
         Me.Dgv01.Name = "Dgv01"
         Me.Dgv01.ReadOnly = True
         Me.Dgv01.RowHeadersWidth = 15
-        DataGridViewCellStyle6.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle6
+        DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle2
         Me.Dgv01.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Dgv01.RowTemplate.Height = 20
         Me.Dgv01.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect

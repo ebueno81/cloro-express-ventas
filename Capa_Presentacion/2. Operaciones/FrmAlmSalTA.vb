@@ -1542,4 +1542,87 @@
         End If
     End Sub
 
+    Private Sub Dgv02_KeyDown(sender As Object, e As KeyEventArgs) Handles Dgv02.KeyDown
+
+        If e.KeyCode <> Keys.F2 Then Exit Sub
+
+        'Validamos que exista una fila seleccionada
+        If Dgv02.RowCount = 0 OrElse Dgv02.CurrentCell Is Nothing Then
+            Exit Sub
+        End If
+
+        'Consultar estado de la guía
+        Dim dtGuiaSalida As DataTable = c_Neg_AlmSalTA.get_AlmSalTa_Datos(" And S.c_nro_serie='" & CboSerie.Text & "' And S.c_nro_salidaTA='" &
+                                                                          TxtNro_Guia.Text & "'", "DAT", FrmMenu.TxtCod_Emp.Text)
+
+        If dtGuiaSalida.Rows.Count = 0 Then
+            Exit Sub
+        End If
+
+        Dim row As DataRow = dtGuiaSalida.Rows(0)
+
+        '-----------------------------------------
+        'Validar si está anulada
+        '-----------------------------------------
+        If Val(row("c_anula_reg").ToString()) = 1 Then
+
+            MsgBox("La guía se encuentra anulada y no puede ser modificada.", vbExclamation, Compañia)
+
+            Exit Sub
+
+        End If
+
+        '-----------------------------------------
+        'Validar si está facturada
+        '-----------------------------------------
+        If Val(row("c_fact_guia").ToString()) = 1 Then
+
+            MsgBox("La guía se encuentra facturada y no puede ser modificada.", vbExclamation, Compañia)
+
+            Exit Sub
+
+        End If
+
+        '-----------------------------------------
+        'Solicitar nueva cantidad
+        '-----------------------------------------
+        Dim cantidad As String =
+        InputBox("Ingrese la nueva cantidad:", "Actualizar cantidad", Dgv02.CurrentRow.Cells("Cantidad").Value.ToString())
+
+        'Si presionó Cancelar
+        If Trim(cantidad) = "" Then
+            Exit Sub
+        End If
+
+        '-----------------------------------------
+        'Validar cantidad
+        '-----------------------------------------
+        If Not IsNumeric(cantidad) Then
+
+            MsgBox("Debe ingresar una cantidad válida.", vbExclamation, Compañia)
+
+            Exit Sub
+
+        End If
+
+        If Val(cantidad) <= 0 Then
+
+            MsgBox("La cantidad debe ser mayor a cero.", vbExclamation, Compañia)
+
+            Exit Sub
+
+        End If
+
+        '-----------------------------------------
+        'Actualizar DataGrid
+        '-----------------------------------------
+        Dim Fila As Integer = Dgv02.CurrentCellAddress.Y
+
+        Dim f As String = MsgBox("¿Confirma la actualizacion del registro?", vbYesNo + vbQuestion, Compañia)
+        If f = vbYes Then
+            Dgv02.Rows(Fila).Cells("Cantidad").Value = Val(cantidad).ToString("0.00")
+            c_Neg_AlmSalTADet.set_update_cantidad_detalle(Dgv02.Rows(Fila).Cells("Item").Value, Val(cantidad).ToString("0.00"))
+            MsgBox("Registro actualizado correctamente...", vbInformation, Compañia)
+        End If
+    End Sub
 End Class

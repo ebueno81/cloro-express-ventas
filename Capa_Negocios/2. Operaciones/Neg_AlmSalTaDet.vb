@@ -2,12 +2,19 @@
 Imports Capa_Acceso
 Public Class Neg_AlmSalTaDet
     Dim c_AlmSalTaDet As New Cls_AlmSalTaDet
+
     Public Function set_AlmSalTaDet_Save(ByVal c_Entidades As Ent_AlmSalTaDet, ByVal Emp As String)
         Return c_AlmSalTaDet.set_AlmSalTaDet_Save(c_Entidades, Emp)
     End Function
+
     Public Function get_AlmSalTaDet_Datos(ByVal Cadena As String, ByVal vOpt As String, ByVal Emp As String) As DataTable
         Return c_AlmSalTaDet.Get_AlmSalTaDet_Datos(Cadena, vOpt, Emp)
     End Function
+
+    Public Function set_update_cantidad_detalle(ByVal c_nro_correl As String, ByVal c_nro_cant As Decimal) As DataTable
+        Return c_AlmSalTaDet.set_UpdateCantidad_DetalleGuia(c_nro_correl, c_nro_cant)
+    End Function
+
     Public Function get_AlmSalEnvases_Datos(ByVal c_fecha_inicio As Date, ByVal c_fecha_final As Date, ByVal c_codi_clie As String, _
                                             ByVal c_codi_mt As String, ByVal c_codi_linea As String, ByVal c_codi_familia As String, _
                                             ByVal c_codi_sfamilia As String, ByVal c_codi_articulo As String, ByVal c_serie_guia As String,
