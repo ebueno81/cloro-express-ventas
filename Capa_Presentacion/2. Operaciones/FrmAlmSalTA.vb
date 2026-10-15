@@ -445,10 +445,12 @@
     End Sub
 
     Private Sub CboSerie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CboSerie.SelectedIndexChanged
-        With c_Neg_MnSeriesGuias.get_Series_Datos(" AND c_nro_serie='" & CboSerie.Text & "' ", "DAT", FrmMenu.TxtCod_Emp.Text)
+        Dim dtSeries As DataTable = c_Neg_MnSeriesGuias.get_Series_Datos(" AND c_nro_serie='" & CboSerie.Text & "' ", "DAT", FrmMenu.TxtCod_Emp.Text)
+        With dtSeries
             If .Rows.Count > 0 Then
                 If Len(TxtNro_Guia.Text) = 0 Then
                     TxtNro_MosGuia.Text = Strings.Right(Val(.Rows(0)("c_nro_guia").ToString) + 10000001, 7)
+                    TxtMotivoDes.Text = .Rows(0)("c_desc_serie").ToString
                     TxtCod_Clie.Clear()
                 End If
             End If
@@ -722,7 +724,7 @@
         End If
 
         TxtCliente.Focus()
-        With c_Neg_mnmtmov.get_MtMov_Datos(" and c_opc_defecto='1' and c_anula_reg=0", "DAT")
+        With c_Neg_mnmtmov.get_MtMov_Datos(" And c_opc_defecto='1' and c_anula_reg=0", "DAT")
             If .Rows.Count > 0 Then
                 CboMot.SelectedValue = .Rows(0)("c_codi_mt").ToString
             Else
@@ -912,8 +914,10 @@
         End If
         If Tbc01.SelectedIndex = 0 Then Call Cancela_Registro()
     End Sub
+
     Private Sub Mostrar_SalidaTA(ByVal c_nro_serie As String, ByVal c_nro_salida As String)
-        With c_Neg_AlmSalTA.get_AlmSalTa_Datos(" And S.c_nro_serie='" & c_nro_serie & "' And S.c_nro_salidaTA='" & c_nro_salida & "'", "DAT", FrmMenu.TxtCod_Emp.Text)
+        Dim dtSalidaTa As DataTable = c_Neg_AlmSalTA.get_AlmSalTa_Datos(" And S.c_nro_serie='" & c_nro_serie & "' And S.c_nro_salidaTA='" & c_nro_salida & "'", "DAT", FrmMenu.TxtCod_Emp.Text)
+        With dtSalidaTa
             Call Nuevo_Registro()
             If .Rows.Count > 0 Then
                 For i = 0 To CboSerie.Items.Count - 1
@@ -976,7 +980,8 @@
                 End If
                 'Cargamos el Detalle...
                 Dgv02.Rows.Clear()
-                With c_Neg_AlmSalTADet.get_AlmSalTaDet_Datos(" And D.c_nro_serie='" & c_nro_serie & "'  And D.c_nro_salidaTA='" & c_nro_salida & "' order by D.c_nro_correl", "DAT", FrmMenu.TxtCod_Emp.Text)
+                Dim dtSalidaDetalle As DataTable = c_Neg_AlmSalTADet.get_AlmSalTaDet_Datos(" And D.c_nro_serie='" & c_nro_serie & "'  And D.c_nro_salidaTA='" & c_nro_salida & "' order by D.c_nro_correl", "DAT", FrmMenu.TxtCod_Emp.Text)
+                With dtSalidaDetalle
                     If .Rows.Count > 0 Then
                         For i = 0 To .Rows.Count - 1
                             Dgv02.Rows.Add()
