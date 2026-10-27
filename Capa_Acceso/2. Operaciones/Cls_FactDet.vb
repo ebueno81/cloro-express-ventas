@@ -30,6 +30,7 @@ Public Class Cls_FactDet
             cmd.Parameters.Add("@c_total_fact", OleDbType.Numeric, 15, 2).Value = ent.c_total_fact
             cmd.Parameters.Add("@c_opc_afecto", OleDbType.Integer).Value = ent.c_opc_afecto
             cmd.Parameters.Add("@c_correl_guia", OleDbType.VarChar, 8).Value = ent.c_correl_guia
+            cmd.Parameters.Add("@c_obs_detalle", OleDbType.VarChar, 300).Value = ent.c_obs_detalle
             cmd.Parameters.Add("@copcion", OleDbType.VarChar, 3).Value = ent.copcion
             Codi_Auto = cmd.Parameters.Add("@c_codiauto", OleDbType.VarChar, 8)
             Codi_Auto.Direction = ParameterDirection.Output

@@ -3,8 +3,10 @@
 Public Class FrmMnSeriesGuia
     'Nuevo registro...
     Private Sub BtnNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnNuevo.Click
-        Call Nuevo_Registro() : TxtSerie.Enabled = True : TxtSerie.Focus()
-        If CboGiro.Items.Count > 0 Then CboGiro.SelectedIndex = 0
+        Call Nuevo_Registro()
+
+        TxtSerie.Enabled = True
+        TxtSerie.Focus()
     End Sub
     'Nuevo Registro...
     Private Sub Nuevo_Registro()
@@ -165,12 +167,13 @@ Public Class FrmMnSeriesGuia
     End Sub
 
     Private Sub FrmMnSeries_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
+
         Call Validar_Permiso(Me.Name, BtnNuevo, BtnEditar, BtnEliminar)
-        CargarGiros(CboGiro)
+
         CargarGiros(CboGiro)
 
-        ConfigurarGiroSesion(CboGiro)
         Call Cancelar_Registro()
+
     End Sub
 
     Private Sub SeleccionarGiro(
@@ -201,23 +204,63 @@ Public Class FrmMnSeriesGuia
     End Sub
 
     Public Sub Cargar_Grid(ByVal Cadena As String)
+
+        Dim Filtro As String = Cadena
+
+        '--------------------------------------------------
+        'Filtrar series según giro de sesión
+        '--------------------------------------------------
+        If ModSesion.EsMedXpress Then
+
+            Dim PosOrder As Integer =
+            UCase(Filtro).IndexOf("ORDER BY")
+
+            If PosOrder >= 0 Then
+
+                Dim Condicion As String = Filtro.Substring(0, PosOrder)
+
+                Dim Orden As String = Filtro.Substring(PosOrder)
+
+                Filtro = Condicion & " AND c_codi_giro=" & ModSesion.IdGiro.ToString() & " " & Orden
+
+            Else
+
+                Filtro &=
+                " AND c_codi_giro=" &
+                ModSesion.IdGiro.ToString() & " "
+
+            End If
+
+        End If
+
+
         With Dgv01
-            .DataSource = c_Neg_MnSeriesGuias.get_Series_Datos(Cadena, "DGV", FrmMenu.TxtCod_Emp.Text)
+
+            .DataSource = c_Neg_MnSeriesGuias.get_Series_Datos(Filtro, "DGV", FrmMenu.TxtCod_Emp.Text)
+
             .Columns("Nro.").Width = 60
             .Columns("Guia").Width = 80
             .Columns("Descripcion").Width = 200
             .Columns("Electronico").Width = 65
             .Columns("Interno").Width = 65
             .Columns("Giro").Width = 80
+
             .Columns("c_anula_Reg").Visible = False
             .Columns("c_codi_giro").Visible = False
 
             Call Grid_Registros_anulados(Dgv01)
-            'Alienacion
-            .Columns("Nro.").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns("Electronico").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns("Interno").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+            .Columns("Nro.").DefaultCellStyle.Alignment =
+            DataGridViewContentAlignment.MiddleCenter
+
+            .Columns("Electronico").DefaultCellStyle.Alignment =
+            DataGridViewContentAlignment.MiddleCenter
+
+            .Columns("Interno").DefaultCellStyle.Alignment =
+            DataGridViewContentAlignment.MiddleCenter
+
         End With
+
     End Sub
     ' Eliminamos series de guia de remisión' 
     Private Sub BtnEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEliminar.Click

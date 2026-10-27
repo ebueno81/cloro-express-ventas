@@ -488,6 +488,8 @@
             .c_total_fact = Val(Dgv02.Rows(Fila).Cells("Importe").Value)
             .c_opc_afecto = Val(Dgv02.Rows(Fila).Cells("c_opc_afecto").Value)
             .c_correl_guia = Dgv02.Rows(Fila).Cells("c_correl_guia").Value
+            .c_obs_detalle = Dgv02.Rows(Fila).Cells("Detalles").Value
+
             .copcion = cOpcion
             'Validamos estado de Detalle...
             If Val(Dgv02.Rows(Fila).Cells("Item").Value) = 0 Then
@@ -644,6 +646,7 @@
                             Dgv02.Rows(i).Cells("Importe").Value = Format(Val(.Rows(i)("c_total_fact").ToString), Forma_1_2)
                             Dgv02.Rows(i).Cells("c_opc_afecto").Value = Val(.Rows(i)("c_opc_afecto").ToString)
                             Dgv02.Rows(i).Cells("c_correl_guia").Value = .Rows(i)("c_correl_guia").ToString
+                            Dgv02.Rows(i).Cells("Detalles").Value = .Rows(i)("c_obs_detalle").ToString
                         Next
                     End If
                 End With
@@ -849,6 +852,8 @@
                                 Dgv02.Rows(F).Cells("c_opc_afecto").Value = 1
                                 Dgv02.Rows(F).Cells("Unid").Value = .Rows(u)("c_desc_unimed").ToString
                                 Dgv02.Rows(F).Cells("c_codi_unimed").Value = .Rows(u)("c_codi_unimed").ToString
+                                Dgv02.Rows(F).Cells("Detalles").Value = .Rows(u)("c_obs").ToString
+
                                 Dgv02.Rows(F).Cells("Item").Value = ""
                                 Dgv02.Rows(F).Cells("c_correl_guia").Value = .Rows(u)("c_nro_correl").ToString
 

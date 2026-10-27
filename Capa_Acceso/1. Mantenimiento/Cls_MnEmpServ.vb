@@ -29,6 +29,7 @@ Public Class Cls_MnEmpServ
             cmd.Parameters.Add("@c_mail_empserv", OleDbType.VarChar, 30).Value = ent.c_mail_empserv
             cmd.Parameters.Add("@c_contac_empserv", OleDbType.VarChar, 50).Value = ent.c_contac_empserv
             cmd.Parameters.Add("@c_nro_tarjcircula", OleDbType.VarChar, 20).Value = ent.c_nro_tarjcircula
+            cmd.Parameters.Add("@c_modo_medxpress", OleDbType.Integer).Value = ent.c_modo_medxpress
 
             cmd.Parameters.Add("@c_usuario", OleDbType.VarChar, 10).Value = ent.c_usuario
             cmd.Parameters.Add("@copcion", OleDbType.VarChar, 3).Value = ent.copcion

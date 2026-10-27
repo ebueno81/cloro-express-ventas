@@ -10,6 +10,8 @@
     Private _c_mail_empserv As String
     Private _c_contac_empserv As String
     Private _c_nro_tarjcircula As String
+    Private _c_modo_medxpress As Integer
+
     Private _c_usuario As String
     Private _copcion As String
     Public Property c_codi_empserv() As String
@@ -101,6 +103,16 @@
             _c_nro_tarjcircula = value
         End Set
     End Property
+
+    Public Property c_modo_medxpress() As Integer
+        Get
+            Return _c_modo_medxpress
+        End Get
+        Set(ByVal value As Integer)
+            _c_modo_medxpress = value
+        End Set
+    End Property
+
     Public Property c_usuario() As String
         Get
             Return _c_usuario

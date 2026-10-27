@@ -24,21 +24,21 @@ Partial Class FrmFacturas
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmFacturas))
-        Dim DataGridViewCellStyle16 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle20 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle17 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle18 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle19 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle21 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle30 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle22 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle23 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle24 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle25 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle26 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle27 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle28 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle29 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle10 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle11 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle12 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle13 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle14 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.TxtTC = New System.Windows.Forms.TextBox()
         Me.Pan20 = New System.Windows.Forms.Panel()
         Me.BtnAnexar = New System.Windows.Forms.Button()
@@ -153,18 +153,6 @@ Partial Class FrmFacturas
         Me.c_nro_correl = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Dgv02 = New System.Windows.Forms.DataGridView()
-        Me.Lote = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Codigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Unid = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Bultos = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Precio = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Item = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.c_opc_afecto = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.c_codi_unimed = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.c_correl_guia = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.BtnConArt = New System.Windows.Forms.Button()
         Me.Panel3 = New System.Windows.Forms.Panel()
         Me.Label23 = New System.Windows.Forms.Label()
@@ -187,6 +175,19 @@ Partial Class FrmFacturas
         Me.Label46 = New System.Windows.Forms.Label()
         Me.Prb01 = New System.Windows.Forms.ProgressBar()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Lote = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Codigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Unid = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Bultos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Precio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Importe = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Item = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.c_opc_afecto = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.c_codi_unimed = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.c_correl_guia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Detalles = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Pan20.SuspendLayout()
         Me.Pan11.SuspendLayout()
         Me.Panel15.SuspendLayout()
@@ -1560,14 +1561,14 @@ Partial Class FrmFacturas
         Me.Dgv01.AllowUserToAddRows = False
         Me.Dgv01.AllowUserToDeleteRows = False
         Me.Dgv01.BackgroundColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        DataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.ControlDark
-        DataGridViewCellStyle16.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle16.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dgv01.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle16
+        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.ControlDark
+        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dgv01.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.Dgv01.ColumnHeadersHeight = 18
         Me.Dgv01.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
         Me.Dgv01.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Chk, Me.Guia, Me.c_nro_serie, Me.Total, Me.Fecha, Me.c_nro_correl})
@@ -1575,11 +1576,11 @@ Partial Class FrmFacturas
         Me.Dgv01.Location = New System.Drawing.Point(1, 22)
         Me.Dgv01.Name = "Dgv01"
         Me.Dgv01.RowHeadersWidth = 15
-        DataGridViewCellStyle20.BackColor = System.Drawing.Color.Lavender
-        DataGridViewCellStyle20.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Lavender
-        DataGridViewCellStyle20.SelectionForeColor = System.Drawing.Color.Black
-        Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle20
+        DataGridViewCellStyle5.BackColor = System.Drawing.Color.Lavender
+        DataGridViewCellStyle5.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Lavender
+        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.Black
+        Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle5
         Me.Dgv01.RowTemplate.Height = 19
         Me.Dgv01.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.Dgv01.Size = New System.Drawing.Size(311, 184)
@@ -1593,8 +1594,8 @@ Partial Class FrmFacturas
         '
         'Guia
         '
-        DataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.Guia.DefaultCellStyle = DataGridViewCellStyle17
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.Guia.DefaultCellStyle = DataGridViewCellStyle2
         Me.Guia.HeaderText = "Guia R."
         Me.Guia.Name = "Guia"
         Me.Guia.ReadOnly = True
@@ -1608,8 +1609,8 @@ Partial Class FrmFacturas
         '
         'Total
         '
-        DataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Total.DefaultCellStyle = DataGridViewCellStyle18
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Total.DefaultCellStyle = DataGridViewCellStyle3
         Me.Total.HeaderText = "Total $."
         Me.Total.Name = "Total"
         Me.Total.ReadOnly = True
@@ -1617,8 +1618,8 @@ Partial Class FrmFacturas
         '
         'Fecha
         '
-        DataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.Fecha.DefaultCellStyle = DataGridViewCellStyle19
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.Fecha.DefaultCellStyle = DataGridViewCellStyle4
         Me.Fecha.HeaderText = "Fecha"
         Me.Fecha.Name = "Fecha"
         Me.Fecha.ReadOnly = True
@@ -1648,129 +1649,28 @@ Partial Class FrmFacturas
         Me.Dgv02.AllowUserToAddRows = False
         Me.Dgv02.AllowUserToDeleteRows = False
         Me.Dgv02.BackgroundColor = System.Drawing.Color.WhiteSmoke
-        DataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle21.BackColor = System.Drawing.Color.Silver
-        DataGridViewCellStyle21.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle21.ForeColor = System.Drawing.Color.Black
-        DataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dgv02.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle21
+        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle6.BackColor = System.Drawing.Color.Silver
+        DataGridViewCellStyle6.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black
+        DataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dgv02.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.Dgv02.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dgv02.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Lote, Me.Codigo, Me.Cantidad, Me.Unid, Me.Descripcion, Me.Bultos, Me.Precio, Me.Importe, Me.Item, Me.c_opc_afecto, Me.c_codi_unimed, Me.c_correl_guia})
+        Me.Dgv02.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Lote, Me.Codigo, Me.Cantidad, Me.Unid, Me.Descripcion, Me.Bultos, Me.Precio, Me.Importe, Me.Item, Me.c_opc_afecto, Me.c_codi_unimed, Me.c_correl_guia, Me.Detalles})
         Me.Dgv02.EnableHeadersVisualStyles = False
         Me.Dgv02.Location = New System.Drawing.Point(303, 22)
         Me.Dgv02.Name = "Dgv02"
         Me.Dgv02.ReadOnly = True
         Me.Dgv02.RowHeadersWidth = 15
-        DataGridViewCellStyle30.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Dgv02.RowsDefaultCellStyle = DataGridViewCellStyle30
+        DataGridViewCellStyle15.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Dgv02.RowsDefaultCellStyle = DataGridViewCellStyle15
         Me.Dgv02.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Dgv02.RowTemplate.Height = 19
         Me.Dgv02.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.Dgv02.Size = New System.Drawing.Size(686, 211)
         Me.Dgv02.TabIndex = 2
-        '
-        'Lote
-        '
-        DataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.Lote.DefaultCellStyle = DataGridViewCellStyle22
-        Me.Lote.HeaderText = "Lote"
-        Me.Lote.Name = "Lote"
-        Me.Lote.ReadOnly = True
-        Me.Lote.Visible = False
-        Me.Lote.Width = 60
-        '
-        'Codigo
-        '
-        DataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.Codigo.DefaultCellStyle = DataGridViewCellStyle23
-        Me.Codigo.HeaderText = "Codigo"
-        Me.Codigo.Name = "Codigo"
-        Me.Codigo.ReadOnly = True
-        Me.Codigo.Width = 65
-        '
-        'Cantidad
-        '
-        DataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Cantidad.DefaultCellStyle = DataGridViewCellStyle24
-        Me.Cantidad.HeaderText = "Cantidad"
-        Me.Cantidad.Name = "Cantidad"
-        Me.Cantidad.ReadOnly = True
-        Me.Cantidad.Width = 65
-        '
-        'Unid
-        '
-        DataGridViewCellStyle25.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.Unid.DefaultCellStyle = DataGridViewCellStyle25
-        Me.Unid.HeaderText = "Unid."
-        Me.Unid.Name = "Unid"
-        Me.Unid.ReadOnly = True
-        Me.Unid.Width = 50
-        '
-        'Descripcion
-        '
-        DataGridViewCellStyle26.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        Me.Descripcion.DefaultCellStyle = DataGridViewCellStyle26
-        Me.Descripcion.HeaderText = "Descripcion"
-        Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.ReadOnly = True
-        Me.Descripcion.Width = 245
-        '
-        'Bultos
-        '
-        DataGridViewCellStyle27.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Bultos.DefaultCellStyle = DataGridViewCellStyle27
-        Me.Bultos.HeaderText = "Bultos"
-        Me.Bultos.Name = "Bultos"
-        Me.Bultos.ReadOnly = True
-        Me.Bultos.Width = 50
-        '
-        'Precio
-        '
-        DataGridViewCellStyle28.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Precio.DefaultCellStyle = DataGridViewCellStyle28
-        Me.Precio.HeaderText = "Precio"
-        Me.Precio.Name = "Precio"
-        Me.Precio.ReadOnly = True
-        Me.Precio.Width = 65
-        '
-        'Importe
-        '
-        DataGridViewCellStyle29.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Importe.DefaultCellStyle = DataGridViewCellStyle29
-        Me.Importe.HeaderText = "Importe"
-        Me.Importe.Name = "Importe"
-        Me.Importe.ReadOnly = True
-        Me.Importe.Width = 80
-        '
-        'Item
-        '
-        Me.Item.HeaderText = "Item"
-        Me.Item.Name = "Item"
-        Me.Item.ReadOnly = True
-        Me.Item.Visible = False
-        '
-        'c_opc_afecto
-        '
-        Me.c_opc_afecto.HeaderText = "c_opc_afecto"
-        Me.c_opc_afecto.Name = "c_opc_afecto"
-        Me.c_opc_afecto.ReadOnly = True
-        Me.c_opc_afecto.Visible = False
-        '
-        'c_codi_unimed
-        '
-        Me.c_codi_unimed.HeaderText = "c_codi_unimed"
-        Me.c_codi_unimed.Name = "c_codi_unimed"
-        Me.c_codi_unimed.ReadOnly = True
-        Me.c_codi_unimed.Visible = False
-        '
-        'c_correl_guia
-        '
-        Me.c_correl_guia.HeaderText = "c_correl_guia"
-        Me.c_correl_guia.Name = "c_correl_guia"
-        Me.c_correl_guia.ReadOnly = True
-        Me.c_correl_guia.Visible = False
         '
         'BtnConArt
         '
@@ -2036,6 +1936,113 @@ Partial Class FrmFacturas
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 150
         '
+        'Lote
+        '
+        DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.Lote.DefaultCellStyle = DataGridViewCellStyle7
+        Me.Lote.HeaderText = "Lote"
+        Me.Lote.Name = "Lote"
+        Me.Lote.ReadOnly = True
+        Me.Lote.Visible = False
+        Me.Lote.Width = 60
+        '
+        'Codigo
+        '
+        DataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.Codigo.DefaultCellStyle = DataGridViewCellStyle8
+        Me.Codigo.HeaderText = "Codigo"
+        Me.Codigo.Name = "Codigo"
+        Me.Codigo.ReadOnly = True
+        Me.Codigo.Width = 65
+        '
+        'Cantidad
+        '
+        DataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Cantidad.DefaultCellStyle = DataGridViewCellStyle9
+        Me.Cantidad.HeaderText = "Cantidad"
+        Me.Cantidad.Name = "Cantidad"
+        Me.Cantidad.ReadOnly = True
+        Me.Cantidad.Width = 65
+        '
+        'Unid
+        '
+        DataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.Unid.DefaultCellStyle = DataGridViewCellStyle10
+        Me.Unid.HeaderText = "Unid."
+        Me.Unid.Name = "Unid"
+        Me.Unid.ReadOnly = True
+        Me.Unid.Width = 50
+        '
+        'Descripcion
+        '
+        DataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        Me.Descripcion.DefaultCellStyle = DataGridViewCellStyle11
+        Me.Descripcion.HeaderText = "Descripcion"
+        Me.Descripcion.Name = "Descripcion"
+        Me.Descripcion.ReadOnly = True
+        Me.Descripcion.Width = 245
+        '
+        'Bultos
+        '
+        DataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Bultos.DefaultCellStyle = DataGridViewCellStyle12
+        Me.Bultos.HeaderText = "Bultos"
+        Me.Bultos.Name = "Bultos"
+        Me.Bultos.ReadOnly = True
+        Me.Bultos.Width = 50
+        '
+        'Precio
+        '
+        DataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Precio.DefaultCellStyle = DataGridViewCellStyle13
+        Me.Precio.HeaderText = "Precio"
+        Me.Precio.Name = "Precio"
+        Me.Precio.ReadOnly = True
+        Me.Precio.Width = 65
+        '
+        'Importe
+        '
+        DataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Importe.DefaultCellStyle = DataGridViewCellStyle14
+        Me.Importe.HeaderText = "Importe"
+        Me.Importe.Name = "Importe"
+        Me.Importe.ReadOnly = True
+        Me.Importe.Width = 80
+        '
+        'Item
+        '
+        Me.Item.HeaderText = "Item"
+        Me.Item.Name = "Item"
+        Me.Item.ReadOnly = True
+        Me.Item.Visible = False
+        '
+        'c_opc_afecto
+        '
+        Me.c_opc_afecto.HeaderText = "c_opc_afecto"
+        Me.c_opc_afecto.Name = "c_opc_afecto"
+        Me.c_opc_afecto.ReadOnly = True
+        Me.c_opc_afecto.Visible = False
+        '
+        'c_codi_unimed
+        '
+        Me.c_codi_unimed.HeaderText = "c_codi_unimed"
+        Me.c_codi_unimed.Name = "c_codi_unimed"
+        Me.c_codi_unimed.ReadOnly = True
+        Me.c_codi_unimed.Visible = False
+        '
+        'c_correl_guia
+        '
+        Me.c_correl_guia.HeaderText = "c_correl_guia"
+        Me.c_correl_guia.Name = "c_correl_guia"
+        Me.c_correl_guia.ReadOnly = True
+        Me.c_correl_guia.Visible = False
+        '
+        'Detalles
+        '
+        Me.Detalles.HeaderText = "Detalles"
+        Me.Detalles.Name = "Detalles"
+        Me.Detalles.ReadOnly = True
+        '
         'FrmFacturas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -2221,18 +2228,6 @@ Partial Class FrmFacturas
     Friend WithEvents Label9 As System.Windows.Forms.Label
     Friend WithEvents Label24 As System.Windows.Forms.Label
     Friend WithEvents ChkRetencion As System.Windows.Forms.CheckBox
-    Friend WithEvents Lote As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Codigo As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Cantidad As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Unid As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Bultos As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Precio As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Importe As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Item As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents c_opc_afecto As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents c_codi_unimed As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents c_correl_guia As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CboFPago As System.Windows.Forms.ComboBox
     Friend WithEvents Panel4 As System.Windows.Forms.Panel
     Friend WithEvents TxtObs As System.Windows.Forms.TextBox
@@ -2260,4 +2255,17 @@ Partial Class FrmFacturas
     Friend WithEvents BtnAnexar As Button
     Friend WithEvents txtCodigoDetraccion As TextBox
     Friend WithEvents Label34 As Label
+    Friend WithEvents Lote As DataGridViewTextBoxColumn
+    Friend WithEvents Codigo As DataGridViewTextBoxColumn
+    Friend WithEvents Cantidad As DataGridViewTextBoxColumn
+    Friend WithEvents Unid As DataGridViewTextBoxColumn
+    Friend WithEvents Descripcion As DataGridViewTextBoxColumn
+    Friend WithEvents Bultos As DataGridViewTextBoxColumn
+    Friend WithEvents Precio As DataGridViewTextBoxColumn
+    Friend WithEvents Importe As DataGridViewTextBoxColumn
+    Friend WithEvents Item As DataGridViewTextBoxColumn
+    Friend WithEvents c_opc_afecto As DataGridViewTextBoxColumn
+    Friend WithEvents c_codi_unimed As DataGridViewTextBoxColumn
+    Friend WithEvents c_correl_guia As DataGridViewTextBoxColumn
+    Friend WithEvents Detalles As DataGridViewTextBoxColumn
 End Class

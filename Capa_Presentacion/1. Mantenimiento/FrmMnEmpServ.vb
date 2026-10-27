@@ -16,9 +16,39 @@ Public Class FrmMnEmpServ
     Private Sub FrmMnEmpServ_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         Call Validar_Permiso(Me.Name, BtnNuevo, BtnEditar, BtnEliminar)
     End Sub
+
     Public Sub Cargar_Grid(ByVal Cadena As String)
+
+        Dim Filtro As String = Cadena
+
+        '--------------------------------------------------
+        'Filtrar empresas según modo de sesión
+        '--------------------------------------------------
+        If ModSesion.EsMedXpress Then
+
+            Dim PosOrder As Integer = UCase(Filtro).IndexOf("ORDER BY")
+
+            If PosOrder >= 0 Then
+
+                Dim Condicion As String = Filtro.Substring(0, PosOrder)
+
+                Dim Orden As String = Filtro.Substring(PosOrder)
+
+                Filtro = Condicion & " AND ISNULL(c_modo_medxpress,0)=1 " & Orden
+
+            Else
+
+                Filtro &= " AND ISNULL(c_modo_medxpress,0)=1 "
+
+            End If
+
+        End If
+
+
         With Dgv01
-            .DataSource = c_neg_MnEmpServ.get_EmpServ_Datos(Cadena, "DGV")
+
+            .DataSource = c_neg_MnEmpServ.get_EmpServ_Datos(Filtro, "DGV")
+
             .Columns("Codigo").Width = 50
             .Columns("Razon Social").Width = 260
             .Columns("Ruc").Width = 100
@@ -29,14 +59,21 @@ Public Class FrmMnEmpServ
             .Columns("Ruc").Width = 210
             .Columns("Web").Width = 210
             .Columns("Contacto").Width = 210
+
             .Columns("c_anula_Reg").Visible = False
+
             Call Grid_Registros_anulados(Dgv01)
-            'Alienacion
+
             .Columns("Codigo").HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter
+
             .Columns("Codigo").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
             Call Dgv01_SelectionChanged(Nothing, Nothing)
+
         End With
+
     End Sub
+
     'Inicio
     Private Sub BtnIni_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnIni.Click
         Call Movilizar_Registros(Dgv01, TxtReg, 1)
@@ -73,6 +110,7 @@ Public Class FrmMnEmpServ
                 TxtMail.Text = .Rows(0)("c_mail_empserv").ToString
                 TxtContacto.Text = .Rows(0)("c_contac_empserv").ToString
                 TxtNroTarjetaCircula.Text = .Rows(0)("c_nro_tarjcircula").ToString
+                ChkMedXpress.Checked = IIf(Val(.Rows(0)("c_modo_medxpress").ToString) = 1, True, False)
                 TxtUsua_Crea.Text = .Rows(0)("c_usua_crea").ToString
                 TxtUsua_Modi.Text = .Rows(0)("c_usua_modi").ToString
                 TxtFecha_Crea.Text = .Rows(0)("c_fecha_crea").ToString
@@ -94,6 +132,7 @@ Public Class FrmMnEmpServ
             .c_mail_empserv = TxtMail.Text
             .c_contac_empserv = TxtContacto.Text
             .c_nro_tarjcircula = TxtNroTarjetaCircula.Text
+            .c_modo_medxpress = IIf(ChkMedXpress.Checked = True, 1, 0)
             .c_usuario = FrmMenu.lblusuario.Text
             .copcion = cOpcion
             If Len(TxtCodigo.Text) = 0 Then
@@ -110,12 +149,40 @@ Public Class FrmMnEmpServ
     Private Sub BtnNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnNuevo.Click
         Call Nuevo_Registro() : Pan01.Enabled = True : TxtEmpresa.Focus() : BtnGrabar.Enabled = True
     End Sub
+
     Private Sub Nuevo_Registro()
-        Tbc01.SelectedTab = Tab02 : Call Limpiar_Texto(Pan01)
-        TxtEmpresa.Enabled = True : TxtDirec.Enabled = True : TxtDistrito.Enabled = True : TxtRuc.Enabled = True
-        TxtFono.Enabled = True : TxtCel.Enabled = True : TxtWeb.Enabled = True : TxtMail.Enabled = True
+
+        Tbc01.SelectedTab = Tab02
+
+        Call Limpiar_Texto(Pan01)
+
+        TxtEmpresa.Enabled = True
+        TxtDirec.Enabled = True
+        TxtDistrito.Enabled = True
+        TxtRuc.Enabled = True
+        TxtFono.Enabled = True
+        TxtCel.Enabled = True
+        TxtWeb.Enabled = True
+        TxtMail.Enabled = True
         TxtContacto.Enabled = True
+
+        '------------------------------------------
+        'Configurar modo de la empresa
+        '------------------------------------------
+        If ModSesion.EsMedXpress Then
+
+            ChkMedXpress.Checked = True
+            ChkMedXpress.Enabled = False
+
+        Else
+
+            ChkMedXpress.Checked = False
+            ChkMedXpress.Enabled = True
+
+        End If
+
     End Sub
+
     'Editamos registros...
     Private Sub BtnEditar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnEditar.Click
         With Dgv01
@@ -178,6 +245,7 @@ Public Class FrmMnEmpServ
     Private Sub Tbc01_Click(ByVal sender As Object, ByVal e As System.EventArgs) Handles Tbc01.Click
         If Tbc01.SelectedIndex = 0 Then
             Pan01.Enabled = False : BtnGrabar.Enabled = False
+            ChkMedXpress.Enabled = False
         Else
             With Dgv01
                 If .RowCount > 0 Then
@@ -188,10 +256,6 @@ Public Class FrmMnEmpServ
                 End If
             End With
         End If
-    End Sub
-
-    Private Sub Dgv01_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles Dgv01.CellContentClick
-
     End Sub
 
     Private Sub Dgv01_ColumnHeaderMouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellMouseEventArgs) Handles Dgv01.ColumnHeaderMouseClick

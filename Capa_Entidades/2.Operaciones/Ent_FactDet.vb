@@ -10,6 +10,7 @@
     Dim _c_prec_venta As Decimal
     Dim _c_total_fact As Decimal
     Dim _c_correl_guia As String
+    Dim _c_obs_detalles As String
     Dim _c_opc_afecto As Integer
     Dim _copcion As String
     Public Property c_nro_correl() As String
@@ -108,6 +109,16 @@
             _c_correl_guia = value
         End Set
     End Property
+
+    Public Property c_obs_detalle() As String
+        Get
+            Return _c_obs_detalles
+        End Get
+        Set(ByVal value As String)
+            _c_obs_detalles = value
+        End Set
+    End Property
+
     Public Property copcion() As String
         Get
             Return _copcion

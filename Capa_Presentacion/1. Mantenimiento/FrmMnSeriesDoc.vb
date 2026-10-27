@@ -12,32 +12,26 @@ Public Class FrmMnSeriesDoc
 
     Private Sub FrmMnSalSeries_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
 
-        Dgv01.DataSource = c_Neg_MnSeriesDoc.get_Series_Datos(" and c_anula_reg=0 order by c_nro_serie", "DGV", FrmMenu.TxtCod_Emp.Text)
+        '-----------------------------------------
+        'Cargar series
+        '-----------------------------------------
+        Call Cargar_Grid(" and c_anula_reg=0 order by c_nro_serie")
 
-        With Dgv01
-            .Columns("Doc").Width = 40
-            .Columns("Serie").Width = 45
-            .Columns("Documento").Width = 65
-            .Columns("Descripcion").Width = 170
-            .Columns("Giro").Width = 110
-            .Columns("c_codi_giro").Visible = False
-
-            .Columns("c_anula_reg").Visible = False
-            'Alineacion
-            .Columns("Doc").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns("Serie").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .Columns("Documento").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            'Color de cabecera...
-            .Columns("Doc").HeaderCell.Style.BackColor = Color.Yellow
-            .Columns("Doc").HeaderCell.Style.ForeColor = Color.Blue
-        End With
-
+        '-----------------------------------------
+        'Tipos de documento
+        '-----------------------------------------
         c_Neg_TpoDoc.Get_TpoDoc_Cbo(" and c_anula_Reg=0 order by c_desc_doc", CboDoc)
 
+        '-----------------------------------------
+        'Giros
+        '-----------------------------------------
         CargarGiros(CboGiro)
 
         ConfigurarGiroSesion(CboGiro)
 
+        '-----------------------------------------
+        'Permisos
+        '-----------------------------------------
         Call Validar_Permiso(Me.Name, BtnNuevo, BtnEditar, BtnEditar)
 
     End Sub
@@ -142,14 +136,30 @@ Public Class FrmMnSeriesDoc
 
     ' Nuevo Registro '
     Private Sub BtnNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnNuevo.Click
-        Call Limpiar_Texto(Pan01) : Call nuevo_registro()
+        Call Limpiar_Texto(Pan01)
+
+        Call nuevo_registro()
+
         ConfigurarGiroSesion(CboGiro)
-        TxtSerie.Enabled = True : CboDoc.Enabled = True : CboDoc.Focus()
-        If CboGiro.Items.Count > 0 Then CboGiro.SelectedIndex = 0
+
+        TxtSerie.Enabled = True
+        CboDoc.Enabled = True
+        CboDoc.Focus()
     End Sub
 
     ' Metodo para validar la grabacion del registro '
     Private Function ValidarDatos() As Boolean
+
+        If CboGiro.SelectedIndex = -1 Then
+
+            MsgBox("Debe seleccionar el giro de negocio.", vbExclamation, Compañia)
+
+            CboGiro.Focus()
+
+            Return False
+
+        End If
+
         If CboDoc.SelectedIndex > -1 Then
             If Len(TxtSerie.Text) > 0 Then
                 If Len(TxtDesc.Text) > 0 Then
@@ -172,16 +182,25 @@ Public Class FrmMnSeriesDoc
             ValidarDatos = False
         End If
     End Function
+
     ' Grabamos Registro '
     Private Sub BtnGrabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnGrabar.Click
         If ValidarDatos() = True Then
+
             Dim F As String = MsgBox("¿Desea grabar el registro?", vbYesNo + vbQuestion, Compañia)
+
             If F = vbYes Then
+
                 Call Grabar_Serie("ADD")
-                MsgBox("Los datos se grabaron corectamente...", vbInformation, Compañia)
+
+                MsgBox("Los datos se grabaron correctamente...", vbInformation, Compañia)
+
                 Call Cancelar_Registro()
-                Dgv01.DataSource = c_Neg_MnSeriesDoc.get_Series_Datos(" and c_anula_reg=0 order by c_nro_serie", "DGV", FrmMenu.TxtCod_Emp.Text)
+
+                Call Cargar_Grid(" and c_anula_reg=0 order by c_nro_serie")
+
             End If
+
         End If
     End Sub
     ' Grabamos Registro '
@@ -189,4 +208,60 @@ Public Class FrmMnSeriesDoc
         If e.KeyCode = Keys.Enter Then If BtnGrabar.Enabled = True Then Call BtnGrabar_Click(Nothing, Nothing)
     End Sub
 
+    Private Sub Cargar_Grid(ByVal Cadena As String)
+
+        Dim Filtro As String = Cadena
+
+        '--------------------------------------------------
+        'Filtrar series según giro de sesión
+        '--------------------------------------------------
+        If ModSesion.EsMedXpress Then
+
+            Dim PosOrder As Integer =
+                UCase(Filtro).IndexOf("ORDER BY")
+
+            If PosOrder >= 0 Then
+
+                Dim Condicion As String = Filtro.Substring(0, PosOrder)
+
+                Dim Orden As String = Filtro.Substring(PosOrder)
+
+                Filtro = Condicion & " AND c_codi_giro=" & ModSesion.IdGiro.ToString() & " " & Orden
+
+            Else
+
+                Filtro &= " AND c_codi_giro=" & ModSesion.IdGiro.ToString() & " "
+
+            End If
+
+        End If
+
+
+        With Dgv01
+
+            .DataSource = c_Neg_MnSeriesDoc.get_Series_Datos(Filtro, "DGV", FrmMenu.TxtCod_Emp.Text)
+
+            .Columns("Doc").Width = 40
+            .Columns("Serie").Width = 45
+            .Columns("Documento").Width = 65
+            .Columns("Descripcion").Width = 170
+            .Columns("Giro").Width = 110
+
+            .Columns("c_codi_giro").Visible = False
+            .Columns("c_anula_reg").Visible = False
+
+            'Alineación
+            .Columns("Doc").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+            .Columns("Serie").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+            .Columns("Documento").DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
+
+            'Color de cabecera
+            .Columns("Doc").HeaderCell.Style.BackColor = Color.Yellow
+            .Columns("Doc").HeaderCell.Style.ForeColor = Color.Blue
+
+        End With
+
+    End Sub
 End Class

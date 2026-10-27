@@ -51,6 +51,8 @@ Partial Class FrmMnEmpServ
         Me.BtnGrabar = New System.Windows.Forms.Button()
         Me.BtnCancelar = New System.Windows.Forms.Button()
         Me.Pan01 = New System.Windows.Forms.Panel()
+        Me.TxtNroTarjetaCircula = New System.Windows.Forms.TextBox()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.TxtContacto = New System.Windows.Forms.TextBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.TxtMail = New System.Windows.Forms.TextBox()
@@ -77,8 +79,7 @@ Partial Class FrmMnEmpServ
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TxtEmpresa = New System.Windows.Forms.TextBox()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.TxtNroTarjetaCircula = New System.Windows.Forms.TextBox()
-        Me.Label16 = New System.Windows.Forms.Label()
+        Me.ChkMedXpress = New System.Windows.Forms.CheckBox()
         Me.Tbc01.SuspendLayout()
         Me.Tab01.SuspendLayout()
         Me.Panel1.SuspendLayout()
@@ -420,6 +421,7 @@ Partial Class FrmMnEmpServ
         '
         Me.Pan01.BackColor = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
         Me.Pan01.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Pan01.Controls.Add(Me.ChkMedXpress)
         Me.Pan01.Controls.Add(Me.TxtNroTarjetaCircula)
         Me.Pan01.Controls.Add(Me.Label16)
         Me.Pan01.Controls.Add(Me.TxtContacto)
@@ -452,6 +454,28 @@ Partial Class FrmMnEmpServ
         Me.Pan01.Name = "Pan01"
         Me.Pan01.Size = New System.Drawing.Size(518, 279)
         Me.Pan01.TabIndex = 0
+        '
+        'TxtNroTarjetaCircula
+        '
+        Me.TxtNroTarjetaCircula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
+        Me.TxtNroTarjetaCircula.Location = New System.Drawing.Point(341, 121)
+        Me.TxtNroTarjetaCircula.MaxLength = 11
+        Me.TxtNroTarjetaCircula.Name = "TxtNroTarjetaCircula"
+        Me.TxtNroTarjetaCircula.Size = New System.Drawing.Size(160, 20)
+        Me.TxtNroTarjetaCircula.TabIndex = 7
+        '
+        'Label16
+        '
+        Me.Label16.BackColor = System.Drawing.Color.WhiteSmoke
+        Me.Label16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
+        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Label16.Location = New System.Drawing.Point(211, 121)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(129, 19)
+        Me.Label16.TabIndex = 33
+        Me.Label16.Text = "N° Permiso MTC"
+        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
         'TxtContacto
         '
@@ -733,27 +757,19 @@ Partial Class FrmMnEmpServ
         Me.Label5.Text = "Empresa"
         Me.Label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
         '
-        'TxtNroTarjetaCircula
+        'ChkMedXpress
         '
-        Me.TxtNroTarjetaCircula.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
-        Me.TxtNroTarjetaCircula.Location = New System.Drawing.Point(341, 121)
-        Me.TxtNroTarjetaCircula.MaxLength = 11
-        Me.TxtNroTarjetaCircula.Name = "TxtNroTarjetaCircula"
-        Me.TxtNroTarjetaCircula.Size = New System.Drawing.Size(160, 20)
-        Me.TxtNroTarjetaCircula.TabIndex = 7
-        '
-        'Label16
-        '
-        Me.Label16.BackColor = System.Drawing.Color.WhiteSmoke
-        Me.Label16.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D
-        Me.Label16.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(64, Byte), Integer))
-        Me.Label16.Location = New System.Drawing.Point(211, 121)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(129, 19)
-        Me.Label16.TabIndex = 33
-        Me.Label16.Text = "N° Permiso MTC"
-        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
+        Me.ChkMedXpress.AutoSize = True
+        Me.ChkMedXpress.CheckAlign = System.Drawing.ContentAlignment.MiddleRight
+        Me.ChkMedXpress.Enabled = False
+        Me.ChkMedXpress.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.ChkMedXpress.ForeColor = System.Drawing.Color.Blue
+        Me.ChkMedXpress.Location = New System.Drawing.Point(324, 16)
+        Me.ChkMedXpress.Name = "ChkMedXpress"
+        Me.ChkMedXpress.Size = New System.Drawing.Size(177, 18)
+        Me.ChkMedXpress.TabIndex = 185
+        Me.ChkMedXpress.Text = "Cliente Modo MedXpress"
+        Me.ChkMedXpress.UseVisualStyleBackColor = True
         '
         'FrmMnEmpServ
         '
@@ -838,4 +854,5 @@ Partial Class FrmMnEmpServ
     Friend WithEvents Label15 As System.Windows.Forms.Label
     Friend WithEvents TxtNroTarjetaCircula As TextBox
     Friend WithEvents Label16 As Label
+    Friend WithEvents ChkMedXpress As CheckBox
 End Class

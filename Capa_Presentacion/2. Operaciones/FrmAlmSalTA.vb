@@ -24,17 +24,20 @@
         '-------------------------------------------------------
         Dim FiltroCliente As String = " and c_anula_reg=0 "
         Dim FiltroSerie As String = " and c_anula_reg=0 "
+        Dim FiltroEmpServ As String = " and c_anula_reg=0 "
 
         If ModSesion.EsMedXpress Then
 
             'Solo clientes MedXpress
-            FiltroCliente &=
-            " and ISNULL(c_modo_medxpress,0)=1 "
+            FiltroCliente &= " and ISNULL(c_modo_medxpress,0)=1 "
+
+            '---------------------------------------------------
+            'Solo empresas de servicio MedXpress
+            '---------------------------------------------------
+            FiltroEmpServ &= " and ISNULL(c_modo_medxpress,0)=1 "
 
             'Solo series correspondientes al giro actual
-            FiltroSerie &=
-            " and c_codi_giro=" &
-            ModSesion.IdGiro.ToString() & " "
+            FiltroSerie &= " and c_codi_giro=" & ModSesion.IdGiro.ToString() & " "
 
         End If
 
@@ -51,7 +54,7 @@
         '-------------------------------------------------------
         'Empresa de servicio
         '-------------------------------------------------------
-        c_Neg_MnEmprServ.Get_EmpServ_Cbo(" and c_anula_reg=0 order by c_codi_empserv", CboEmpServ)
+        c_Neg_MnEmprServ.Get_EmpServ_Cbo(FiltroEmpServ & " order by c_desc_empserv", CboEmpServ)
 
         '-------------------------------------------------------
         'Motivos
