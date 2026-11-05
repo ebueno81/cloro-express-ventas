@@ -130,6 +130,7 @@
     <Compile Include="2. Operaciones\Neg_RetenCab.vb" />
     <Compile Include="2. Operaciones\Neg_Retencion.vb" />
     <Compile Include="2. Operaciones\Neg_RetenDet.vb" />
+    <Compile Include="2. Operaciones\Neg_SalAlmContrato.vb" />
     <Compile Include="3. Consultas\Neg_AlmIngTc.vb" />
     <Compile Include="3. Consultas\Neg_AlmIngTcDet.vb" />
     <Compile Include="3. Consultas\Neg_ConPrecCosto.vb" />

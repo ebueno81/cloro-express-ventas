@@ -103,6 +103,7 @@
     <Compile Include="2.Operaciones\Ent_NotaD.vb" />
     <Compile Include="2.Operaciones\Ent_RetenCab.vb" />
     <Compile Include="2.Operaciones\Ent_RetenDet.vb" />
+    <Compile Include="2.Operaciones\Ent_SalAlmContrato.vb" />
     <Compile Include="3.Consultas\Ent_ConPrecCosto.vb" />
     <Compile Include="5. Administracion\Ent_Inventario_Cab.vb" />
     <Compile Include="5. Administracion\Ent_Inventario_Det.vb" />

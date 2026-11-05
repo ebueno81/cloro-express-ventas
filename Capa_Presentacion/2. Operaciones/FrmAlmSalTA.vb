@@ -1633,4 +1633,26 @@
             MsgBox("Registro actualizado correctamente...", vbInformation, Compañia)
         End If
     End Sub
+
+    Private Sub BtnAnexarContrato_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAnexarContrato.Click
+
+        If Trim(CboSerie.Text) = "" Then
+            MsgBox("Debe seleccionar la serie de la Orden de Trabajo.", vbExclamation, Compañia)
+            Exit Sub
+        End If
+
+        If Trim(TxtNro_MosGuia.Text) = "" Then
+            MsgBox("Primero debe grabar la Orden de Trabajo antes de anexar el contrato.", vbExclamation, Compañia)
+            Exit Sub
+        End If
+
+        Dim Frm As New FrmSalAlmContrato
+
+        Frm.SerieOT = Trim(CboSerie.Text)
+        Frm.NroOT = Trim(TxtNro_MosGuia.Text)
+        Frm.Cliente = Trim(TxtCliente.Text)
+
+        Frm.ShowDialog(Me)
+
+    End Sub
 End Class

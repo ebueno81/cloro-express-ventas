@@ -231,6 +231,12 @@
     <Compile Include="2. Operaciones\FrmRetencion.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="2. Operaciones\FrmSalAlmContrato.Designer.vb">
+      <DependentUpon>FrmSalAlmContrato.vb</DependentUpon>
+    </Compile>
+    <Compile Include="2. Operaciones\FrmSalAlmContrato.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="3. Consultas\FrmConApertura.Designer.vb">
       <DependentUpon>FrmConApertura.vb</DependentUpon>
     </Compile>
@@ -618,6 +624,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="2. Operaciones\FrmRetencion.resx">
       <DependentUpon>FrmRetencion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="2. Operaciones\FrmSalAlmContrato.resx">
+      <DependentUpon>FrmSalAlmContrato.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="3. Consultas\FrmConApertura.resx">
       <DependentUpon>FrmConApertura.vb</DependentUpon>

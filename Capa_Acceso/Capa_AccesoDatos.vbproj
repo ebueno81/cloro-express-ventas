@@ -122,6 +122,7 @@
     <Compile Include="2. Operaciones\Cls_RetenCab.vb" />
     <Compile Include="2. Operaciones\Cls_Retencion.vb" />
     <Compile Include="2. Operaciones\Cls_RetenDet.vb" />
+    <Compile Include="2. Operaciones\Cls_SalAlmContrato.vb" />
     <Compile Include="3. Consultas\Cls_AlmIngTc.vb" />
     <Compile Include="3. Consultas\Cls_AlmIngTcDet.vb" />
     <Compile Include="3. Consultas\Cls_ConPrecCosto.vb" />
