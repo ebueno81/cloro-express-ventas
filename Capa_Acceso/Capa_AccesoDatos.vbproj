@@ -49,6 +49,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -154,6 +155,7 @@
     <Compile Include="6. Contabilidad\Cls_Asientos_Det.vb" />
     <Compile Include="Cls_Conexion.vb" />
     <Compile Include="2. Operaciones\Cls_OC.vb" />
+    <Compile Include="Integraciones\Cls_ApiMedXpress.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

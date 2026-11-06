@@ -26,11 +26,11 @@ Partial Class FrmFacturas
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmFacturas))
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle15 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle7 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle8 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle9 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
@@ -145,12 +145,6 @@ Partial Class FrmFacturas
         Me.Pcb01 = New System.Windows.Forms.PictureBox()
         Me.Label15 = New System.Windows.Forms.Label()
         Me.Dgv01 = New System.Windows.Forms.DataGridView()
-        Me.Chk = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.Guia = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.c_nro_serie = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Total = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.c_nro_correl = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Dgv02 = New System.Windows.Forms.DataGridView()
         Me.BtnConArt = New System.Windows.Forms.Button()
@@ -175,6 +169,13 @@ Partial Class FrmFacturas
         Me.Label46 = New System.Windows.Forms.Label()
         Me.Prb01 = New System.Windows.Forms.ProgressBar()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
+        Me.Chk = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.Guia = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.c_nro_serie = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Total = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.c_nro_correl = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.c_opc_contrato = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Lote = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Codigo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Cantidad = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -188,6 +189,7 @@ Partial Class FrmFacturas
         Me.c_codi_unimed = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.c_correl_guia = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Detalles = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.IdOrdenContrato = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Pan20.SuspendLayout()
         Me.Pan11.SuspendLayout()
         Me.Panel15.SuspendLayout()
@@ -1571,7 +1573,7 @@ Partial Class FrmFacturas
         Me.Dgv01.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
         Me.Dgv01.ColumnHeadersHeight = 18
         Me.Dgv01.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-        Me.Dgv01.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Chk, Me.Guia, Me.c_nro_serie, Me.Total, Me.Fecha, Me.c_nro_correl})
+        Me.Dgv01.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Chk, Me.Guia, Me.c_nro_serie, Me.Total, Me.Fecha, Me.c_nro_correl, Me.c_opc_contrato})
         Me.Dgv01.EnableHeadersVisualStyles = False
         Me.Dgv01.Location = New System.Drawing.Point(1, 22)
         Me.Dgv01.Name = "Dgv01"
@@ -1585,50 +1587,6 @@ Partial Class FrmFacturas
         Me.Dgv01.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect
         Me.Dgv01.Size = New System.Drawing.Size(311, 184)
         Me.Dgv01.TabIndex = 0
-        '
-        'Chk
-        '
-        Me.Chk.HeaderText = ""
-        Me.Chk.Name = "Chk"
-        Me.Chk.Width = 25
-        '
-        'Guia
-        '
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.Guia.DefaultCellStyle = DataGridViewCellStyle2
-        Me.Guia.HeaderText = "Guia R."
-        Me.Guia.Name = "Guia"
-        Me.Guia.ReadOnly = True
-        Me.Guia.Width = 80
-        '
-        'c_nro_serie
-        '
-        Me.c_nro_serie.HeaderText = "c_nro_serie"
-        Me.c_nro_serie.Name = "c_nro_serie"
-        Me.c_nro_serie.Visible = False
-        '
-        'Total
-        '
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
-        Me.Total.DefaultCellStyle = DataGridViewCellStyle3
-        Me.Total.HeaderText = "Total $."
-        Me.Total.Name = "Total"
-        Me.Total.ReadOnly = True
-        Me.Total.Width = 70
-        '
-        'Fecha
-        '
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        Me.Fecha.DefaultCellStyle = DataGridViewCellStyle4
-        Me.Fecha.HeaderText = "Fecha"
-        Me.Fecha.Name = "Fecha"
-        Me.Fecha.ReadOnly = True
-        '
-        'c_nro_correl
-        '
-        Me.c_nro_correl.HeaderText = "c_nro_correl"
-        Me.c_nro_correl.Name = "c_nro_correl"
-        Me.c_nro_correl.Visible = False
         '
         'Panel2
         '
@@ -1658,7 +1616,7 @@ Partial Class FrmFacturas
         DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.Dgv02.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle6
         Me.Dgv02.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Dgv02.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Lote, Me.Codigo, Me.Cantidad, Me.Unid, Me.Descripcion, Me.Bultos, Me.Precio, Me.Importe, Me.Item, Me.c_opc_afecto, Me.c_codi_unimed, Me.c_correl_guia, Me.Detalles})
+        Me.Dgv02.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Lote, Me.Codigo, Me.Cantidad, Me.Unid, Me.Descripcion, Me.Bultos, Me.Precio, Me.Importe, Me.Item, Me.c_opc_afecto, Me.c_codi_unimed, Me.c_correl_guia, Me.Detalles, Me.IdOrdenContrato})
         Me.Dgv02.EnableHeadersVisualStyles = False
         Me.Dgv02.Location = New System.Drawing.Point(303, 22)
         Me.Dgv02.Name = "Dgv02"
@@ -1936,6 +1894,56 @@ Partial Class FrmFacturas
         Me.Timer1.Enabled = True
         Me.Timer1.Interval = 150
         '
+        'Chk
+        '
+        Me.Chk.HeaderText = ""
+        Me.Chk.Name = "Chk"
+        Me.Chk.Width = 25
+        '
+        'Guia
+        '
+        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.Guia.DefaultCellStyle = DataGridViewCellStyle2
+        Me.Guia.HeaderText = "Guia R."
+        Me.Guia.Name = "Guia"
+        Me.Guia.ReadOnly = True
+        Me.Guia.Width = 80
+        '
+        'c_nro_serie
+        '
+        Me.c_nro_serie.HeaderText = "c_nro_serie"
+        Me.c_nro_serie.Name = "c_nro_serie"
+        Me.c_nro_serie.Visible = False
+        '
+        'Total
+        '
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight
+        Me.Total.DefaultCellStyle = DataGridViewCellStyle3
+        Me.Total.HeaderText = "Total $."
+        Me.Total.Name = "Total"
+        Me.Total.ReadOnly = True
+        Me.Total.Width = 70
+        '
+        'Fecha
+        '
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        Me.Fecha.DefaultCellStyle = DataGridViewCellStyle4
+        Me.Fecha.HeaderText = "Fecha"
+        Me.Fecha.Name = "Fecha"
+        Me.Fecha.ReadOnly = True
+        '
+        'c_nro_correl
+        '
+        Me.c_nro_correl.HeaderText = "c_nro_correl"
+        Me.c_nro_correl.Name = "c_nro_correl"
+        Me.c_nro_correl.Visible = False
+        '
+        'c_opc_contrato
+        '
+        Me.c_opc_contrato.HeaderText = "c_opc_contrato"
+        Me.c_opc_contrato.Name = "c_opc_contrato"
+        Me.c_opc_contrato.Visible = False
+        '
         'Lote
         '
         DataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
@@ -2042,6 +2050,13 @@ Partial Class FrmFacturas
         Me.Detalles.HeaderText = "Detalles"
         Me.Detalles.Name = "Detalles"
         Me.Detalles.ReadOnly = True
+        '
+        'IdOrdenContrato
+        '
+        Me.IdOrdenContrato.HeaderText = "IdOrdenContrato"
+        Me.IdOrdenContrato.Name = "IdOrdenContrato"
+        Me.IdOrdenContrato.ReadOnly = True
+        Me.IdOrdenContrato.Visible = False
         '
         'FrmFacturas
         '
@@ -2217,12 +2232,6 @@ Partial Class FrmFacturas
     Friend WithEvents LblRollos As System.Windows.Forms.Label
     Friend WithEvents LblTotales As System.Windows.Forms.Label
     Friend WithEvents BtnEditar As System.Windows.Forms.Button
-    Friend WithEvents Chk As System.Windows.Forms.DataGridViewCheckBoxColumn
-    Friend WithEvents Guia As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents c_nro_serie As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Total As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents c_nro_correl As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents LinkLabel1 As System.Windows.Forms.LinkLabel
     Friend WithEvents TxtOc As System.Windows.Forms.TextBox
     Friend WithEvents Label9 As System.Windows.Forms.Label
@@ -2255,6 +2264,13 @@ Partial Class FrmFacturas
     Friend WithEvents BtnAnexar As Button
     Friend WithEvents txtCodigoDetraccion As TextBox
     Friend WithEvents Label34 As Label
+    Friend WithEvents Chk As DataGridViewCheckBoxColumn
+    Friend WithEvents Guia As DataGridViewTextBoxColumn
+    Friend WithEvents c_nro_serie As DataGridViewTextBoxColumn
+    Friend WithEvents Total As DataGridViewTextBoxColumn
+    Friend WithEvents Fecha As DataGridViewTextBoxColumn
+    Friend WithEvents c_nro_correl As DataGridViewTextBoxColumn
+    Friend WithEvents c_opc_contrato As DataGridViewTextBoxColumn
     Friend WithEvents Lote As DataGridViewTextBoxColumn
     Friend WithEvents Codigo As DataGridViewTextBoxColumn
     Friend WithEvents Cantidad As DataGridViewTextBoxColumn
@@ -2268,4 +2284,5 @@ Partial Class FrmFacturas
     Friend WithEvents c_codi_unimed As DataGridViewTextBoxColumn
     Friend WithEvents c_correl_guia As DataGridViewTextBoxColumn
     Friend WithEvents Detalles As DataGridViewTextBoxColumn
+    Friend WithEvents IdOrdenContrato As DataGridViewTextBoxColumn
 End Class

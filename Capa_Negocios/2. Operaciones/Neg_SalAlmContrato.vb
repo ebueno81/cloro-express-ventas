@@ -19,4 +19,10 @@ Public Class Neg_SalAlmContrato
 
     End Function
 
+    Public Function set_SalAlmContrato_Facturar(ByVal ent As Ent_SalAlmContratoFactura) As Integer
+
+        Return Datos.set_SalAlmContrato_Facturar(ent)
+
+    End Function
+
 End Class

@@ -536,6 +536,7 @@
     <Compile Include="ModGiros.vb" />
     <Compile Include="ModSession.vb" />
     <Compile Include="Module1.vb" />
+    <Compile Include="ModUtils.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

@@ -1,5 +1,13 @@
 ﻿Public Class FrmAlmSalTA
-    Dim Focos As Integer = 0 : Dim Edit As Integer = 0
+
+    Dim Focos As Integer = 0
+    Dim Edit As Integer = 0
+
+    Public Property OpcContrato As Integer = 0
+
+    Public Property OpcFacturado As Integer = 0
+
+    Public Property OpcAnulado As Integer = 0
 
     Private Sub FrmAlmSalTA_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If e.KeyCode = Keys.Escape Then
@@ -93,6 +101,7 @@
         End With
 
         Call Cancelar_Detalles()
+
 
         Call Validar_Permiso(Me.Name, BtnNuevo, BtnEditar, BtnEliminar)
 
@@ -928,6 +937,11 @@
                         CboSerie.SelectedIndex = i : i = CboSerie.Items.Count
                     End If
                 Next
+
+                OpcContrato = Val(.Rows(0)("c_opc_contrato").ToString)
+                OpcFacturado = Val(.Rows(0)("c_fact_guia").ToString)
+                OpcAnulado = Val(.Rows(0)("c_anula_reg").ToString)
+
                 DtpFecha_Traslado.Text = .Rows(0)("c_fecha_traslado").ToString
                 TxtNroOS.Text = .Rows(0)("c_nro_os").ToString
 
@@ -1636,6 +1650,14 @@
 
     Private Sub BtnAnexarContrato_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnAnexarContrato.Click
 
+        If BtnGrabar.Enabled = True Then
+
+            MsgBox("Primero debe grabar la Orden de Trabajo antes de anexar el contrato.", vbExclamation, Compañia)
+
+            Exit Sub
+
+        End If
+
         If Trim(CboSerie.Text) = "" Then
             MsgBox("Debe seleccionar la serie de la Orden de Trabajo.", vbExclamation, Compañia)
             Exit Sub
@@ -1646,11 +1668,30 @@
             Exit Sub
         End If
 
+        If OpcAnulado = 1 Then
+            MsgBox("La Orden de Trabajo se encuentra anulada, no puede anexar contratos.", vbExclamation, Compañia)
+            Exit Sub
+        End If
+
+        If OpcFacturado = 1 Then
+            MsgBox("La Orden de Trabajo se encuentra facturada, no puede anexar contratos.", vbExclamation, Compañia)
+            Exit Sub
+        End If
+
+        If Strings.Left(CboSerie.Text, 2) <> "O" Then
+            MsgBox("La Orden de Trabajo no puede tener contrato, no es una orden válida.", vbExclamation, Compañia)
+            Exit Sub
+        End If
+
         Dim Frm As New FrmSalAlmContrato
 
         Frm.SerieOT = Trim(CboSerie.Text)
         Frm.NroOT = Trim(TxtNro_MosGuia.Text)
         Frm.Cliente = Trim(TxtCliente.Text)
+        Frm.CodigoCliente = Trim(TxtCod_Clie.Text)
+
+        Frm.OpcContrato = OpcContrato
+        Frm.OpcFacturado = OpcFacturado
 
         Frm.ShowDialog(Me)
 

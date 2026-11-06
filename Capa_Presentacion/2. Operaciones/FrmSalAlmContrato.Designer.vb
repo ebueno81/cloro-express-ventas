@@ -28,6 +28,7 @@ Partial Class FrmSalAlmContrato
         Me.TxtSerieOT = New System.Windows.Forms.TextBox()
         Me.LblSerieOT = New System.Windows.Forms.Label()
         Me.GrpContrato = New System.Windows.Forms.GroupBox()
+        Me.CboContrato = New System.Windows.Forms.ComboBox()
         Me.TxtUbicaciones = New System.Windows.Forms.TextBox()
         Me.LblUbicaciones = New System.Windows.Forms.Label()
         Me.CboMoneda = New System.Windows.Forms.ComboBox()
@@ -38,8 +39,6 @@ Partial Class FrmSalAlmContrato
         Me.LblHastaContrato = New System.Windows.Forms.Label()
         Me.DtpFechaInicioContrato = New System.Windows.Forms.DateTimePicker()
         Me.LblVigencia = New System.Windows.Forms.Label()
-        Me.BtnBuscarContrato = New System.Windows.Forms.Button()
-        Me.TxtCodigoContrato = New System.Windows.Forms.TextBox()
         Me.LblCodigoContrato = New System.Windows.Forms.Label()
         Me.GrpPeriodo = New System.Windows.Forms.GroupBox()
         Me.LblAyudaPeriodo = New System.Windows.Forms.Label()
@@ -173,6 +172,7 @@ Partial Class FrmSalAlmContrato
         '
         'GrpContrato
         '
+        Me.GrpContrato.Controls.Add(Me.CboContrato)
         Me.GrpContrato.Controls.Add(Me.TxtUbicaciones)
         Me.GrpContrato.Controls.Add(Me.LblUbicaciones)
         Me.GrpContrato.Controls.Add(Me.CboMoneda)
@@ -183,8 +183,6 @@ Partial Class FrmSalAlmContrato
         Me.GrpContrato.Controls.Add(Me.LblHastaContrato)
         Me.GrpContrato.Controls.Add(Me.DtpFechaInicioContrato)
         Me.GrpContrato.Controls.Add(Me.LblVigencia)
-        Me.GrpContrato.Controls.Add(Me.BtnBuscarContrato)
-        Me.GrpContrato.Controls.Add(Me.TxtCodigoContrato)
         Me.GrpContrato.Controls.Add(Me.LblCodigoContrato)
         Me.GrpContrato.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.GrpContrato.Location = New System.Drawing.Point(20, 178)
@@ -193,6 +191,16 @@ Partial Class FrmSalAlmContrato
         Me.GrpContrato.TabIndex = 2
         Me.GrpContrato.TabStop = False
         Me.GrpContrato.Text = "Datos del Contrato"
+        '
+        'CboContrato
+        '
+        Me.CboContrato.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList
+        Me.CboContrato.Font = New System.Drawing.Font("Segoe UI", 9.0!)
+        Me.CboContrato.FormattingEnabled = True
+        Me.CboContrato.Location = New System.Drawing.Point(20, 44)
+        Me.CboContrato.Name = "CboContrato"
+        Me.CboContrato.Size = New System.Drawing.Size(319, 23)
+        Me.CboContrato.TabIndex = 13
         '
         'TxtUbicaciones
         '
@@ -292,27 +300,6 @@ Partial Class FrmSalAlmContrato
         Me.LblVigencia.Size = New System.Drawing.Size(52, 15)
         Me.LblVigencia.TabIndex = 11
         Me.LblVigencia.Text = "Vigencia"
-        '
-        'BtnBuscarContrato
-        '
-        Me.BtnBuscarContrato.BackColor = System.Drawing.Color.FromArgb(CType(CType(230, Byte), Integer), CType(CType(235, Byte), Integer), CType(CType(240, Byte), Integer))
-        Me.BtnBuscarContrato.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(190, Byte), Integer), CType(CType(200, Byte), Integer))
-        Me.BtnBuscarContrato.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.BtnBuscarContrato.Font = New System.Drawing.Font("Segoe UI", 8.5!)
-        Me.BtnBuscarContrato.Location = New System.Drawing.Point(261, 43)
-        Me.BtnBuscarContrato.Name = "BtnBuscarContrato"
-        Me.BtnBuscarContrato.Size = New System.Drawing.Size(78, 25)
-        Me.BtnBuscarContrato.TabIndex = 1
-        Me.BtnBuscarContrato.Text = "Buscar"
-        Me.BtnBuscarContrato.UseVisualStyleBackColor = False
-        '
-        'TxtCodigoContrato
-        '
-        Me.TxtCodigoContrato.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.TxtCodigoContrato.Location = New System.Drawing.Point(20, 44)
-        Me.TxtCodigoContrato.Name = "TxtCodigoContrato"
-        Me.TxtCodigoContrato.Size = New System.Drawing.Size(235, 23)
-        Me.TxtCodigoContrato.TabIndex = 0
         '
         'LblCodigoContrato
         '
@@ -466,6 +453,7 @@ Partial Class FrmSalAlmContrato
         Me.Controls.Add(Me.PnlBotones)
         Me.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog
+        Me.KeyPreview = True
         Me.MaximizeBox = False
         Me.MinimizeBox = False
         Me.Name = "FrmSalAlmContrato"
@@ -502,8 +490,6 @@ Partial Class FrmSalAlmContrato
 
     Friend WithEvents GrpContrato As GroupBox
     Friend WithEvents LblCodigoContrato As Label
-    Friend WithEvents TxtCodigoContrato As TextBox
-    Friend WithEvents BtnBuscarContrato As Button
     Friend WithEvents LblVigencia As Label
     Friend WithEvents DtpFechaInicioContrato As DateTimePicker
     Friend WithEvents LblHastaContrato As Label
@@ -528,5 +514,5 @@ Partial Class FrmSalAlmContrato
     Friend WithEvents PnlBotones As Panel
     Friend WithEvents BtnCancelar As Button
     Friend WithEvents BtnGuardar As Button
-
+    Friend WithEvents CboContrato As ComboBox
 End Class

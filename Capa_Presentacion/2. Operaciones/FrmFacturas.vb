@@ -1,6 +1,13 @@
-﻿Public Class FrmFacturas
+﻿Imports Capa_Entidades
+Imports Capa_Negocios
+
+Public Class FrmFacturas
+
     Dim Grabar As Integer = 0 ' Validamos si grabamos o editamos '
     Dim Focos As Integer = 0
+
+    Dim c_Neg_SalAlmContrato As New Neg_SalAlmContrato
+
     Private Sub FrmFactVtaMos_KeyDown(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyEventArgs) Handles Me.KeyDown
         If e.Control And e.KeyCode = Keys.N Then If BtnNuevo.Enabled = True Then Call BtnNuevo_Click(Nothing, Nothing)
         'If e.Control And e.KeyCode = Keys.E Then If BtnEditar.Enabled = True Then Call BtnEditar_Click(Nothing, Nothing)
@@ -123,6 +130,7 @@
             TxtDetrac.Enabled = False : TxtDetrac.Clear() : txtCodigoDetraccion.Clear()
         End If
     End Sub
+
     ' Consultar Clientes '
     Private Sub BtnCon1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnCon1.Click
         If Dgv02.RowCount = 0 Then
@@ -132,9 +140,11 @@
             MsgBox(" ¡Elimine las Guías Seleccionadas, para cambiar el Cliente...!", vbExclamation, Compañia)
         End If
     End Sub
+
     ' Mostramos Guias no Facturadas '
     Public Sub Mostrar_GuiaR()
-        With c_Neg_AlmSalTA.get_AlmSalTa_Datos(" AND S.c_codi_mt not in('16') And S.c_nro_serie not in ('100') And S.c_fact_guia=0 And S.c_codi_clie='" & TxtCod_Clie.Text & "' and S.c_anula_reg=0 ", "DAT", FrmMenu.TxtCod_Emp.Text)
+        Dim dt As DataTable = c_Neg_AlmSalTA.get_AlmSalTa_Datos(" AND S.c_codi_mt not in('16') And S.c_nro_serie not in ('100') And S.c_fact_guia=0 And S.c_codi_clie='" & TxtCod_Clie.Text & "' and S.c_anula_reg=0 ", "DAT", FrmMenu.TxtCod_Emp.Text)
+        With dt
             Dgv01.Rows.Clear() : Dgv01.ReadOnly = False
             If .Rows.Count > 0 Then
                 For i = 0 To .Rows.Count - 1
@@ -148,10 +158,13 @@
                     Dgv01.Rows(i).Cells("Guia").Value = .Rows(i)("c_nro_salidaTa").ToString
                     Dgv01.Rows(i).Cells("Total").Value = Format(Val(.Rows(i)("c_total_guia").ToString), Forma_1_2)
                     Dgv01.Rows(i).Cells("Fecha").Value = .Rows(i)("c_fecha_sal").ToString
+                    Dgv01.Rows(i).Cells("c_opc_contrato").Value = Val(.Rows(i)("c_opc_contrato").ToString)
+
                 Next
             End If
         End With
     End Sub
+
     Private Sub CboBus_Serie_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CboBus_Serie.SelectedIndexChanged
         Call Mostrar_Numero_Factura()
     End Sub
@@ -356,60 +369,177 @@
             validarDetraccion = True
         End If
     End Function
+
     'Grabamos registro...
     Private Sub BtnGrabar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnGrabar.Click
+
         If validarDetraccion() = True Then
+
             If ValidarCierre(DtpFec_Emi.Text) = True Then
+
                 If ValidarCodigoSUNAT(Dgv02) = True Then
+
                     If ValidarDatos() = True Then
-                        If Dgv02.RowCount = 0 Then MsgBox("La factura no tiene detalles...", MsgBoxStyle.Critical, Compañia)
-                        Dim f As String = MsgBox("¿Desea grabar el registro...?", vbYesNo + MsgBoxStyle.Question, Compañia)
-                        If f = vbYes Then
-                            If Grabar = 1 Then TxtFactura.Clear()
-                            Call Grabar_Factura("ADD")
-                            If Len(TxtFactura.Text) > 0 Then
-                                ' Grabamos Detalles '
-                                With Dgv02
-                                    For i = 0 To .RowCount - 1
-                                        Call Grabar_Detalles(i, "ADD")
-                                    Next
-                                End With
-                                ' Grabamos Guias con Facturas '
-                                With Dgv01
-                                    For i = 0 To .RowCount - 1
-                                        If .Rows(i).Cells("chk").Value = True Then
-                                            If Val(.Rows(i).Cells("c_nro_correl").Value) = 0 Then
-                                                Call Grabar_FactGuia(i, "ADD")
-                                            End If
-                                        End If
-                                    Next
-                                End With
-                                Call Cancelar_Registro() : Call BtnFin_Click(Nothing, Nothing)
-                                MsgBox("Registro se grabo correctamente...", MsgBoxStyle.Exclamation, Compañia)
-                                If FrmMenu.ChkElectronico.Checked = True Then
-                                    ' Validamos si enviamos a facturacion electronica solo si no es numeric la serie'
-                                    If IsNumeric(Strings.Left(CboSerie.Text, 1)) = False Then
-                                        ' Solo para grabar no para editar grabar=2 '
-                                        If Grabar = 1 Then
-                                            If CboTpo.Text <> "ANTICIPO" Then
-                                                c_Neg_FactElectCab.set_FactElectCab_Save(CboSerie.Text, TxtFactura.Text, "01", "ADD")
-                                                Call Activar_Timer(Pan16, Timer1)
-                                            End If
-                                        End If
-                                    End If
-                                Else
-                                    'Call BtnImprimir_Click(Nothing, Nothing)
-                                End If
-                                Call BtnImprimir_Click(Nothing, Nothing)
-                            Else
-                                MsgBox("1. Hubieron problemas al momento de grabar la factura, revisar...", vbCritical, Compañia)
-                            End If
+
+                        If Dgv02.RowCount = 0 Then
+                            MsgBox("La factura no tiene detalles...", MsgBoxStyle.Critical, Compañia)
+                            Exit Sub
                         End If
+
+                        Dim f As String = MsgBox("¿Desea grabar el registro...?", vbYesNo + MsgBoxStyle.Question, Compañia)
+
+                        If f = vbYes Then
+
+                            If Grabar = 1 Then
+                                TxtFactura.Clear()
+                            End If
+
+
+                            '===================================================
+                            ' GRABAMOS CABECERA DE FACTURA
+                            '===================================================
+                            Call Grabar_Factura("ADD")
+
+
+                            If Len(TxtFactura.Text) > 0 Then
+
+
+                                '===================================================
+                                ' GRABAMOS DETALLES
+                                '===================================================
+                                With Dgv02
+
+                                    For i = 0 To .RowCount - 1
+
+                                        Call Grabar_Detalles(i, "ADD")
+
+                                    Next
+
+                                End With
+
+
+                                '===================================================
+                                ' GRABAMOS GUIAS / ORDENES DE TRABAJO
+                                ' RELACIONADAS A LA FACTURA
+                                '===================================================
+                                With Dgv01
+
+                                    For i = 0 To .RowCount - 1
+
+                                        If .Rows(i).Cells("chk").Value = True Then
+
+                                            If Val(.Rows(i).Cells("c_nro_correl").Value) = 0 Then
+
+                                                Call Grabar_FactGuia(i, "ADD")
+
+                                            End If
+
+                                        End If
+
+                                    Next
+
+                                End With
+
+
+                                '===================================================
+                                ' ACTUALIZAMOS LOS CONTRATOS
+                                ' SOLO SI IdOrdenContrato > 0
+                                '
+                                ' IdOrdenContrato ES UNA COLUMNA TEMPORAL
+                                ' DE Dgv02 Y NO SE GRABA EN FactDet
+                                '===================================================
+                                With Dgv02
+
+                                    For i = 0 To .RowCount - 1
+
+                                        If Val(.Rows(i).Cells("IdOrdenContrato").Value) > 0 Then
+
+                                            Call Actualizar_ContratoFactura(i)
+
+                                        End If
+
+                                    Next
+
+                                End With
+
+
+                                '===================================================
+                                ' FINALIZAMOS REGISTRO
+                                '===================================================
+                                Call Cancelar_Registro()
+                                Call BtnFin_Click(Nothing, Nothing)
+
+                                MsgBox("Registro se grabo correctamente...", MsgBoxStyle.Exclamation, Compañia)
+
+
+                                '===================================================
+                                ' FACTURACION ELECTRONICA
+                                '===================================================
+                                If FrmMenu.ChkElectronico.Checked = True Then
+
+                                    'Validamos si enviamos a facturacion electronica
+                                    'solo si no es numeric la serie
+                                    If IsNumeric(Strings.Left(CboSerie.Text, 1)) = False Then
+
+                                        'Solo para grabar no para editar grabar=2
+                                        If Grabar = 1 Then
+
+                                            If CboTpo.Text <> "ANTICIPO" Then
+
+                                                c_Neg_FactElectCab.set_FactElectCab_Save(CboSerie.Text, TxtFactura.Text, "01", "ADD")
+
+                                                Call Activar_Timer(Pan16, Timer1)
+
+                                            End If
+
+                                        End If
+
+                                    End If
+
+                                Else
+
+                                    'Call BtnImprimir_Click(Nothing, Nothing)
+
+                                End If
+
+
+                                Call BtnImprimir_Click(Nothing, Nothing)
+
+
+                            Else
+
+                                MsgBox("1. Hubieron problemas al momento de grabar la factura, revisar...", vbCritical, Compañia)
+
+                            End If
+
+                        End If
+
                     End If
+
                 End If
+
             End If
+
         End If
+
     End Sub
+
+    Private Sub Actualizar_ContratoFactura(ByVal Fila As Integer)
+
+        Dim ent As New Ent_SalAlmContratoFactura
+
+        ent.IdOrdenContrato = Val(Dgv02.Rows(Fila).Cells("IdOrdenContrato").Value)
+
+        ent.SerieFactura = Trim(CboSerie.Text)
+
+        ent.NumeroFactura = Trim(TxtFactura.Text)
+
+        ent.FechaEmision = CDate(DtpFec_Emi.Text)
+
+        c_Neg_SalAlmContrato.set_SalAlmContrato_Facturar(ent)
+
+    End Sub
+
     ' Metodo para Grabar la Cabecera de La Factura '
     Private Sub Grabar_Factura(ByVal cOpcion As String)
         With c_Ent_FactCab
@@ -823,47 +953,249 @@
             MsgBox("Es importante seleccionar la moneda de ventas...", vbCritical, Compañia)
         End If
     End Sub
-    ' Cargar Detalles de Guia de Remision... '
+
     Private Sub Cargar_Detalles()
+
         With Dgv01
+
             Dgv02.Rows.Clear()
+
             For i = 0 To .RowCount - 1
+
                 If .Rows(i).Cells("Chk").Value = True Then
-                    With c_Neg_AlmSalTADet.get_AlmSalTaDet_Datos(" And D.c_nro_serie='" & Dgv01.Rows(i).Cells("c_nro_serie").Value & _
-                                                                 "' And D.c_nro_salidaTA='" & Dgv01.Rows(i).Cells("Guia").Value & _
-                                                                 "' And C.c_codi_clie='" & TxtCod_Clie.Text & "' And D.c_anula_reg=0 order by D.c_nro_correl", "DAT", FrmMenu.TxtCod_Emp.Text)
-                        If .Rows.Count > 0 Then
-                            For u = 0 To .Rows.Count - 1
-                                Dgv02.Rows.Add()
-                                Dim F As Integer = Dgv02.RowCount - 1
-                                Dgv02.Rows(F).Cells("Lote").Value = .Rows(u)("c_nro_lote").ToString
-                                Dgv02.Rows(F).Cells("Descripcion").Value = .Rows(u)("c_desc_articulo").ToString
-                                Dgv02.Rows(F).Cells("Codigo").Value = .Rows(u)("c_codi_articulo").ToString
-                                Dgv02.Rows(F).Cells("Bultos").Value = .Rows(u)("c_cant_caja").ToString
-                                Dim x As New TextBox
-                                Call Hallar_PrecioServ(" and S.c_codi_clie='" & TxtCod_Clie.Text & "' and S.c_codi_articulo='" & .Rows(u)("c_codi_articulo").ToString & _
-                                                       "' and S.c_anula_Reg=0 ", x)
-                                'MsgBox(x.Text)
 
-                                Dgv02.Rows(F).Cells("Precio").Value = Format(Val(x.Text), Forma_1_7)
-                                Dgv02.Rows(F).Cells("Cantidad").Value = .Rows(u)("c_nro_cant").ToString
-                                Dgv02.Rows(F).Cells("Importe").Value = Format(Val(Dgv02.Rows(F).Cells("Cantidad").Value) * Val(x.Text), Forma_1_2)
-                                ' Opciones por tipo de Color '
-                                Dgv02.Rows(F).Cells("c_opc_afecto").Value = 1
-                                Dgv02.Rows(F).Cells("Unid").Value = .Rows(u)("c_desc_unimed").ToString
-                                Dgv02.Rows(F).Cells("c_codi_unimed").Value = .Rows(u)("c_codi_unimed").ToString
-                                Dgv02.Rows(F).Cells("Detalles").Value = .Rows(u)("c_obs").ToString
+                    Dim SerieOT As String = .Rows(i).Cells("c_nro_serie").Value.ToString
 
-                                Dgv02.Rows(F).Cells("Item").Value = ""
-                                Dgv02.Rows(F).Cells("c_correl_guia").Value = .Rows(u)("c_nro_correl").ToString
+                    Dim NroOT As String = .Rows(i).Cells("Guia").Value.ToString
 
-                            Next
-                        End If
-                    End With
+                    Dim OpcContrato As Integer = Val(.Rows(i).Cells("c_opc_contrato").Value.ToString)
+
+
+                    If OpcContrato = 1 Then
+
+                        Call Cargar_DetalleContrato(SerieOT, NroOT)
+
+                    Else
+
+                        Call Cargar_DetalleNormal(SerieOT, NroOT)
+
+                    End If
+
                 End If
+
             Next
+
         End With
+
     End Sub
+
+    Private Sub Cargar_DetalleNormal(ByVal SerieOT As String, ByVal NroOT As String)
+
+        Dim dt As DataTable = c_Neg_AlmSalTADet.get_AlmSalTaDet_Datos(" And D.c_nro_serie='" & SerieOT & "' And D.c_nro_salidaTA='" & NroOT &
+        "' And C.c_codi_clie='" & TxtCod_Clie.Text & "' And D.c_anula_reg=0 order by D.c_nro_correl", "DAT", FrmMenu.TxtCod_Emp.Text)
+
+        With dt
+
+            If .Rows.Count > 0 Then
+
+                For u = 0 To .Rows.Count - 1
+
+                    Dgv02.Rows.Add()
+
+                    Dim F As Integer = Dgv02.RowCount - 1
+
+
+                    Dgv02.Rows(F).Cells("Lote").Value = .Rows(u)("c_nro_lote").ToString
+
+                    Dgv02.Rows(F).Cells("Descripcion").Value = .Rows(u)("c_desc_articulo").ToString
+
+                    Dgv02.Rows(F).Cells("Codigo").Value = .Rows(u)("c_codi_articulo").ToString
+
+                    Dgv02.Rows(F).Cells("Bultos").Value = .Rows(u)("c_cant_caja").ToString
+
+                    Dgv02.Rows(F).Cells("IdOrdenContrato").Value = 0
+
+                    Dim x As New TextBox
+
+                    Call Hallar_PrecioServ(" and S.c_codi_clie='" & TxtCod_Clie.Text & "' and S.c_codi_articulo='" &
+                    .Rows(u)("c_codi_articulo").ToString & "' and S.c_anula_Reg=0 ", x)
+
+
+                    Dgv02.Rows(F).Cells("Precio").Value = Format(Val(x.Text), Forma_1_7)
+
+                    Dgv02.Rows(F).Cells("Cantidad").Value = .Rows(u)("c_nro_cant").ToString
+
+                    Dgv02.Rows(F).Cells("Importe").Value = Format(Val(Dgv02.Rows(F).Cells("Cantidad").Value) * Val(x.Text), Forma_1_2)
+
+
+                    Dgv02.Rows(F).Cells("c_opc_afecto").Value = 1
+
+                    Dgv02.Rows(F).Cells("Unid").Value = .Rows(u)("c_desc_unimed").ToString
+
+                    Dgv02.Rows(F).Cells("c_codi_unimed").Value = .Rows(u)("c_codi_unimed").ToString
+
+
+                    'Observación normal del detalle
+                    Dgv02.Rows(F).Cells("Detalles").Value = .Rows(u)("c_obs").ToString
+
+
+                    Dgv02.Rows(F).Cells("Item").Value = ""
+
+                    Dgv02.Rows(F).Cells("c_correl_guia").Value = .Rows(u)("c_nro_correl").ToString
+
+                Next
+
+            End If
+
+        End With
+
+    End Sub
+
+    Private Sub Cargar_DetalleContrato(ByVal SerieOT As String, ByVal NroOT As String)
+
+        '===========================================================
+        ' 1. CONSULTAMOS LOS DATOS DEL CONTRATO
+        '===========================================================
+        Dim dtContrato As DataTable = c_Neg_SalAlmContrato.get_SalAlmContrato_Datos(SerieOT, NroOT)
+
+        If dtContrato.Rows.Count = 0 Then
+
+            MsgBox("No se encontró información del contrato para la OT " & SerieOT & "-" & NroOT & ".", vbCritical, Compañia)
+
+            Exit Sub
+
+        End If
+
+
+        Dim FilaContrato As DataRow = dtContrato.Rows(0)
+
+
+        Dim CodigoContrato As String = FilaContrato("CodigoContrato").ToString.Trim
+
+        Dim Ubicaciones As String = FilaContrato("Ubicaciones").ToString.Trim
+
+        Dim PeriodoDesde As Date = CDate(FilaContrato("PeriodoDesde"))
+
+        Dim PeriodoHasta As Date = CDate(FilaContrato("PeriodoHasta"))
+
+        Dim MontoMensual As Decimal = CDec(FilaContrato("MontoMensual"))
+
+        Dim IdOrdenContrato As Integer = Val(FilaContrato("IdOrdenContrato").ToString)
+        '===========================================================
+        ' 2. ARMAMOS LA OBSERVACION DEL CONTRATO
+        '===========================================================
+        Dim ObservacionContrato As String = ""
+
+        ObservacionContrato = "Contrato " & CodigoContrato
+
+        If Ubicaciones <> "" Then
+
+            ObservacionContrato &= " | Ubicaciones: " & Ubicaciones
+
+        End If
+
+        ObservacionContrato &=
+        " | Período: " &
+        PeriodoDesde.ToString("dd/MM/yyyy") &
+        " al " &
+        PeriodoHasta.ToString("dd/MM/yyyy")
+
+
+        '===========================================================
+        ' 3. CONSULTAMOS EL DETALLE DE LA OT
+        '    IGUAL QUE EN Cargar_DetalleNormal
+        '===========================================================
+
+        Dim dt As DataTable = c_Neg_AlmSalTADet.get_AlmSalTaDet_Datos(" And D.c_nro_serie='" & SerieOT & "' And D.c_nro_salidaTA='" & NroOT &
+        "' And C.c_codi_clie='" & TxtCod_Clie.Text & "' And D.c_anula_reg=0 order by D.c_nro_correl", "DAT", FrmMenu.TxtCod_Emp.Text)
+
+        With dt
+
+            If .Rows.Count > 0 Then
+
+                For u = 0 To .Rows.Count - 1
+
+                    Dgv02.Rows.Add()
+
+                    Dim F As Integer =
+                    Dgv02.RowCount - 1
+
+
+                    '================================================
+                    ' DATOS NORMALES DEL DETALLE
+                    '================================================
+                    Dgv02.Rows(F).Cells("Lote").Value = .Rows(u)("c_nro_lote").ToString
+
+                    Dgv02.Rows(F).Cells("Descripcion").Value = .Rows(u)("c_desc_articulo").ToString
+
+                    Dgv02.Rows(F).Cells("Codigo").Value = .Rows(u)("c_codi_articulo").ToString
+
+                    Dgv02.Rows(F).Cells("Bultos").Value = .Rows(u)("c_cant_caja").ToString
+
+                    Dgv02.Rows(F).Cells("IdOrdenContrato").Value = IdOrdenContrato
+
+                    '================================================
+                    ' PRECIO
+                    ' AQUÍ ESTÁ LA DIFERENCIA POR CONTRATO
+                    '================================================
+                    Dgv02.Rows(F).Cells("Precio").Value = Format(MontoMensual, Forma_1_7)
+
+
+                    '================================================
+                    ' CANTIDAD
+                    ' SE RESPETA LA CANTIDAD DE LA OT
+                    ' EN CONTRATO YA VIENE CON 1
+                    '================================================
+                    Dgv02.Rows(F).Cells("Cantidad").Value = .Rows(u)("c_nro_cant").ToString
+
+
+                    '================================================
+                    ' IMPORTE
+                    ' MANTIENE TU LOGICA ACTUAL
+                    ' CANTIDAD X PRECIO
+                    '================================================
+                    Dgv02.Rows(F).Cells("Importe").Value = Format(Val(Dgv02.Rows(F).Cells("Cantidad").Value) *
+                        MontoMensual,
+                        Forma_1_2)
+
+
+                    Dgv02.Rows(F).Cells("c_opc_afecto").Value = 1
+
+
+                    Dgv02.Rows(F).Cells("Unid").Value = .Rows(u)("c_desc_unimed").ToString
+
+                    Dgv02.Rows(F).Cells("c_codi_unimed").Value = .Rows(u)("c_codi_unimed").ToString
+
+
+                    '================================================
+                    ' OBSERVACION
+                    ' CONTRATO + UBICACIONES + PERIODO
+                    ' + OBSERVACION DEL DETALLE DE LA OT
+                    '================================================
+                    Dim ObservacionFinal As String = ObservacionContrato
+
+                    Dim ObservacionDetalle As String = Trim(.Rows(u)("c_obs").ToString)
+
+                    If ObservacionDetalle <> "" Then
+
+                        ObservacionFinal &= " | " & ObservacionDetalle
+
+                    End If
+
+                    Dgv02.Rows(F).Cells("Detalles").Value = ObservacionFinal
+
+                    Dgv02.Rows(F).Cells("Item").Value = ""
+
+                    Dgv02.Rows(F).Cells("c_correl_guia").Value = .Rows(u)("c_nro_correl").ToString
+
+                Next
+
+            End If
+
+        End With
+
+    End Sub
+
     '-- Metodo para Hallar el Precio Unitario--'
     Private Sub Hallar_PrecioServ(ByVal Cadena As String, ByVal x As TextBox)
         With c_Neg_MnClienteArt.get_ClienteArt_Datos(Cadena, "DAT")
@@ -990,4 +1322,29 @@
             End If
         End If
     End Sub
+
+    Private Function ObtenerObservacionContrato(ByVal CodigoContrato As String, ByVal Ubicaciones As String,
+                                                ByVal PeriodoDesde As Date, ByVal PeriodoHasta As Date) As String
+
+        Dim Observacion As String = ""
+
+        Observacion = "Contrato " & Trim(CodigoContrato)
+
+        If Trim(Ubicaciones) <> "" Then
+
+            Observacion &=
+                " | Ubicaciones: " &
+                Trim(Ubicaciones)
+
+        End If
+
+        Observacion &=
+            " | Período: " &
+            PeriodoDesde.ToString("dd/MM/yyyy") &
+            " al " &
+            PeriodoHasta.ToString("dd/MM/yyyy")
+
+        Return Observacion
+
+    End Function
 End Class

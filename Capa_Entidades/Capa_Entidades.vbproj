@@ -104,6 +104,7 @@
     <Compile Include="2.Operaciones\Ent_RetenCab.vb" />
     <Compile Include="2.Operaciones\Ent_RetenDet.vb" />
     <Compile Include="2.Operaciones\Ent_SalAlmContrato.vb" />
+    <Compile Include="2.Operaciones\Ent_SalAlmContratoFactura.vb" />
     <Compile Include="3.Consultas\Ent_ConPrecCosto.vb" />
     <Compile Include="5. Administracion\Ent_Inventario_Cab.vb" />
     <Compile Include="5. Administracion\Ent_Inventario_Det.vb" />
@@ -112,6 +113,8 @@
     <Compile Include="5. Administracion\Ent_Usuario.vb" />
     <Compile Include="6. Contabilidad\Ent_Apertura.vb" />
     <Compile Include="6. Contabilidad\Ent_Asientos_Anexos.vb" />
+    <Compile Include="Integraciones\Ent_ApiContrato.vb" />
+    <Compile Include="Integraciones\Ent_ApiUbicacion.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

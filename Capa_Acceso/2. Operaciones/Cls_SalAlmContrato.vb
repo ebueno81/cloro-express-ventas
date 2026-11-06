@@ -116,6 +116,73 @@ Public Class Cls_SalAlmContrato
 
     End Function
 
+    Public Function set_SalAlmContrato_Facturar(ByVal ent As Ent_SalAlmContratoFactura) As Integer
+
+        cmd.Connection = Conex
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.CommandText = "Sp_Scal_Fa_SalAlmContrato_Facturar"
+
+        Dim ResultadoActualizacion As Integer = 0
+
+        Try
+
+            If Conex.State = ConnectionState.Closed Then
+                Conex.Open()
+            End If
+
+            cmd.Parameters.Clear()
+
+            cmd.Parameters.Add(
+            "@IdOrdenContrato",
+            OleDbType.Integer
+        ).Value = ent.IdOrdenContrato
+
+            cmd.Parameters.Add(
+            "@SerieFactura",
+            OleDbType.VarChar,
+            5
+        ).Value = ent.SerieFactura
+
+            cmd.Parameters.Add(
+            "@NumeroFactura",
+            OleDbType.VarChar,
+            15
+        ).Value = ent.NumeroFactura
+
+            cmd.Parameters.Add(
+            "@FechaEmision",
+            OleDbType.Date
+        ).Value = ent.FechaEmision
+
+
+            Dim Resultado As Object
+
+            Resultado = cmd.ExecuteScalar()
+
+            If Resultado IsNot Nothing AndAlso
+           Resultado IsNot DBNull.Value Then
+
+                ResultadoActualizacion = CInt(Resultado)
+
+            End If
+
+        Catch ex As Exception
+
+            MsgBox("Error al actualizar la factura del contrato: " &
+               ex.Message)
+
+        Finally
+
+            If Conex.State = ConnectionState.Open Then
+                Conex.Close()
+            End If
+
+        End Try
+
+        Return ResultadoActualizacion
+
+    End Function
+
     Public Function get_SalAlmContrato_Datos(
         ByVal SerieOT As String,
         ByVal NroOT As String) As DataTable

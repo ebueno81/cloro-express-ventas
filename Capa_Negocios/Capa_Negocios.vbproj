@@ -153,6 +153,7 @@
     <Compile Include="6. Contabilidad\Neg_Asientos_Anexos.vb" />
     <Compile Include="6. Contabilidad\Neg_Asientos_Cab.vb" />
     <Compile Include="6. Contabilidad\Neg_Asientos_Det.vb" />
+    <Compile Include="Integraciones\Neg_ApiMedXpress.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

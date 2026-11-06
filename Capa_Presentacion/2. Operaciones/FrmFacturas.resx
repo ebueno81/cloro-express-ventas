@@ -121,7 +121,7 @@
   <data name="BtnAnexar.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
-        wAAADsABataJCQAAARNJREFUWEftlEEOgzAMBHk6T+NnVAs4NRNocAzqhZGsxLXMLk7oMLycMz8QIeY7
+        vwAADr8BOAVTJAAAARNJREFUWEftlEEOgzAMBHk6T+NnVAs4NRNocAzqhZGsxLXMLk7oMLycMz8QIeY7
         SRnQ1uIoH8dxnqZpWYXttX6f8aABCtLQ2vOgAQrS0NqTMNCCgjQkUgYowJyCrIuDL6JpqDRTgDkFWRec
         aMgABZhTkHWxv1NtcVEaKMCcgqwLPU+/KcIGKMCcgqwLM3BVXJRmCjCnIOsiZeAONuHL4qI41prZm3h4
         Akt494m9N0KhM3Znntn3GChjvCOiBrZrcw/RI2B/CjtGJ/wfca4UFuxPYWI29pYBjigdFPcX8cyEUd3g
@@ -371,6 +371,9 @@
   <metadata name="c_nro_correl.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="c_opc_contrato.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="Lote.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -408,6 +411,9 @@
     <value>True</value>
   </metadata>
   <metadata name="Detalles.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="IdOrdenContrato.UserAddedColumn" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="BtnConArt.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
