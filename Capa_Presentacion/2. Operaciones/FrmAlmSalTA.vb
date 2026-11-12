@@ -1678,7 +1678,7 @@
             Exit Sub
         End If
 
-        If Strings.Left(CboSerie.Text, 2) <> "O" Then
+        If Strings.Left(CboSerie.Text, 1) <> "O" Then
             MsgBox("La Orden de Trabajo no puede tener contrato, no es una orden válida.", vbExclamation, Compañia)
             Exit Sub
         End If
