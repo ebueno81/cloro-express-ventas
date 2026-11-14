@@ -361,4 +361,9 @@ Public Class FrmMenu
         FrmListaAnticipo.Close()
         FrmListaAnticipo.MdiParent = Me : FrmListaAnticipo.Show()
     End Sub
+
+    Private Sub MnuRepControlContrato_Click(sender As Object, e As EventArgs) Handles MnuRepControlContrato.Click
+        FrmRptFacturacionContrato.MdiParent = Me
+        FrmRptFacturacionContrato.Show()
+    End Sub
 End Class

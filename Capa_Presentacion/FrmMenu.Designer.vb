@@ -25,8 +25,8 @@ Partial Class FrmMenu
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FrmMenu))
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.MenuStrip = New System.Windows.Forms.MenuStrip()
         Me.MnuMn = New System.Windows.Forms.ToolStripMenuItem()
         Me.MnuMnIgv = New System.Windows.Forms.ToolStripMenuItem()
@@ -149,6 +149,9 @@ Partial Class FrmMenu
         Me.TxtRuc = New System.Windows.Forms.TextBox()
         Me.ChkUsuaPrecio = New System.Windows.Forms.CheckBox()
         Me.ChkUsuaAdmin = New System.Windows.Forms.CheckBox()
+        Me.MnuRepControlContrato = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ToolStripMenuItem4 = New System.Windows.Forms.ToolStripSeparator()
+        Me.ControlDeFacturaciónDeContratosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip.SuspendLayout()
         Me.StatusStrip.SuspendLayout()
         Me.Tool_01.SuspendLayout()
@@ -425,7 +428,7 @@ Partial Class FrmMenu
         '
         'MnuRep
         '
-        Me.MnuRep.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuRptRegVentas, Me.ToolStripSeparator15, Me.MnuRptSalTA, Me.MnuRptGuiasFactu, Me.MnuRptRegLetras, Me.ToolStripSeparator17, Me.MnuRepVtasGerencial, Me.MnuRepSalVtas, Me.MnuRepSalVtasValor, Me.ToolStripMenuItem3, Me.MnuRepEnvases, Me.MnuRepEnvasesClie, Me.MnuRepEnvasesEstado, Me.MnuRepSalTransforma, Me.ToolStripMenuItem2, Me.MnuRptRegRetenciones, Me.MnuRptEstadoCuenta, Me.MnuRptTransformaVentas, Me.MnuConListaDocAnticipo})
+        Me.MnuRep.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MnuRptRegVentas, Me.ToolStripSeparator15, Me.MnuRptSalTA, Me.MnuRptGuiasFactu, Me.MnuRptRegLetras, Me.ToolStripSeparator17, Me.MnuRepVtasGerencial, Me.MnuRepSalVtas, Me.MnuRepSalVtasValor, Me.ToolStripMenuItem3, Me.MnuRepEnvases, Me.MnuRepEnvasesClie, Me.MnuRepEnvasesEstado, Me.MnuRepSalTransforma, Me.ToolStripMenuItem2, Me.MnuRptRegRetenciones, Me.MnuRptEstadoCuenta, Me.MnuRptTransformaVentas, Me.MnuConListaDocAnticipo, Me.ToolStripMenuItem4, Me.ControlDeFacturaciónDeContratosToolStripMenuItem, Me.MnuRepControlContrato})
         Me.MnuRep.Name = "MnuRep"
         Me.MnuRep.Size = New System.Drawing.Size(65, 20)
         Me.MnuRep.Text = "&Reportes"
@@ -921,22 +924,22 @@ Partial Class FrmMenu
         'Dgv01
         '
         Me.Dgv01.AllowUserToAddRows = False
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
-        DataGridViewCellStyle1.BackColor = System.Drawing.Color.Blue
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.Color.White
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Dgv01.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle1
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter
+        DataGridViewCellStyle3.BackColor = System.Drawing.Color.Blue
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.Color.White
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.Dgv01.ColumnHeadersDefaultCellStyle = DataGridViewCellStyle3
         Me.Dgv01.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.Dgv01.EnableHeadersVisualStyles = False
         Me.Dgv01.Location = New System.Drawing.Point(39, 145)
         Me.Dgv01.Name = "Dgv01"
         Me.Dgv01.ReadOnly = True
         Me.Dgv01.RowHeadersWidth = 15
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle2
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Arial", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Dgv01.RowsDefaultCellStyle = DataGridViewCellStyle4
         Me.Dgv01.RowTemplate.DefaultCellStyle.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Dgv01.RowTemplate.Height = 20
         Me.Dgv01.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
@@ -1052,6 +1055,23 @@ Partial Class FrmMenu
         Me.ChkUsuaAdmin.Text = "Usuario Admin"
         Me.ChkUsuaAdmin.UseVisualStyleBackColor = True
         Me.ChkUsuaAdmin.Visible = False
+        '
+        'MnuRepControlContrato
+        '
+        Me.MnuRepControlContrato.Name = "MnuRepControlContrato"
+        Me.MnuRepControlContrato.Size = New System.Drawing.Size(356, 22)
+        Me.MnuRepControlContrato.Text = "Control de Facturación de Contratos"
+        '
+        'ToolStripMenuItem4
+        '
+        Me.ToolStripMenuItem4.Name = "ToolStripMenuItem4"
+        Me.ToolStripMenuItem4.Size = New System.Drawing.Size(353, 6)
+        '
+        'ControlDeFacturaciónDeContratosToolStripMenuItem
+        '
+        Me.ControlDeFacturaciónDeContratosToolStripMenuItem.Name = "ControlDeFacturaciónDeContratosToolStripMenuItem"
+        Me.ControlDeFacturaciónDeContratosToolStripMenuItem.Size = New System.Drawing.Size(356, 22)
+        Me.ControlDeFacturaciónDeContratosToolStripMenuItem.Text = "Ventas por Producto/Servicio"
         '
         'FrmMenu
         '
@@ -1228,4 +1248,7 @@ Partial Class FrmMenu
     Friend WithEvents MnuRptEstadoCuenta As ToolStripMenuItem
     Friend WithEvents MnuRptTransformaVentas As ToolStripMenuItem
     Friend WithEvents MnuConListaDocAnticipo As ToolStripMenuItem
+    Friend WithEvents ToolStripMenuItem4 As ToolStripSeparator
+    Friend WithEvents MnuRepControlContrato As ToolStripMenuItem
+    Friend WithEvents ControlDeFacturaciónDeContratosToolStripMenuItem As ToolStripMenuItem
 End Class

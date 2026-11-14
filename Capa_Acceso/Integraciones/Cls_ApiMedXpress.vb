@@ -291,4 +291,240 @@ Public Class Cls_ApiMedXpress
 
     End Function
 
+    Public Function ObtenerContratosPorFiltro(ByVal FechaDesde As Date, ByVal FechaHasta As Date, Optional ByVal CodigoCliente As String = "",
+    Optional ByVal CodigoContrato As String = ""
+) As List(Of Ent_ApiContrato)
+
+        Dim Resultado As New List(Of Ent_ApiContrato)
+
+
+        '-------------------------------------------------------
+        ' 1. VALIDAR FECHAS
+        '-------------------------------------------------------
+        If FechaDesde.Date > FechaHasta.Date Then
+
+            Throw New Exception(
+                "La fecha desde no puede ser mayor " &
+                "que la fecha hasta.")
+
+        End If
+
+
+        '-------------------------------------------------------
+        ' 2. LEER CONFIGURACION DE LA API
+        '-------------------------------------------------------
+        Dim UrlBase As String =
+            Configuracion.LeerConfiguracion(
+                "ApiMedXpressUrl")
+
+        Dim TimeoutTexto As String =
+            Configuracion.LeerConfiguracion(
+                "ApiMedXpressTimeout")
+
+
+        '-------------------------------------------------------
+        ' 3. VALIDAR URL
+        '-------------------------------------------------------
+        If UrlBase Is Nothing OrElse
+           Trim(UrlBase) = "" Then
+
+            Throw New Exception(
+                "No se encontró el parámetro " &
+                "ApiMedXpressUrl en el archivo config.ini.")
+
+        End If
+
+
+        UrlBase = UrlBase.Trim()
+
+
+        'Eliminar "/" final si existe
+        If UrlBase.EndsWith("/") Then
+
+            UrlBase =
+                UrlBase.Substring(
+                    0,
+                    UrlBase.Length - 1)
+
+        End If
+
+
+        '-------------------------------------------------------
+        ' 4. OBTENER TIMEOUT
+        '-------------------------------------------------------
+        Dim Timeout As Integer = 15000
+
+        If TimeoutTexto IsNot Nothing AndAlso
+           Trim(TimeoutTexto) <> "" Then
+
+            If Not Integer.TryParse(
+                TimeoutTexto,
+                Timeout) Then
+
+                Timeout = 15000
+
+            End If
+
+        End If
+
+
+        '-------------------------------------------------------
+        ' 5. CONSTRUIR URL
+        '-------------------------------------------------------
+        Dim Url As String =
+            UrlBase &
+            "/api/contratos" &
+            "?fechaDesde=" &
+            FechaDesde.ToString("yyyy-MM-dd") &
+            "&fechaHasta=" &
+            FechaHasta.ToString("yyyy-MM-dd")
+
+
+        '-------------------------------------------------------
+        ' 6. AGREGAR CLIENTE OPCIONAL
+        '-------------------------------------------------------
+        If CodigoCliente IsNot Nothing AndAlso
+           Trim(CodigoCliente) <> "" Then
+
+            Url &=
+                "&codigoCliente=" &
+                Uri.EscapeDataString(
+                    CodigoCliente.Trim())
+
+        End If
+
+
+        '-------------------------------------------------------
+        ' 7. AGREGAR CONTRATO OPCIONAL
+        '-------------------------------------------------------
+        If CodigoContrato IsNot Nothing AndAlso
+           Trim(CodigoContrato) <> "" Then
+
+            Url &=
+                "&codigoContrato=" &
+                Uri.EscapeDataString(
+                    CodigoContrato.Trim())
+
+        End If
+
+
+        '-------------------------------------------------------
+        ' 8. VALIDAR URL COMPLETA
+        '-------------------------------------------------------
+        Dim UriApi As Uri = Nothing
+
+        If Not Uri.TryCreate(
+            Url,
+            UriKind.Absolute,
+            UriApi) Then
+
+            Throw New Exception(
+                "La URL de la API de MedXpress " &
+                "no es válida." &
+                vbCrLf &
+                "URL: " & Url)
+
+        End If
+
+
+        Dim Request As HttpWebRequest = Nothing
+        Dim Response As HttpWebResponse = Nothing
+        Dim Reader As StreamReader = Nothing
+
+
+        Try
+
+            '-------------------------------------------------------
+            ' 9. CREAR REQUEST
+            '-------------------------------------------------------
+            Request =
+                CType(
+                    WebRequest.Create(UriApi),
+                    HttpWebRequest)
+
+            Request.Method = "GET"
+
+            Request.Accept =
+                "application/json"
+
+            Request.Timeout =
+                Timeout
+
+            Request.ReadWriteTimeout =
+                Timeout
+
+
+            '-------------------------------------------------------
+            ' 10. EJECUTAR LLAMADA
+            '-------------------------------------------------------
+            Response =
+                CType(
+                    Request.GetResponse(),
+                    HttpWebResponse)
+
+
+            '-------------------------------------------------------
+            ' 11. LEER RESPUESTA
+            '-------------------------------------------------------
+            If Response.StatusCode =
+               HttpStatusCode.OK Then
+
+                Reader =
+                    New StreamReader(
+                        Response.GetResponseStream(),
+                        Encoding.UTF8)
+
+                Dim Json As String =
+                    Reader.ReadToEnd()
+
+
+                '---------------------------------------------------
+                ' 12. DESERIALIZAR JSON
+                '---------------------------------------------------
+                Dim Serializer As New JavaScriptSerializer
+
+                Resultado =
+                    Serializer.Deserialize(
+                        Of List(Of Ent_ApiContrato))(Json)
+
+            End If
+
+
+            If Resultado Is Nothing Then
+
+                Resultado =
+                    New List(Of Ent_ApiContrato)
+
+            End If
+
+
+            Return Resultado
+
+
+        Catch Ex As WebException
+
+            Return ProcesarErrorWeb(Ex)
+
+
+        Catch Ex As Exception
+
+            Throw New Exception(
+                "Error al consultar los contratos de MedXpress: " &
+                Ex.Message,
+                Ex)
+
+
+        Finally
+
+            If Reader IsNot Nothing Then
+                Reader.Close()
+            End If
+
+            If Response IsNot Nothing Then
+                Response.Close()
+            End If
+
+        End Try
+
+    End Function
 End Class

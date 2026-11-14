@@ -226,5 +226,118 @@ Public Class Cls_SalAlmContrato
 
     End Function
 
+    Public Function get_SalAlmContrato_Reporte(ByVal FechaDesde As Date, ByVal FechaHasta As Date, Optional ByVal CodigoCliente As String = "",
+    Optional ByVal CodigoContrato As String = "") As DataTable
+
+        Dim Dt As New DataTable
+
+        cmd.Connection = Conex
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.CommandText = "Sp_Scal_Fa_SalAlmContrato_Reporte"
+
+        Try
+
+            If Conex.State = ConnectionState.Closed Then
+                Conex.Open()
+            End If
+
+            cmd.Parameters.Clear()
+
+
+            '-------------------------------------------------------
+            ' IMPORTANTE:
+            ' OleDb utiliza los parámetros por posición.
+            ' Mantener el mismo orden del Stored Procedure.
+            '-------------------------------------------------------
+
+            '-------------------------------------------------------
+            ' 1. FECHA DESDE
+            '-------------------------------------------------------
+            cmd.Parameters.Add(
+                "@FechaDesde",
+                OleDbType.Date).Value =
+                FechaDesde.Date
+
+
+            '-------------------------------------------------------
+            ' 2. FECHA HASTA
+            '-------------------------------------------------------
+            cmd.Parameters.Add(
+                "@FechaHasta",
+                OleDbType.Date).Value =
+                FechaHasta.Date
+
+
+            '-------------------------------------------------------
+            ' 3. CODIGO CLIENTE
+            '-------------------------------------------------------
+            If CodigoCliente Is Nothing OrElse
+               Trim(CodigoCliente) = "" Then
+
+                cmd.Parameters.Add(
+                    "@CodigoCliente",
+                    OleDbType.VarChar,
+                    6).Value = DBNull.Value
+
+            Else
+
+                cmd.Parameters.Add(
+                    "@CodigoCliente",
+                    OleDbType.VarChar,
+                    6).Value =
+                    CodigoCliente.Trim()
+
+            End If
+
+
+            '-------------------------------------------------------
+            ' 4. CODIGO CONTRATO
+            '-------------------------------------------------------
+            If CodigoContrato Is Nothing OrElse
+               Trim(CodigoContrato) = "" Then
+
+                cmd.Parameters.Add(
+                    "@CodigoContrato",
+                    OleDbType.VarChar,
+                    30).Value = DBNull.Value
+
+            Else
+
+                cmd.Parameters.Add(
+                    "@CodigoContrato",
+                    OleDbType.VarChar,
+                    30).Value =
+                    CodigoContrato.Trim()
+
+            End If
+
+
+            '-------------------------------------------------------
+            ' 5. EJECUTAR CONSULTA
+            '-------------------------------------------------------
+            Dim Da As New OleDbDataAdapter(cmd)
+
+            Da.Fill(Dt)
+
+
+        Catch ex As Exception
+
+            MsgBox(
+                "Error al consultar la facturación " &
+                "de contratos: " &
+                ex.Message)
+
+        Finally
+
+            If Conex.State = ConnectionState.Open Then
+                Conex.Close()
+            End If
+
+        End Try
+
+
+        Return Dt
+
+    End Function
 End Class
 

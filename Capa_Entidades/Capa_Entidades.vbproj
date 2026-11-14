@@ -115,6 +115,7 @@
     <Compile Include="6. Contabilidad\Ent_Asientos_Anexos.vb" />
     <Compile Include="Integraciones\Ent_ApiContrato.vb" />
     <Compile Include="Integraciones\Ent_ApiUbicacion.vb" />
+    <Compile Include="Integraciones\Ent_ReporteFacturacionContrato.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>

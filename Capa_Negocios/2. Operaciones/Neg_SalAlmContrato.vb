@@ -25,4 +25,14 @@ Public Class Neg_SalAlmContrato
 
     End Function
 
+    Public Function get_SalAlmContrato_Reporte(ByVal FechaDesde As Date, ByVal FechaHasta As Date, Optional ByVal CodigoCliente As String = "",
+    Optional ByVal CodigoContrato As String = "") As DataTable
+
+        Return Datos.get_SalAlmContrato_Reporte(
+            FechaDesde,
+            FechaHasta,
+            CodigoCliente,
+            CodigoContrato)
+
+    End Function
 End Class

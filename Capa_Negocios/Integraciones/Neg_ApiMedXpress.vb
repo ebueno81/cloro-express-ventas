@@ -5,9 +5,7 @@ Public Class Neg_ApiMedXpress
 
     Private Datos As New Cls_ApiMedXpress
 
-    Public Function ObtenerContratosCliente(
-        ByVal CodigoCliente As String
-    ) As List(Of Ent_ApiContrato)
+    Public Function ObtenerContratosCliente(ByVal CodigoCliente As String) As List(Of Ent_ApiContrato)
 
         If Trim(CodigoCliente) = "" Then
             Throw New Exception(
@@ -19,4 +17,14 @@ Public Class Neg_ApiMedXpress
 
     End Function
 
+    Public Function ObtenerContratosPorFiltro(ByVal FechaDesde As Date, ByVal FechaHasta As Date, Optional ByVal CodigoCliente As String = "",
+        Optional ByVal CodigoContrato As String = "") As List(Of Ent_ApiContrato)
+
+        Return Datos.ObtenerContratosPorFiltro(
+            FechaDesde,
+            FechaHasta,
+            CodigoCliente,
+            CodigoContrato)
+
+    End Function
 End Class

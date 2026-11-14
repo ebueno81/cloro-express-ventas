@@ -516,10 +516,7 @@ Public Class FrmSalAlmContrato
     '===============================================================
     ' GUARDAR
     '===============================================================
-    Private Sub BtnGuardar_Click(
-    ByVal sender As System.Object,
-    ByVal e As System.EventArgs
-) Handles BtnGuardar.Click
+    Private Sub BtnGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles BtnGuardar.Click
 
         Try
 

@@ -465,6 +465,12 @@
     <Compile Include="4. Reportes\FrmRepVtasGerencial.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="4. Reportes\FrmRptFacturacionContrato.Designer.vb">
+      <DependentUpon>FrmRptFacturacionContrato.vb</DependentUpon>
+    </Compile>
+    <Compile Include="4. Reportes\FrmRptFacturacionContrato.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="4. Reportes\FrmRptSalAlm.designer.vb">
       <DependentUpon>FrmRptSalAlm.vb</DependentUpon>
     </Compile>
@@ -742,6 +748,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="4. Reportes\FrmRepVtasGerencial.resx">
       <DependentUpon>FrmRepVtasGerencial.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="4. Reportes\FrmRptFacturacionContrato.resx">
+      <DependentUpon>FrmRptFacturacionContrato.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="4. Reportes\FrmRptSalAlm.resx">
       <DependentUpon>FrmRptSalAlm.vb</DependentUpon>
