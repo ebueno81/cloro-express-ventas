@@ -495,6 +495,16 @@
     <Compile Include="4. Reportes\FrmRptTransforCompras.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="4. Reportes\Informes\Dataset\DsEstadoCuentaContrato.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsEstadoCuentaContrato.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="4. Reportes\Informes\Dataset\DsFacturacionContrato.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DsFacturacionContrato.xsd</DependentUpon>
+    </Compile>
     <Compile Include="5. Administracion\FrmModulos.Designer.vb">
       <DependentUpon>FrmModulos.vb</DependentUpon>
     </Compile>
@@ -541,6 +551,12 @@
       <DependentUpon>FrmReportes.vb</DependentUpon>
     </Compile>
     <Compile Include="FrmReportes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVisorReporte.Designer.vb">
+      <DependentUpon>FrmVisorReporte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FrmVisorReporte.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ItemGiro.vb" />
@@ -770,6 +786,12 @@
     <EmbeddedResource Include="4. Reportes\FrmRptTransforCompras.resx">
       <DependentUpon>FrmRptTransforCompras.vb</DependentUpon>
     </EmbeddedResource>
+    <Content Include="4. Reportes\Informes\RptEstadoCuentaContrato.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="4. Reportes\Informes\RptFacturacionContrato.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="5. Administracion\FrmModulos.resx">
       <DependentUpon>FrmModulos.vb</DependentUpon>
     </EmbeddedResource>
@@ -794,6 +816,9 @@
     <EmbeddedResource Include="FrmReportes.resx">
       <DependentUpon>FrmReportes.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmVisorReporte.resx">
+      <DependentUpon>FrmVisorReporte.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
@@ -802,6 +827,28 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="4. Reportes\Informes\Dataset\DsEstadoCuentaContrato.xsc">
+      <DependentUpon>DsEstadoCuentaContrato.xsd</DependentUpon>
+    </None>
+    <None Include="4. Reportes\Informes\Dataset\DsEstadoCuentaContrato.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsEstadoCuentaContrato.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="4. Reportes\Informes\Dataset\DsEstadoCuentaContrato.xss">
+      <DependentUpon>DsEstadoCuentaContrato.xsd</DependentUpon>
+    </None>
+    <None Include="4. Reportes\Informes\Dataset\DsFacturacionContrato.xsc">
+      <DependentUpon>DsFacturacionContrato.xsd</DependentUpon>
+    </None>
+    <None Include="4. Reportes\Informes\Dataset\DsFacturacionContrato.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DsFacturacionContrato.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="4. Reportes\Informes\Dataset\DsFacturacionContrato.xss">
+      <DependentUpon>DsFacturacionContrato.xsd</DependentUpon>
+    </None>
     <None Include="app.config" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>

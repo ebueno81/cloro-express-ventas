@@ -7,6 +7,8 @@ Public Class FrmRepEstadoCuentaContrato
 
     Dim c_Neg_SalAlmContrato As New Neg_SalAlmContrato
 
+    Private ListaEstadoCuenta As New List(Of Ent_EstadoCuentaContrato)
+
     Private Sub FrmRepEstadoCuentaContrato_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
         Call Configurar_Grid()
@@ -574,19 +576,17 @@ Public Class FrmRepEstadoCuentaContrato
 
     End Sub
 
-    Private Sub BtnMostrar_Click(
-    sender As Object,
-    e As EventArgs) Handles BtnMostrar.Click
+    Private Sub BtnMostrar_Click(sender As Object, e As EventArgs) Handles BtnMostrar.Click
 
         Try
 
             If DtpDesde.Value.Date > DtpHasta.Value.Date Then
 
                 MsgBox(
-                "La fecha desde no puede ser mayor " &
-                "que la fecha hasta.",
-                vbExclamation,
-                Compañia)
+            "La fecha desde no puede ser mayor " &
+            "que la fecha hasta.",
+            vbExclamation,
+            Compañia)
 
                 Exit Sub
 
@@ -596,6 +596,8 @@ Public Class FrmRepEstadoCuentaContrato
             Dgv01.Rows.Clear()
 
             Call LimpiarTotales()
+
+            ListaEstadoCuenta.Clear()
 
 
             Cursor = Cursors.WaitCursor
@@ -607,11 +609,11 @@ Public Class FrmRepEstadoCuentaContrato
             Dim ContratosApi As List(Of Ent_ApiContrato)
 
             ContratosApi =
-            c_Neg_ApiMedXpress.ObtenerContratosPorFiltro(
-                DtpDesde.Value.Date,
-                DtpHasta.Value.Date,
-                Trim(TxtCodCliente.Text),
-                Trim(TxtContrato.Text))
+        c_Neg_ApiMedXpress.ObtenerContratosPorFiltro(
+            DtpDesde.Value.Date,
+            DtpHasta.Value.Date,
+            Trim(TxtCodCliente.Text),
+            Trim(TxtContrato.Text))
 
 
             '=======================================================
@@ -643,53 +645,45 @@ Public Class FrmRepEstadoCuentaContrato
             '=======================================================
             Dim DtFacturacion As DataTable
 
-            DtFacturacion =
-            c_Neg_SalAlmContrato.get_SalAlmContrato_EstadoCuenta(
-                Trim(TxtCodCliente.Text),
-                Trim(TxtContrato.Text))
+            DtFacturacion = c_Neg_SalAlmContrato.get_SalAlmContrato_EstadoCuenta(Trim(TxtCodCliente.Text),
+            Trim(TxtContrato.Text))
 
 
             '=======================================================
             ' 4. GENERAR TODAS LAS CUOTAS
             '=======================================================
-            Dim Cuotas As List(Of Ent_EstadoCuentaContrato)
-
-            Cuotas =
-            GenerarEstadoCuenta(
-                Contratos)
+            ListaEstadoCuenta = GenerarEstadoCuenta(Contratos)
 
 
             '=======================================================
             ' 5. CRUZAR CUOTAS CON OT / FACTURAS
             '=======================================================
-            Call CruzarEstadoCuenta(
-            Cuotas,
-            DtFacturacion)
+            Call CruzarEstadoCuenta(ListaEstadoCuenta, DtFacturacion)
 
 
             '=======================================================
             ' 6. CARGAR GRID
             '=======================================================
-            Call Cargar_Grid(
-            Cuotas)
+            Call Cargar_Grid(ListaEstadoCuenta)
 
 
             '=======================================================
             ' 7. TOTALIZAR
             '=======================================================
-            Call TotalizarEstadoCuenta(
-            Cuotas)
+            Call TotalizarEstadoCuenta(ListaEstadoCuenta)
 
 
         Catch ex As Exception
 
+            ListaEstadoCuenta.Clear()
+
             MsgBox(
-            "Error al consultar el estado de cuenta " &
-            "de contratos:" &
-            vbCrLf &
-            ex.Message,
-            vbCritical,
-            Compañia)
+        "Error al consultar el estado de cuenta " &
+        "de contratos:" &
+        vbCrLf &
+        ex.Message,
+        vbCritical,
+        Compañia)
 
         Finally
 
@@ -804,5 +798,264 @@ Public Class FrmRepEstadoCuentaContrato
             TxtCliente.Clear()
             BtnMostrar.Focus()
         End If
+    End Sub
+
+    Private Sub BtnImprimir_Click(sender As Object, e As EventArgs) Handles BtnImprimir.Click
+
+        Try
+
+            '=======================================================
+            ' 1. VALIDAR INFORMACION
+            '=======================================================
+            If ListaEstadoCuenta Is Nothing OrElse
+           ListaEstadoCuenta.Count = 0 Then
+
+                MsgBox(
+                "No existen datos para imprimir." &
+                vbCrLf &
+                "Primero debe realizar una consulta.",
+                vbExclamation,
+                Compañia)
+
+                Exit Sub
+
+            End If
+
+
+            Cursor = Cursors.WaitCursor
+
+
+            '=======================================================
+            ' 2. GENERAR DATATABLE PARA EL REPORTE
+            '=======================================================
+            Dim DtReporte As DsContratos.DtEstadoCuentaContratoDataTable
+
+            DtReporte = GenerarDataTableReporte()
+
+
+            '=======================================================
+            ' 3. ABRIR VISOR DEL REPORTE
+            '=======================================================
+            Dim Frm As New FrmVisorReporte
+
+
+            '=======================================================
+            ' 4. LIMPIAR ORIGENES ANTERIORES
+            '=======================================================
+            Frm.RptVisor.LocalReport.DataSources.Clear()
+
+
+            '=======================================================
+            ' 5. CONFIGURAR REPORTE
+            '=======================================================
+            Dim RutaReporte As String
+
+            RutaReporte = Application.StartupPath & "\4. Reportes\Informes\RptEstadoCuentaContrato.rdlc"
+
+            If Not System.IO.File.Exists(RutaReporte) Then
+
+                Frm.Dispose()
+
+                MsgBox("No se encontró el archivo del reporte:" & vbCrLf & RutaReporte, vbExclamation, Compañia)
+
+                Exit Sub
+
+            End If
+
+            Frm.RptVisor.LocalReport.ReportPath = RutaReporte
+
+            '=======================================================
+            ' 6. ASIGNAR DATOS
+            '=======================================================
+            Dim Fuente As New Microsoft.Reporting.WinForms.ReportDataSource
+
+            Fuente.Name = "DtEstadoCuentaContrato"
+            Fuente.Value = DtReporte
+
+            Frm.RptVisor.LocalReport.DataSources.Add(Fuente)
+
+
+            '=======================================================
+            ' 7. REFRESCAR REPORTE
+            '=======================================================
+            Frm.RptVisor.RefreshReport()
+
+
+            '=======================================================
+            ' 7. REFRESCAR REPORTE
+            '=======================================================
+            Frm.RptVisor.RefreshReport()
+
+
+            '=======================================================
+            ' 8. CONFIGURAR VISTA PREVIA
+            '=======================================================
+            Frm.RptVisor.SetDisplayMode(Microsoft.Reporting.WinForms.DisplayMode.PrintLayout)
+
+            Frm.RptVisor.ZoomMode = Microsoft.Reporting.WinForms.ZoomMode.Percent
+
+            Frm.RptVisor.ZoomPercent = 100
+
+
+            '=======================================================
+            ' 9. MOSTRAR VISOR
+            '=======================================================
+            Frm.WindowState = FormWindowState.Maximized
+
+            Frm.ShowDialog()
+
+
+        Catch ex As Exception
+
+            MsgBox(
+            "Error al generar el reporte de estado de cuenta:" &
+            vbCrLf &
+            ex.Message,
+            vbCritical,
+            Compañia)
+
+        Finally
+
+            Cursor = Cursors.Default
+
+        End Try
+
+    End Sub
+
+    Private Function GenerarDataTableReporte() As DsContratos.DtEstadoCuentaContratoDataTable
+
+        Dim Dt As New DsContratos.DtEstadoCuentaContratoDataTable
+
+        For Each Item As Ent_EstadoCuentaContrato In ListaEstadoCuenta
+
+            Dim Fila As DsContratos.DtEstadoCuentaContratoRow
+
+            Fila = Dt.NewDtEstadoCuentaContratoRow()
+
+
+            '=======================================================
+            ' CONTRATO / CLIENTE
+            '=======================================================
+            Fila.IdContrato = Item.IdContrato
+            Fila.CodigoContrato = Item.CodigoContrato
+            Fila.CodigoCliente = Item.CodigoCliente
+            Fila.NombreCliente = Item.NombreCliente
+
+            Fila.FechaInicioContrato = Item.FechaInicioContrato
+            Fila.FechaFinContrato = Item.FechaFinContrato
+
+
+            '=======================================================
+            ' CUOTA
+            '=======================================================
+            Fila.NroCuota = Item.NroCuota
+            Fila.PeriodoDesde = Item.PeriodoDesde
+            Fila.PeriodoHasta = Item.PeriodoHasta
+
+
+            '=======================================================
+            ' UBICACIONES
+            '=======================================================
+            If Item.Ubicaciones Is Nothing OrElse
+               Trim(Item.Ubicaciones) = "" Then
+
+                Fila.SetUbicacionesNull()
+
+            Else
+
+                Fila.Ubicaciones = Item.Ubicaciones
+
+            End If
+
+
+            '=======================================================
+            ' ORDEN DE TRABAJO
+            '=======================================================
+            If Item.SerieOT Is Nothing OrElse
+               Trim(Item.SerieOT) = "" Then
+
+                Fila.SetSerieOTNull()
+
+            Else
+
+                Fila.SerieOT = Item.SerieOT
+
+            End If
+
+
+            If Item.NroOT Is Nothing OrElse
+               Trim(Item.NroOT) = "" Then
+
+                Fila.SetNroOTNull()
+
+            Else
+
+                Fila.NroOT = Item.NroOT
+
+            End If
+
+
+            '=======================================================
+            ' ESTADO
+            '=======================================================
+            Fila.Estado = Item.Estado
+
+
+            '=======================================================
+            ' FACTURA
+            '=======================================================
+            If Item.SerieFactura Is Nothing OrElse
+               Trim(Item.SerieFactura) = "" Then
+
+                Fila.SetSerieFacturaNull()
+
+            Else
+
+                Fila.SerieFactura = Item.SerieFactura
+
+            End If
+
+
+            If Item.NumeroFactura Is Nothing OrElse
+               Trim(Item.NumeroFactura) = "" Then
+
+                Fila.SetNumeroFacturaNull()
+
+            Else
+
+                Fila.NumeroFactura = Item.NumeroFactura
+
+            End If
+
+
+            If Item.FechaEmision.HasValue Then
+
+                Fila.FechaEmision = Item.FechaEmision.Value
+
+            Else
+
+                Fila.SetFechaEmisionNull()
+
+            End If
+
+
+            '=======================================================
+            ' IMPORTE
+            '=======================================================
+            Fila.Moneda = Item.Moneda
+            Fila.Monto = Item.Monto
+
+
+            Dt.AddDtEstadoCuentaContratoRow(Fila)
+
+        Next
+
+
+        Return Dt
+
+    End Function
+
+    Private Sub BtnExportar_Click(sender As Object, e As EventArgs) Handles BtnExportar.Click
+        Call ExportarDataGridViewExcel(Dgv01, "CONTROL DE CUOTAS DE CONTRATOS", "Cuotas de Contratos", False, PgbExportar)
     End Sub
 End Class

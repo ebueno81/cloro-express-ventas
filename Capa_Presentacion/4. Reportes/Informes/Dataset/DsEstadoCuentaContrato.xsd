@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DsContratos"
+    targetNamespace="http://tempuri.org/DsContratos.xsd"
+    xmlns:mstns="http://tempuri.org/DsContratos.xsd"
+    xmlns="http://tempuri.org/DsContratos.xsd"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
+    attributeFormDefault="qualified"
+    elementFormDefault="qualified">
+
+  <xs:element name="DsContratos"
+              msdata:IsDataSet="true"
+              msdata:UseCurrentLocale="true">
+
+    <xs:complexType>
+
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+
+        <xs:element name="DtEstadoCuentaContrato">
+
+          <xs:complexType>
+
+            <xs:sequence>
+
+              <xs:element name="IdContrato"
+                          type="xs:int"
+                          minOccurs="0" />
+
+              <xs:element name="CodigoContrato"
+                          type="xs:string"
+                          minOccurs="0" />
+
+              <xs:element name="CodigoCliente"
+                          type="xs:string"
+                          minOccurs="0" />
+
+              <xs:element name="NombreCliente"
+                          type="xs:string"
+                          minOccurs="0" />
+
+              <xs:element name="FechaInicioContrato"
+                          type="xs:dateTime"
+                          minOccurs="0" />
+
+              <xs:element name="FechaFinContrato"
+                          type="xs:dateTime"
+                          minOccurs="0" />
+
+              <xs:element name="NroCuota"
+                          type="xs:int"
+                          minOccurs="0" />
+
+              <xs:element name="PeriodoDesde"
+                          type="xs:dateTime"
+                          minOccurs="0" />
+
+              <xs:element name="PeriodoHasta"
+                          type="xs:dateTime"
+                          minOccurs="0" />
+
+              <xs:element name="Ubicaciones"
+                          type="xs:string"
+                          minOccurs="0" />
+
+              <xs:element name="SerieOT"
+                          type="xs:string"
+                          minOccurs="0" />
+
+              <xs:element name="NroOT"
+                          type="xs:string"
+                          minOccurs="0" />
+
+              <xs:element name="Estado"
+                          type="xs:string"
+                          minOccurs="0" />
+
+              <xs:element name="SerieFactura"
+                          type="xs:string"
+                          minOccurs="0" />
+
+              <xs:element name="NumeroFactura"
+                          type="xs:string"
+                          minOccurs="0" />
+
+              <xs:element name="FechaEmision"
+                          type="xs:dateTime"
+                          minOccurs="0" />
+
+              <xs:element name="Moneda"
+                          type="xs:string"
+                          minOccurs="0" />
+
+              <xs:element name="Monto"
+                          type="xs:decimal"
+                          minOccurs="0" />
+
+            </xs:sequence>
+
+          </xs:complexType>
+
+        </xs:element>
+
+      </xs:choice>
+
+    </xs:complexType>
+
+  </xs:element>
+
+</xs:schema>

@@ -46,7 +46,6 @@ Partial Class FrmRptFacturacionContrato
         Me.LblRegistros = New System.Windows.Forms.Label()
         Me.Dgv01 = New System.Windows.Forms.DataGridView()
         Me.PnlResumen = New System.Windows.Forms.Panel()
-        Me.PgbExportar = New System.Windows.Forms.ProgressBar()
         Me.LblResumen = New System.Windows.Forms.Label()
         Me.LblFacturado = New System.Windows.Forms.Label()
         Me.LblPendiente = New System.Windows.Forms.Label()
@@ -59,6 +58,7 @@ Partial Class FrmRptFacturacionContrato
         Me.BtnExportar = New System.Windows.Forms.Button()
         Me.BtnImprimir = New System.Windows.Forms.Button()
         Me.BtnCerrar = New System.Windows.Forms.Button()
+        Me.PgbExportar = New System.Windows.Forms.ProgressBar()
         Me.PnlTitulo.SuspendLayout()
         Me.GrpFiltros.SuspendLayout()
         Me.PnlResultadoTitulo.SuspendLayout()
@@ -374,14 +374,6 @@ Partial Class FrmRptFacturacionContrato
         Me.PnlResumen.Size = New System.Drawing.Size(1250, 115)
         Me.PnlResumen.TabIndex = 4
         '
-        'PgbExportar
-        '
-        Me.PgbExportar.Location = New System.Drawing.Point(755, 29)
-        Me.PgbExportar.Name = "PgbExportar"
-        Me.PgbExportar.Size = New System.Drawing.Size(145, 23)
-        Me.PgbExportar.TabIndex = 12
-        Me.PgbExportar.Visible = False
-        '
         'LblResumen
         '
         Me.LblResumen.AutoSize = True
@@ -538,6 +530,15 @@ Partial Class FrmRptFacturacionContrato
         Me.BtnCerrar.TabIndex = 11
         Me.BtnCerrar.Text = "CERRAR"
         Me.BtnCerrar.UseVisualStyleBackColor = False
+        '
+        'PgbExportar
+        '
+        Me.PgbExportar.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.PgbExportar.Location = New System.Drawing.Point(755, 101)
+        Me.PgbExportar.Name = "PgbExportar"
+        Me.PgbExportar.Size = New System.Drawing.Size(455, 8)
+        Me.PgbExportar.TabIndex = 12
+        Me.PgbExportar.Visible = False
         '
         'FrmRptFacturacionContrato
         '

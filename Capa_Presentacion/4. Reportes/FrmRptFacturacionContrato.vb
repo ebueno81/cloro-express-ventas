@@ -7,6 +7,8 @@ Public Class FrmRptFacturacionContrato
 
     Dim c_Neg_SalAlmContrato As New Neg_SalAlmContrato
 
+    Private ListaFacturacionContrato As New List(Of Ent_ReporteFacturacionContrato)
+
     Private Sub FrmRptFacturacionContrato_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Call Configurar_Grid()
     End Sub
@@ -629,18 +631,21 @@ Public Class FrmRptFacturacionContrato
             If DtpDesde.Value.Date > DtpHasta.Value.Date Then
 
                 MsgBox(
-                "La fecha desde no puede ser mayor " &
-                "que la fecha hasta.",
-                vbExclamation,
-                Compañia)
+            "La fecha desde no puede ser mayor " &
+            "que la fecha hasta.",
+            vbExclamation,
+            Compañia)
 
                 Exit Sub
 
             End If
 
+
             Dgv01.Rows.Clear()
 
-            LimpiarTotales()
+            Call LimpiarTotales()
+
+            ListaFacturacionContrato.Clear()
 
             Cursor = Cursors.WaitCursor
 
@@ -650,42 +655,36 @@ Public Class FrmRptFacturacionContrato
             '=======================================================
             Dim DtFacturacion As DataTable
 
-            DtFacturacion =
-            c_Neg_SalAlmContrato.get_SalAlmContrato_Reporte(
-                DtpDesde.Value.Date,
-                DtpHasta.Value.Date,
-                Trim(TxtCodCliente.Text),
-                Trim(TxtContrato.Text))
+            DtFacturacion = c_Neg_SalAlmContrato.get_SalAlmContrato_Reporte(
+            DtpDesde.Value.Date,
+            DtpHasta.Value.Date,
+            Trim(TxtCodCliente.Text),
+            Trim(TxtContrato.Text))
 
 
             '=======================================================
             ' 2. GENERAR LISTA DE FACTURACION
             '=======================================================
-            Dim Resultado As List(Of Ent_ReporteFacturacionContrato)
-
-            Resultado = GenerarListaFacturacion(DtFacturacion)
+            ListaFacturacionContrato = GenerarListaFacturacion(DtFacturacion)
 
 
             '=======================================================
             ' 3. MOSTRAR RESULTADO
             '=======================================================
-            Call Cargar_Grid(Resultado)
+            Call Cargar_Grid(ListaFacturacionContrato)
+
 
             '=======================================================
             ' 4. TOTALIZAR FACTURACION
             '=======================================================
+            Call TotalizarFacturacion(ListaFacturacionContrato)
 
-            Call TotalizarFacturacion(Resultado)
 
         Catch ex As Exception
 
-            MsgBox(
-            "Error al consultar la facturación " &
-            "de contratos:" &
-            vbCrLf &
-            ex.Message,
-            vbCritical,
-            Compañia)
+            ListaFacturacionContrato.Clear()
+
+            MsgBox("Error al consultar la facturación " & "de contratos:" & vbCrLf & ex.Message, vbCritical, Compañia)
 
         Finally
 
@@ -812,4 +811,299 @@ Public Class FrmRptFacturacionContrato
             BtnMostrar.Focus()
         End If
     End Sub
+
+    Private Sub BtnImprimir_Click(sender As Object, e As EventArgs) Handles BtnImprimir.Click
+
+        Try
+
+            '=======================================================
+            ' 1. VALIDAR INFORMACION
+            '=======================================================
+            If ListaFacturacionContrato Is Nothing OrElse
+           ListaFacturacionContrato.Count = 0 Then
+
+                MsgBox(
+                "No existen datos para imprimir." &
+                vbCrLf &
+                "Primero debe realizar una consulta.",
+                vbExclamation,
+                Compañia)
+
+                Exit Sub
+
+            End If
+
+
+            Cursor = Cursors.WaitCursor
+
+
+            '=======================================================
+            ' 2. GENERAR DATATABLE PARA EL REPORTE
+            '=======================================================
+            Dim DtReporte As DsFacturacionContrato.DtFacturacionContratoDataTable
+
+            DtReporte = GenerarDataTableReporteFacturacion()
+
+
+            '=======================================================
+            ' 3. VALIDAR RESULTADO DEL FILTRO
+            '=======================================================
+            If DtReporte.Rows.Count = 0 Then
+
+                MsgBox(
+                "No existen registros para imprimir " &
+                "con el estado seleccionado.",
+                vbExclamation,
+                Compañia)
+
+                Exit Sub
+
+            End If
+
+
+            '=======================================================
+            ' 4. ABRIR VISOR DEL REPORTE
+            '=======================================================
+            Dim Frm As New FrmVisorReporte
+
+
+            '=======================================================
+            ' 5. LIMPIAR ORIGENES ANTERIORES
+            '=======================================================
+            Frm.RptVisor.LocalReport.DataSources.Clear()
+
+
+            '=======================================================
+            ' 6. CONFIGURAR REPORTE
+            '=======================================================
+            Dim RutaReporte As String
+
+            RutaReporte =
+            Application.StartupPath &
+            "\4. Reportes\Informes\RptFacturacionContrato.rdlc"
+
+
+            If Not System.IO.File.Exists(RutaReporte) Then
+
+                Frm.Dispose()
+
+                MsgBox(
+                "No se encontró el archivo del reporte:" &
+                vbCrLf &
+                RutaReporte,
+                vbExclamation,
+                Compañia)
+
+                Exit Sub
+
+            End If
+
+
+            Frm.RptVisor.LocalReport.ReportPath = RutaReporte
+
+
+            '=======================================================
+            ' 7. ASIGNAR DATOS
+            '=======================================================
+            Dim Fuente As New Microsoft.Reporting.WinForms.ReportDataSource
+
+            Fuente.Name = "DtFacturacionContrato"
+            Fuente.Value = DtReporte
+
+            Frm.RptVisor.LocalReport.DataSources.Add(Fuente)
+
+
+            '=======================================================
+            ' 8. REFRESCAR REPORTE
+            '=======================================================
+            Frm.RptVisor.RefreshReport()
+
+
+            '=======================================================
+            ' 9. CONFIGURAR VISTA PREVIA
+            '=======================================================
+            Frm.RptVisor.SetDisplayMode(
+            Microsoft.Reporting.WinForms.DisplayMode.PrintLayout)
+
+            Frm.RptVisor.ZoomMode =
+            Microsoft.Reporting.WinForms.ZoomMode.Percent
+
+            Frm.RptVisor.ZoomPercent = 100
+
+
+            '=======================================================
+            ' 10. MOSTRAR VISOR
+            '=======================================================
+            Frm.WindowState = FormWindowState.Maximized
+
+            Frm.ShowDialog()
+
+
+        Catch ex As Exception
+
+            MsgBox(
+            "Error al generar el reporte de " &
+            "facturación de contratos:" &
+            vbCrLf &
+            ex.Message,
+            vbCritical,
+            Compañia)
+
+        Finally
+
+            Cursor = Cursors.Default
+
+        End Try
+
+    End Sub
+
+    Private Function GenerarDataTableReporteFacturacion() As DsFacturacionContrato.DtFacturacionContratoDataTable
+
+        Dim Dt As New DsFacturacionContrato.DtFacturacionContratoDataTable
+
+
+        For Each Item As Ent_ReporteFacturacionContrato In ListaFacturacionContrato
+
+            '=======================================================
+            ' APLICAR EL MISMO FILTRO DE ESTADO DEL FORMULARIO
+            '=======================================================
+            Dim Incluir As Boolean = True
+
+            If RdbFacturados.Checked Then
+
+                Incluir = (Item.Estado = "FACTURADO")
+
+            ElseIf RdbPendienteFacturar.Checked Then
+
+                Incluir = (Item.Estado = "PENDIENTE FACTURAR")
+
+            End If
+
+
+            If Incluir Then
+
+                Dim Fila As DsFacturacionContrato.DtFacturacionContratoRow
+
+                Fila = Dt.NewDtFacturacionContratoRow()
+
+
+                '===================================================
+                ' CLIENTE / CONTRATO
+                '===================================================
+                Fila.IdContrato = Item.IdContrato
+                Fila.CodigoContrato = Item.CodigoContrato
+                Fila.CodigoCliente = Item.CodigoCliente
+                Fila.NombreCliente = Item.NombreCliente
+
+
+                '===================================================
+                ' PERIODO
+                '===================================================
+                Fila.PeriodoDesde = Item.PeriodoDesde
+                Fila.PeriodoHasta = Item.PeriodoHasta
+
+
+                '===================================================
+                ' UBICACIONES
+                '===================================================
+                If Item.Ubicaciones Is Nothing OrElse
+                   Trim(Item.Ubicaciones) = "" Then
+
+                    Fila.SetUbicacionesNull()
+
+                Else
+
+                    Fila.Ubicaciones = Item.Ubicaciones
+
+                End If
+
+
+                '===================================================
+                ' ORDEN DE TRABAJO
+                '===================================================
+                If Item.SerieOT Is Nothing OrElse
+                   Trim(Item.SerieOT) = "" Then
+
+                    Fila.SetSerieOTNull()
+
+                Else
+
+                    Fila.SerieOT = Item.SerieOT
+
+                End If
+
+
+                If Item.NroOT Is Nothing OrElse
+                   Trim(Item.NroOT) = "" Then
+
+                    Fila.SetNroOTNull()
+
+                Else
+
+                    Fila.NroOT = Item.NroOT
+
+                End If
+
+
+                '===================================================
+                ' ESTADO
+                '===================================================
+                Fila.Estado = Item.Estado
+
+
+                '===================================================
+                ' FACTURA
+                '===================================================
+                If Item.SerieFactura Is Nothing OrElse
+                   Trim(Item.SerieFactura) = "" Then
+
+                    Fila.SetSerieFacturaNull()
+
+                Else
+
+                    Fila.SerieFactura = Item.SerieFactura
+
+                End If
+
+
+                If Item.NumeroFactura Is Nothing OrElse
+                   Trim(Item.NumeroFactura) = "" Then
+
+                    Fila.SetNumeroFacturaNull()
+
+                Else
+
+                    Fila.NumeroFactura = Item.NumeroFactura
+
+                End If
+
+
+                If Item.FechaEmision.HasValue Then
+
+                    Fila.FechaEmision = Item.FechaEmision.Value
+
+                Else
+
+                    Fila.SetFechaEmisionNull()
+
+                End If
+
+
+                '===================================================
+                ' MONEDA / MONTO
+                '===================================================
+                Fila.Moneda = Item.Moneda
+                Fila.Monto = Item.Monto
+
+
+                Dt.AddDtFacturacionContratoRow(Fila)
+
+            End If
+
+        Next
+
+
+        Return Dt
+
+    End Function
 End Class
