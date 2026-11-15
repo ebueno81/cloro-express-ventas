@@ -339,5 +339,104 @@ Public Class Cls_SalAlmContrato
         Return Dt
 
     End Function
+
+    Public Function get_SalAlmContrato_EstadoCuenta(
+    Optional ByVal CodigoCliente As String = "",
+    Optional ByVal CodigoContrato As String = "") As DataTable
+
+        Dim Dt As New DataTable
+
+        cmd.Connection = Conex
+        cmd.CommandType = CommandType.StoredProcedure
+        cmd.CommandText = "Sp_Scal_Fa_SalAlmContrato_EstadoCuenta"
+
+        Try
+
+            If Conex.State = ConnectionState.Closed Then
+                Conex.Open()
+            End If
+
+            cmd.Parameters.Clear()
+
+
+            '-------------------------------------------------------
+            ' IMPORTANTE:
+            ' OleDb utiliza los parámetros por posición.
+            ' Mantener el mismo orden del Stored Procedure.
+            '-------------------------------------------------------
+
+
+            '-------------------------------------------------------
+            ' 1. CODIGO CLIENTE
+            '-------------------------------------------------------
+            If CodigoCliente Is Nothing OrElse
+               Trim(CodigoCliente) = "" Then
+
+                cmd.Parameters.Add(
+                    "@CodigoCliente",
+                    OleDbType.VarChar,
+                    6).Value = DBNull.Value
+
+            Else
+
+                cmd.Parameters.Add(
+                    "@CodigoCliente",
+                    OleDbType.VarChar,
+                    6).Value =
+                    CodigoCliente.Trim()
+
+            End If
+
+
+            '-------------------------------------------------------
+            ' 2. CODIGO CONTRATO
+            '-------------------------------------------------------
+            If CodigoContrato Is Nothing OrElse
+               Trim(CodigoContrato) = "" Then
+
+                cmd.Parameters.Add(
+                    "@CodigoContrato",
+                    OleDbType.VarChar,
+                    30).Value = DBNull.Value
+
+            Else
+
+                cmd.Parameters.Add(
+                    "@CodigoContrato",
+                    OleDbType.VarChar,
+                    30).Value =
+                    CodigoContrato.Trim()
+
+            End If
+
+
+            '-------------------------------------------------------
+            ' 3. EJECUTAR CONSULTA
+            '-------------------------------------------------------
+            Dim Da As New OleDbDataAdapter(cmd)
+
+            Da.Fill(Dt)
+
+
+        Catch ex As Exception
+
+            MsgBox(
+                "Error al consultar el estado de cuenta " &
+                "de contratos: " &
+                ex.Message)
+
+        Finally
+
+            If Conex.State = ConnectionState.Open Then
+                Conex.Close()
+            End If
+
+        End Try
+
+
+        Return Dt
+
+    End Function
+
 End Class
 

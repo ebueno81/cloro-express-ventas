@@ -259,6 +259,20 @@ Public Class FrmConClientes
                         FrmAlmSalTA.TxtNroOS.Focus()
                     End If
 
+                    'Reporte estado de cuenta...
+                    If Val(TxtVar.Text) = 16 Then
+                        FrmRepEstadoCuentaContrato.TxtCodCliente.Text = .Rows(fila).Cells("Codigo").Value
+                        FrmRepEstadoCuentaContrato.TxtCliente.Text = .Rows(fila).Cells("Cliente").Value
+                        FrmRepEstadoCuentaContrato.BtnMostrar.Focus()
+                    End If
+
+                    'Reporte facturas por contrato...
+                    If Val(TxtVar.Text) = 17 Then
+                        FrmRptFacturacionContrato.TxtCodCliente.Text = .Rows(fila).Cells("Codigo").Value
+                        FrmRptFacturacionContrato.TxtCliente.Text = .Rows(fila).Cells("Cliente").Value
+                        FrmRptFacturacionContrato.BtnMostrar.Focus()
+                    End If
+
                     Me.Close()
                 End If
             End If

@@ -40,13 +40,13 @@ Partial Class FrmRptFacturacionContrato
         Me.RdbTodos = New System.Windows.Forms.RadioButton()
         Me.RdbFacturados = New System.Windows.Forms.RadioButton()
         Me.RdbPendienteFacturar = New System.Windows.Forms.RadioButton()
-        Me.RdbPendienteOT = New System.Windows.Forms.RadioButton()
         Me.BtnMostrar = New System.Windows.Forms.Button()
         Me.PnlResultadoTitulo = New System.Windows.Forms.Panel()
         Me.LblResultado = New System.Windows.Forms.Label()
         Me.LblRegistros = New System.Windows.Forms.Label()
         Me.Dgv01 = New System.Windows.Forms.DataGridView()
         Me.PnlResumen = New System.Windows.Forms.Panel()
+        Me.PgbExportar = New System.Windows.Forms.ProgressBar()
         Me.LblResumen = New System.Windows.Forms.Label()
         Me.LblFacturado = New System.Windows.Forms.Label()
         Me.LblPendiente = New System.Windows.Forms.Label()
@@ -59,7 +59,6 @@ Partial Class FrmRptFacturacionContrato
         Me.BtnExportar = New System.Windows.Forms.Button()
         Me.BtnImprimir = New System.Windows.Forms.Button()
         Me.BtnCerrar = New System.Windows.Forms.Button()
-        Me.PgbExportar = New System.Windows.Forms.ProgressBar()
         Me.PnlTitulo.SuspendLayout()
         Me.GrpFiltros.SuspendLayout()
         Me.PnlResultadoTitulo.SuspendLayout()
@@ -119,7 +118,6 @@ Partial Class FrmRptFacturacionContrato
         Me.GrpFiltros.Controls.Add(Me.RdbTodos)
         Me.GrpFiltros.Controls.Add(Me.RdbFacturados)
         Me.GrpFiltros.Controls.Add(Me.RdbPendienteFacturar)
-        Me.GrpFiltros.Controls.Add(Me.RdbPendienteOT)
         Me.GrpFiltros.Controls.Add(Me.BtnMostrar)
         Me.GrpFiltros.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.GrpFiltros.ForeColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
@@ -274,22 +272,10 @@ Partial Class FrmRptFacturacionContrato
         Me.RdbPendienteFacturar.ForeColor = System.Drawing.Color.FromArgb(CType(CType(190, Byte), Integer), CType(CType(120, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.RdbPendienteFacturar.Location = New System.Drawing.Point(255, 104)
         Me.RdbPendienteFacturar.Name = "RdbPendienteFacturar"
-        Me.RdbPendienteFacturar.Size = New System.Drawing.Size(101, 19)
+        Me.RdbPendienteFacturar.Size = New System.Drawing.Size(145, 19)
         Me.RdbPendienteFacturar.TabIndex = 13
-        Me.RdbPendienteFacturar.Text = "Pend. Facturar"
+        Me.RdbPendienteFacturar.Text = "Pendiente por Facturar"
         Me.RdbPendienteFacturar.UseVisualStyleBackColor = True
-        '
-        'RdbPendienteOT
-        '
-        Me.RdbPendienteOT.AutoSize = True
-        Me.RdbPendienteOT.Font = New System.Drawing.Font("Segoe UI", 9.0!)
-        Me.RdbPendienteOT.ForeColor = System.Drawing.Color.FromArgb(CType(CType(180, Byte), Integer), CType(CType(60, Byte), Integer), CType(CType(60, Byte), Integer))
-        Me.RdbPendienteOT.Location = New System.Drawing.Point(390, 104)
-        Me.RdbPendienteOT.Name = "RdbPendienteOT"
-        Me.RdbPendienteOT.Size = New System.Drawing.Size(73, 19)
-        Me.RdbPendienteOT.TabIndex = 14
-        Me.RdbPendienteOT.Text = "Pend. OT"
-        Me.RdbPendienteOT.UseVisualStyleBackColor = True
         '
         'BtnMostrar
         '
@@ -361,7 +347,7 @@ Partial Class FrmRptFacturacionContrato
         Me.Dgv01.RowHeadersVisible = False
         Me.Dgv01.RowTemplate.Height = 25
         Me.Dgv01.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
-        Me.Dgv01.Size = New System.Drawing.Size(1250, 360)
+        Me.Dgv01.Size = New System.Drawing.Size(1250, 264)
         Me.Dgv01.TabIndex = 3
         '
         'PnlResumen
@@ -383,10 +369,18 @@ Partial Class FrmRptFacturacionContrato
         Me.PnlResumen.Controls.Add(Me.BtnExportar)
         Me.PnlResumen.Controls.Add(Me.BtnImprimir)
         Me.PnlResumen.Controls.Add(Me.BtnCerrar)
-        Me.PnlResumen.Location = New System.Drawing.Point(15, 641)
+        Me.PnlResumen.Location = New System.Drawing.Point(15, 541)
         Me.PnlResumen.Name = "PnlResumen"
         Me.PnlResumen.Size = New System.Drawing.Size(1250, 115)
         Me.PnlResumen.TabIndex = 4
+        '
+        'PgbExportar
+        '
+        Me.PgbExportar.Location = New System.Drawing.Point(755, 29)
+        Me.PgbExportar.Name = "PgbExportar"
+        Me.PgbExportar.Size = New System.Drawing.Size(145, 23)
+        Me.PgbExportar.TabIndex = 12
+        Me.PgbExportar.Visible = False
         '
         'LblResumen
         '
@@ -545,31 +539,23 @@ Partial Class FrmRptFacturacionContrato
         Me.BtnCerrar.Text = "CERRAR"
         Me.BtnCerrar.UseVisualStyleBackColor = False
         '
-        'PgbExportar
-        '
-        Me.PgbExportar.Location = New System.Drawing.Point(755, 29)
-        Me.PgbExportar.Name = "PgbExportar"
-        Me.PgbExportar.Size = New System.Drawing.Size(145, 23)
-        Me.PgbExportar.TabIndex = 12
-        Me.PgbExportar.Visible = False
-        '
         'FrmRptFacturacionContrato
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(245, Byte), Integer), CType(CType(247, Byte), Integer), CType(CType(250, Byte), Integer))
-        Me.ClientSize = New System.Drawing.Size(1280, 770)
+        Me.ClientSize = New System.Drawing.Size(1280, 661)
         Me.Controls.Add(Me.PnlResumen)
         Me.Controls.Add(Me.Dgv01)
         Me.Controls.Add(Me.PnlResultadoTitulo)
         Me.Controls.Add(Me.GrpFiltros)
         Me.Controls.Add(Me.PnlTitulo)
         Me.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.MaximizeBox = False
         Me.MinimumSize = New System.Drawing.Size(1100, 700)
         Me.Name = "FrmRptFacturacionContrato"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Control de Facturación de Contratos"
-        Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         Me.PnlTitulo.ResumeLayout(False)
         Me.PnlTitulo.PerformLayout()
         Me.GrpFiltros.ResumeLayout(False)
@@ -608,7 +594,6 @@ Partial Class FrmRptFacturacionContrato
     Friend WithEvents RdbTodos As RadioButton
     Friend WithEvents RdbFacturados As RadioButton
     Friend WithEvents RdbPendienteFacturar As RadioButton
-    Friend WithEvents RdbPendienteOT As RadioButton
 
     Friend WithEvents BtnMostrar As Button
 

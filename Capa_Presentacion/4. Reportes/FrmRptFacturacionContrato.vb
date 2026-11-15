@@ -194,13 +194,6 @@ Public Class FrmRptFacturacionContrato
             End If
 
 
-            If RdbPendienteOT.Checked = True AndAlso
-           Item.Estado <> "PENDIENTE OT" Then
-
-                Continue For
-
-            End If
-
 
             '-------------------------------------------------------
             ' AGREGAR FILA
@@ -495,20 +488,16 @@ Public Class FrmRptFacturacionContrato
 
     End Function
 
-    Private Function CruzarPeriodosFacturacion(ByVal Periodos As List(Of Ent_ReporteFacturacionContrato),
-    ByVal DtFacturacion As DataTable) As List(Of Ent_ReporteFacturacionContrato)
+    Private Function GenerarListaFacturacion(ByVal DtFacturacion As DataTable) As List(Of Ent_ReporteFacturacionContrato)
 
         Dim Resultado As New List(Of Ent_ReporteFacturacionContrato)
 
 
-        '===========================================================
-        ' 1. AGREGAR TODAS LAS OT REALES
-        '===========================================================
         For Each Fila As DataRow In DtFacturacion.Rows
 
 
             '-------------------------------------------------------
-            ' NO CONSIDERAR OT ANULADAS
+            ' NO MOSTRAR ORDENES ANULADAS
             '-------------------------------------------------------
             If Val(Fila("AnuladoOT").ToString) <> 0 Then
                 Continue For
@@ -519,7 +508,7 @@ Public Class FrmRptFacturacionContrato
 
 
             '-------------------------------------------------------
-            ' DATOS DEL CONTRATO / OT
+            ' CONTRATO
             '-------------------------------------------------------
             Item.IdContrato = Val(Fila("IdContratoExterno").ToString)
 
@@ -527,36 +516,58 @@ Public Class FrmRptFacturacionContrato
 
             Item.CodigoCliente = Fila("CodigoCliente").ToString
 
-            Item.PeriodoDesde = CDate(Fila("PeriodoDesde")).Date
 
-            Item.PeriodoHasta = CDate(Fila("PeriodoHasta")).Date
+            '-------------------------------------------------------
+            ' CLIENTE
+            '-------------------------------------------------------
+            If DtFacturacion.Columns.Contains("NombreCliente") Then
 
+                Item.NombreCliente = Fila("NombreCliente").ToString
+
+            End If
+
+
+            '-------------------------------------------------------
+            ' PERIODO FACTURADO
+            '-------------------------------------------------------
+            If Fila("PeriodoDesde") IsNot DBNull.Value Then
+
+                Item.PeriodoDesde = CDate(Fila("PeriodoDesde")).Date
+
+            End If
+
+
+            If Fila("PeriodoHasta") IsNot DBNull.Value Then
+
+                Item.PeriodoHasta = CDate(Fila("PeriodoHasta")).Date
+
+            End If
+
+
+            '-------------------------------------------------------
+            ' UBICACIONES
+            '-------------------------------------------------------
             Item.Ubicaciones = Fila("Ubicaciones").ToString
 
+
+            '-------------------------------------------------------
+            ' ORDEN DE TRABAJO
+            '-------------------------------------------------------
             Item.SerieOT = Fila("SerieOT").ToString
 
             Item.NroOT = Fila("NroOT").ToString
 
+
+            '-------------------------------------------------------
+            ' MONEDA / MONTO
+            '-------------------------------------------------------
             Item.Moneda = Fila("Moneda").ToString
 
-            Item.Monto = Val(Fila("MontoMensual").ToString)
+            If Fila("MontoMensual") IsNot DBNull.Value Then
 
+                Item.Monto = CDec(Fila("MontoMensual"))
 
-            '-------------------------------------------------------
-            ' BUSCAR DATOS DEL PERIODO GENERADO POR API
-            ' PARA OBTENER EL NOMBRE DEL CLIENTE
-            '-------------------------------------------------------
-            For Each Periodo As Ent_ReporteFacturacionContrato In Periodos
-
-                If Periodo.IdContrato = Item.IdContrato Then
-
-                    Item.NombreCliente = Periodo.NombreCliente
-
-                    Exit For
-
-                End If
-
-            Next
+            End If
 
 
             '-------------------------------------------------------
@@ -566,16 +577,6 @@ Public Class FrmRptFacturacionContrato
 
                 Item.Estado = "FACTURADO"
 
-                Item.SerieFactura = Fila("SerieFactura").ToString
-
-                Item.NumeroFactura = Fila("NumeroFactura").ToString
-
-                If Fila("FechaEmision") IsNot DBNull.Value Then
-
-                    Item.FechaEmision = CDate(Fila("FechaEmision"))
-
-                End If
-
             Else
 
                 Item.Estado = "PENDIENTE FACTURAR"
@@ -583,62 +584,26 @@ Public Class FrmRptFacturacionContrato
             End If
 
 
-            Resultado.Add(Item)
-
-        Next
-
-
-        '===========================================================
-        ' 2. BUSCAR PERIODOS QUE TODAVIA NO TIENEN OT
-        '===========================================================
-        For Each Periodo As Ent_ReporteFacturacionContrato In Periodos
-
-            Dim TieneOT As Boolean = False
-
-
-            For Each Fila As DataRow In DtFacturacion.Rows
-
-
-                '---------------------------------------------------
-                ' IGNORAR OT ANULADAS
-                '---------------------------------------------------
-                If Val(Fila("AnuladoOT").ToString) <> 0 Then
-                    Continue For
-                End If
-
-
-                If Val(Fila("IdContratoExterno").ToString) = Periodo.IdContrato Then
-
-
-                    Dim DesdeERP As Date = CDate(Fila("PeriodoDesde")).Date
-
-                    Dim HastaERP As Date = CDate(Fila("PeriodoHasta")).Date
-
-
-                    If DesdeERP = Periodo.PeriodoDesde.Date AndAlso
-                   HastaERP = Periodo.PeriodoHasta.Date Then
-
-                        TieneOT = True
-
-                        Exit For
-
-                    End If
-
-                End If
-
-            Next
-
-
             '-------------------------------------------------------
-            ' SI NO EXISTE OT PARA EL PERIODO
+            ' DATOS DE FACTURA
             '-------------------------------------------------------
-            If TieneOT = False Then
+            Item.SerieFactura = Fila("SerieFactura").ToString
 
-                Periodo.Estado = "PENDIENTE OT"
+            Item.NumeroFactura = Fila("NumeroFactura").ToString
 
-                Resultado.Add(Periodo)
+
+            If Fila("FechaEmision") IsNot DBNull.Value Then
+
+                Item.FechaEmision = CDate(Fila("FechaEmision")).Date
 
             End If
+
+
+            '-------------------------------------------------------
+            ' AGREGAR
+            '-------------------------------------------------------
+            Resultado.Add(Item)
+
 
         Next
 
@@ -646,6 +611,16 @@ Public Class FrmRptFacturacionContrato
         Return Resultado
 
     End Function
+
+    Private Sub LimpiarTotales()
+
+        TxtFacturadoMN.Text = "0.00"
+        TxtFacturadoME.Text = "0.00"
+
+        TxtPendienteMN.Text = "0.00"
+        TxtPendienteME.Text = "0.00"
+
+    End Sub
 
     Private Sub BtnMostrar_Click(sender As Object, e As EventArgs) Handles BtnMostrar.Click
 
@@ -663,25 +638,15 @@ Public Class FrmRptFacturacionContrato
 
             End If
 
+            Dgv01.Rows.Clear()
+
+            LimpiarTotales()
 
             Cursor = Cursors.WaitCursor
 
 
             '=======================================================
-            ' 1. CONSULTAR CONTRATOS API
-            '=======================================================
-            Dim Contratos As List(Of Ent_ApiContrato)
-
-            Contratos =
-            c_Neg_ApiMedXpress.ObtenerContratosPorFiltro(
-                DtpDesde.Value.Date,
-                DtpHasta.Value.Date,
-                Trim(TxtCodCliente.Text),
-                Trim(TxtContrato.Text))
-
-
-            '=======================================================
-            ' 2. CONSULTAR FACTURACION ERP
+            ' 1. CONSULTAR ORDENES DE TRABAJO DE CONTRATOS
             '=======================================================
             Dim DtFacturacion As DataTable
 
@@ -694,26 +659,23 @@ Public Class FrmRptFacturacionContrato
 
 
             '=======================================================
-            ' 3. GENERAR PERIODOS ESPERADOS
-            '=======================================================
-            Dim Periodos As List(Of Ent_ReporteFacturacionContrato)
-
-            Periodos = GenerarPeriodosEsperados(Contratos)
-
-
-            '=======================================================
-            ' 4. CRUZAR PERIODOS API CONTRA LAS OT DEL ERP
+            ' 2. GENERAR LISTA DE FACTURACION
             '=======================================================
             Dim Resultado As List(Of Ent_ReporteFacturacionContrato)
 
-            Resultado = CruzarPeriodosFacturacion(Periodos, DtFacturacion)
+            Resultado = GenerarListaFacturacion(DtFacturacion)
 
 
             '=======================================================
-            ' 5. MOSTRAR RESULTADO
+            ' 3. MOSTRAR RESULTADO
             '=======================================================
             Call Cargar_Grid(Resultado)
 
+            '=======================================================
+            ' 4. TOTALIZAR FACTURACION
+            '=======================================================
+
+            Call TotalizarFacturacion(Resultado)
 
         Catch ex As Exception
 
@@ -733,11 +695,121 @@ Public Class FrmRptFacturacionContrato
 
     End Sub
 
+    Private Sub TotalizarFacturacion(ByVal Resultado As List(Of Ent_ReporteFacturacionContrato))
+
+        Dim FacturadoMN As Decimal = 0
+        Dim FacturadoME As Decimal = 0
+
+        Dim PendienteMN As Decimal = 0
+        Dim PendienteME As Decimal = 0
+
+
+        '-------------------------------------------------------
+        ' LIMPIAR TOTALES
+        '-------------------------------------------------------
+        Call LimpiarTotales()
+
+
+        For Each Item As Ent_ReporteFacturacionContrato In Resultado
+
+
+            '-------------------------------------------------------
+            ' RESPETAR FILTRO SELECCIONADO
+            '-------------------------------------------------------
+            If RdbFacturados.Checked = True AndAlso
+           Item.Estado <> "FACTURADO" Then
+
+                Continue For
+
+            End If
+
+
+            If RdbPendienteFacturar.Checked = True AndAlso
+           Item.Estado <> "PENDIENTE FACTURAR" Then
+
+                Continue For
+
+            End If
+
+
+            '-------------------------------------------------------
+            ' MONEDA NACIONAL
+            '-------------------------------------------------------
+            If UCase(Trim(Item.Moneda)) = "PEN" Then
+
+                If Item.Estado = "FACTURADO" Then
+
+                    FacturadoMN += Item.Monto
+
+                ElseIf Item.Estado = "PENDIENTE FACTURAR" Then
+
+                    PendienteMN += Item.Monto
+
+                End If
+
+            End If
+
+
+            '-------------------------------------------------------
+            ' MONEDA EXTRANJERA
+            '-------------------------------------------------------
+            If UCase(Trim(Item.Moneda)) = "USD" Then
+
+                If Item.Estado = "FACTURADO" Then
+
+                    FacturadoME += Item.Monto
+
+                ElseIf Item.Estado = "PENDIENTE FACTURAR" Then
+
+                    PendienteME += Item.Monto
+
+                End If
+
+            End If
+
+        Next
+
+
+        '-------------------------------------------------------
+        ' MOSTRAR TOTALES
+        '-------------------------------------------------------
+        TxtFacturadoMN.Text = Format(FacturadoMN, "N2")
+
+        TxtFacturadoME.Text = Format(FacturadoME, "N2")
+
+        TxtPendienteMN.Text = Format(PendienteMN, "N2")
+
+        TxtPendienteME.Text = Format(PendienteME, "N2")
+
+    End Sub
+
     Private Sub BtnCerrar_Click(sender As Object, e As EventArgs) Handles BtnCerrar.Click
         Me.Close()
     End Sub
 
     Private Sub BtnExportar_Click(sender As Object, e As EventArgs) Handles BtnExportar.Click
         Call ExportarDataGridViewExcel(Dgv01, "CONTROL DE FACTURACIÓN DE CONTRATOS", "Facturacion Contratos", False, PgbExportar)
+    End Sub
+
+    Private Sub BtnBuscarCliente_Click(sender As Object, e As EventArgs) Handles BtnBuscarCliente.Click
+        FrmConClientes.Close()
+
+        FrmConClientes.MdiParent = FrmMenu
+        FrmConClientes.Show()
+
+        FrmConClientes.TxtVar.Text = 17
+
+        FrmConClientes.Cargar_Grid(" and c_anula_reg=0 order by c_desc_clie")
+    End Sub
+
+    Private Sub TxtCodCliente_TextChanged(sender As Object, e As EventArgs) Handles TxtCodCliente.TextChanged
+
+    End Sub
+
+    Private Sub TxtCodCliente_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtCodCliente.KeyDown
+        If e.KeyCode = Keys.Enter Then
+            TxtCliente.Clear()
+            BtnMostrar.Focus()
+        End If
     End Sub
 End Class

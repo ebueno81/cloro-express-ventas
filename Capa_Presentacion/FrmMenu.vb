@@ -363,7 +363,14 @@ Public Class FrmMenu
     End Sub
 
     Private Sub MnuRepControlContrato_Click(sender As Object, e As EventArgs) Handles MnuRepControlContrato.Click
+        FrmRptFacturacionContrato.Close()
         FrmRptFacturacionContrato.MdiParent = Me
         FrmRptFacturacionContrato.Show()
+    End Sub
+
+    Private Sub MnuRepEstadoCuentaContrato_Click(sender As Object, e As EventArgs) Handles MnuRepEstadoCuentaContrato.Click
+        FrmRepEstadoCuentaContrato.Close()
+        FrmRepEstadoCuentaContrato.MdiParent = Me
+        FrmRepEstadoCuentaContrato.Show()
     End Sub
 End Class

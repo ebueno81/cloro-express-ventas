@@ -35,4 +35,12 @@ Public Class Neg_SalAlmContrato
             CodigoContrato)
 
     End Function
+
+    Public Function get_SalAlmContrato_EstadoCuenta(Optional ByVal CodigoCliente As String = "", Optional ByVal CodigoContrato As String = "") As DataTable
+
+        Return Datos.get_SalAlmContrato_EstadoCuenta(
+            CodigoCliente,
+            CodigoContrato)
+
+    End Function
 End Class
