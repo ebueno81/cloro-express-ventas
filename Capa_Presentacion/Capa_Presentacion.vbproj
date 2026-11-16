@@ -786,12 +786,8 @@
     <EmbeddedResource Include="4. Reportes\FrmRptTransforCompras.resx">
       <DependentUpon>FrmRptTransforCompras.vb</DependentUpon>
     </EmbeddedResource>
-    <Content Include="4. Reportes\Informes\RptEstadoCuentaContrato.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="4. Reportes\Informes\RptFacturacionContrato.rdlc">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <EmbeddedResource Include="4. Reportes\Informes\RptEstadoCuentaContrato.rdlc" />
+    <EmbeddedResource Include="4. Reportes\Informes\RptFacturacionContrato.rdlc" />
     <EmbeddedResource Include="5. Administracion\FrmModulos.resx">
       <DependentUpon>FrmModulos.vb</DependentUpon>
     </EmbeddedResource>

@@ -25,7 +25,7 @@
         </Paragraphs>
         <Top>0.1in</Top>
         <Height>0.35in</Height>
-        <Width>7.3in</Width>
+        <Width>7.72917in</Width>
         <Style>
           <Border>
             <Style>None</Style>
@@ -59,7 +59,7 @@
         </Paragraphs>
         <Top>0.47in</Top>
         <Height>0.25in</Height>
-        <Width>7.3in</Width>
+        <Width>7.72917in</Width>
         <ZIndex>1</ZIndex>
         <Style>
           <Border>
@@ -72,13 +72,13 @@
         <TablixBody>
           <TablixColumns>
             <TablixColumn>
-              <Width>1.35in</Width>
+              <Width>1.55in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.25in</Width>
             </TablixColumn>
             <TablixColumn>
-              <Width>1.35in</Width>
+              <Width>1.45417in</Width>
             </TablixColumn>
             <TablixColumn>
               <Width>1.25in</Width>
@@ -700,8 +700,9 @@
         </TablixRowHierarchy>
         <DataSetName>DtFacturacionContrato</DataSetName>
         <Top>0.9in</Top>
+        <Left>0.3175cm</Left>
         <Height>2.03in</Height>
-        <Width>7.3in</Width>
+        <Width>7.60417in</Width>
         <ZIndex>2</ZIndex>
         <Style>
           <Border>
@@ -729,9 +730,9 @@
         </Paragraphs>
         <rd:DefaultName>ExecutionTime</rd:DefaultName>
         <Top>1.80594cm</Top>
-        <Left>14.137cm</Left>
+        <Left>15.0895cm</Left>
         <Height>0.4095cm</Height>
-        <Width>4.405cm</Width>
+        <Width>4.54258cm</Width>
         <ZIndex>3</ZIndex>
         <Style>
           <Border>
@@ -744,17 +745,17 @@
         </Style>
       </Textbox>
     </ReportItems>
-    <Height>3.1in</Height>
+    <Height>7.874cm</Height>
     <Style />
   </Body>
-  <Width>7.5in</Width>
+  <Width>19.89667cm</Width>
   <Page>
     <PageHeight>29.7cm</PageHeight>
     <PageWidth>21cm</PageWidth>
-    <LeftMargin>2cm</LeftMargin>
-    <RightMargin>2cm</RightMargin>
-    <TopMargin>2cm</TopMargin>
-    <BottomMargin>2cm</BottomMargin>
+    <LeftMargin>0.25cm</LeftMargin>
+    <RightMargin>0.25cm</RightMargin>
+    <TopMargin>0.25cm</TopMargin>
+    <BottomMargin>0.25cm</BottomMargin>
     <ColumnSpacing>0.13cm</ColumnSpacing>
     <Style />
   </Page>
@@ -842,6 +843,6 @@
       </Fields>
     </DataSet>
   </DataSets>
-  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportUnitType>Cm</rd:ReportUnitType>
   <rd:ReportID>bb87c200-d12b-45a1-af5f-18f8aac59276</rd:ReportID>
 </Report>

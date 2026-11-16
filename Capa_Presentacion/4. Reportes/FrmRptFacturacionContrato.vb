@@ -874,34 +874,9 @@ Public Class FrmRptFacturacionContrato
 
 
             '=======================================================
-            ' 6. CONFIGURAR REPORTE
+            ' 5. CONFIGURAR REPORTE EMBEBIDO
             '=======================================================
-            Dim RutaReporte As String
-
-            RutaReporte =
-            Application.StartupPath &
-            "\4. Reportes\Informes\RptFacturacionContrato.rdlc"
-
-
-            If Not System.IO.File.Exists(RutaReporte) Then
-
-                Frm.Dispose()
-
-                MsgBox(
-                "No se encontró el archivo del reporte:" &
-                vbCrLf &
-                RutaReporte,
-                vbExclamation,
-                Compañia)
-
-                Exit Sub
-
-            End If
-
-
-            Frm.RptVisor.LocalReport.ReportPath = RutaReporte
-
-
+            Frm.RptVisor.LocalReport.ReportEmbeddedResource = "WindowsApplication1.RptFacturacionContrato.rdlc"
             '=======================================================
             ' 7. ASIGNAR DATOS
             '=======================================================
@@ -1106,4 +1081,5 @@ Public Class FrmRptFacturacionContrato
         Return Dt
 
     End Function
+
 End Class

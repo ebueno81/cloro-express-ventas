@@ -846,23 +846,9 @@ Public Class FrmRepEstadoCuentaContrato
 
 
             '=======================================================
-            ' 5. CONFIGURAR REPORTE
+            ' 5. CONFIGURAR REPORTE EMBEBIDO
             '=======================================================
-            Dim RutaReporte As String
-
-            RutaReporte = Application.StartupPath & "\4. Reportes\Informes\RptEstadoCuentaContrato.rdlc"
-
-            If Not System.IO.File.Exists(RutaReporte) Then
-
-                Frm.Dispose()
-
-                MsgBox("No se encontró el archivo del reporte:" & vbCrLf & RutaReporte, vbExclamation, Compañia)
-
-                Exit Sub
-
-            End If
-
-            Frm.RptVisor.LocalReport.ReportPath = RutaReporte
+            Frm.RptVisor.LocalReport.ReportEmbeddedResource = "WindowsApplication1.RptEstadoCuentaContrato.rdlc"
 
             '=======================================================
             ' 6. ASIGNAR DATOS
@@ -1057,5 +1043,9 @@ Public Class FrmRepEstadoCuentaContrato
 
     Private Sub BtnExportar_Click(sender As Object, e As EventArgs) Handles BtnExportar.Click
         Call ExportarDataGridViewExcel(Dgv01, "CONTROL DE CUOTAS DE CONTRATOS", "Cuotas de Contratos", False, PgbExportar)
+    End Sub
+
+    Private Sub BtnCerrar_Click(sender As Object, e As EventArgs) Handles BtnCerrar.Click
+        Me.Close()
     End Sub
 End Class
