@@ -582,11 +582,7 @@ Public Class FrmRepEstadoCuentaContrato
 
             If DtpDesde.Value.Date > DtpHasta.Value.Date Then
 
-                MsgBox(
-            "La fecha desde no puede ser mayor " &
-            "que la fecha hasta.",
-            vbExclamation,
-            Compañia)
+                MsgBox("La fecha desde no puede ser mayor " & "que la fecha hasta.", vbExclamation, Compañia)
 
                 Exit Sub
 
@@ -608,8 +604,7 @@ Public Class FrmRepEstadoCuentaContrato
             '=======================================================
             Dim ContratosApi As List(Of Ent_ApiContrato)
 
-            ContratosApi =
-        c_Neg_ApiMedXpress.ObtenerContratosPorFiltro(
+            ContratosApi = c_Neg_ApiMedXpress.ObtenerContratosPorFiltro(
             DtpDesde.Value.Date,
             DtpHasta.Value.Date,
             Trim(TxtCodCliente.Text),
@@ -1047,5 +1042,134 @@ Public Class FrmRepEstadoCuentaContrato
 
     Private Sub BtnCerrar_Click(sender As Object, e As EventArgs) Handles BtnCerrar.Click
         Me.Close()
+    End Sub
+
+    Private Sub TxtContrato_TextChanged(sender As Object, e As EventArgs) Handles TxtContrato.TextChanged
+
+    End Sub
+
+    Private Sub TxtContrato_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtContrato.KeyDown
+        If e.KeyCode = Keys.Enter Then
+
+            e.SuppressKeyPress = True
+
+            Call BuscarContratoDirecto()
+
+        End If
+    End Sub
+
+    Private Sub BuscarContratoDirecto()
+
+        Try
+
+            If Trim(TxtContrato.Text) = "" Then
+
+                MsgBox(
+                    "Ingrese el código del contrato.",
+                    vbExclamation,
+                    Compañia)
+
+                TxtContrato.Focus()
+
+                Exit Sub
+
+            End If
+
+
+            Cursor = Cursors.WaitCursor
+
+            Dgv01.Rows.Clear()
+
+            LimpiarTotales()
+
+            ListaEstadoCuenta.Clear()
+
+
+            '=======================================================
+            ' 1. CONSULTAR CONTRATO EN MEDXPRESS
+            '    NO SE CONSIDERA EL RANGO DEL FORMULARIO
+            '=======================================================
+            Dim ContratosApi As List(Of Ent_ApiContrato)
+
+            ContratosApi =
+                c_Neg_ApiMedXpress.ObtenerContratosPorFiltro(
+                    New Date(2000, 1, 1),
+                    New Date(2100, 12, 31),
+                    "",
+                    Trim(TxtContrato.Text))
+
+
+            '=======================================================
+            ' 2. VALIDAR CONTRATO
+            '=======================================================
+            If ContratosApi Is Nothing OrElse
+               ContratosApi.Count = 0 Then
+
+                MsgBox(
+                    "No se encontró el contrato " &
+                    Trim(TxtContrato.Text) & ".",
+                    vbExclamation,
+                    Compañia)
+
+                Exit Sub
+
+            End If
+
+
+            '=======================================================
+            ' 3. GENERAR ESTADO DE CUENTA COMPLETO
+            '=======================================================
+            ListaEstadoCuenta =
+                GenerarEstadoCuenta(ContratosApi)
+
+
+            '=======================================================
+            ' 4. CONSULTAR LAS OT / FACTURAS DEL ERP
+            '=======================================================
+            Dim DtFacturacion As DataTable
+
+            DtFacturacion =
+                c_Neg_SalAlmContrato.get_SalAlmContrato_EstadoCuenta(
+                    "",
+                    Trim(TxtContrato.Text))
+
+
+            '=======================================================
+            ' 5. CRUZAR CONTRATO VS OT / FACTURAS
+            '=======================================================
+            Call CruzarEstadoCuenta(
+                ListaEstadoCuenta,
+                DtFacturacion)
+
+
+            '=======================================================
+            ' 6. MOSTRAR RESULTADO
+            '=======================================================
+            Call Cargar_Grid(ListaEstadoCuenta)
+
+
+            '=======================================================
+            ' 7. TOTALIZAR
+            '=======================================================
+            Call TotalizarEstadoCuenta(ListaEstadoCuenta)
+
+
+        Catch ex As Exception
+
+            ListaEstadoCuenta.Clear()
+
+            MsgBox(
+                "Error al consultar el contrato:" &
+                vbCrLf &
+                ex.Message,
+                vbCritical,
+                Compañia)
+
+        Finally
+
+            Cursor = Cursors.Default
+
+        End Try
+
     End Sub
 End Class

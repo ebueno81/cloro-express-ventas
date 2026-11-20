@@ -78,7 +78,7 @@ Partial Class FrmRepEstadoCuentaContrato
         Me.PnlTitulo.Dock = System.Windows.Forms.DockStyle.Top
         Me.PnlTitulo.Location = New System.Drawing.Point(0, 0)
         Me.PnlTitulo.Name = "PnlTitulo"
-        Me.PnlTitulo.Size = New System.Drawing.Size(1280, 92)
+        Me.PnlTitulo.Size = New System.Drawing.Size(1280, 71)
         Me.PnlTitulo.TabIndex = 3
         '
         'LblSubTitulo
@@ -86,7 +86,7 @@ Partial Class FrmRepEstadoCuentaContrato
         Me.LblSubTitulo.AutoSize = True
         Me.LblSubTitulo.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.LblSubTitulo.ForeColor = System.Drawing.Color.WhiteSmoke
-        Me.LblSubTitulo.Location = New System.Drawing.Point(29, 54)
+        Me.LblSubTitulo.Location = New System.Drawing.Point(29, 46)
         Me.LblSubTitulo.Name = "LblSubTitulo"
         Me.LblSubTitulo.Size = New System.Drawing.Size(444, 15)
         Me.LblSubTitulo.TabIndex = 0
@@ -97,7 +97,7 @@ Partial Class FrmRepEstadoCuentaContrato
         Me.LblTitulo.AutoSize = True
         Me.LblTitulo.Font = New System.Drawing.Font("Segoe UI", 16.0!, System.Drawing.FontStyle.Bold)
         Me.LblTitulo.ForeColor = System.Drawing.Color.White
-        Me.LblTitulo.Location = New System.Drawing.Point(27, 17)
+        Me.LblTitulo.Location = New System.Drawing.Point(27, 9)
         Me.LblTitulo.Name = "LblTitulo"
         Me.LblTitulo.Size = New System.Drawing.Size(390, 30)
         Me.LblTitulo.TabIndex = 1
@@ -120,7 +120,7 @@ Partial Class FrmRepEstadoCuentaContrato
         Me.GrpCriterios.Controls.Add(Me.BtnMostrar)
         Me.GrpCriterios.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.GrpCriterios.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(105, Byte), Integer))
-        Me.GrpCriterios.Location = New System.Drawing.Point(15, 103)
+        Me.GrpCriterios.Location = New System.Drawing.Point(15, 76)
         Me.GrpCriterios.Name = "GrpCriterios"
         Me.GrpCriterios.Size = New System.Drawing.Size(1250, 120)
         Me.GrpCriterios.TabIndex = 2
@@ -251,7 +251,7 @@ Partial Class FrmRepEstadoCuentaContrato
         Me.GrpDetalle.Controls.Add(Me.Dgv01)
         Me.GrpDetalle.Font = New System.Drawing.Font("Segoe UI", 9.0!, System.Drawing.FontStyle.Bold)
         Me.GrpDetalle.ForeColor = System.Drawing.Color.FromArgb(CType(CType(35, Byte), Integer), CType(CType(73, Byte), Integer), CType(CType(105, Byte), Integer))
-        Me.GrpDetalle.Location = New System.Drawing.Point(15, 232)
+        Me.GrpDetalle.Location = New System.Drawing.Point(15, 198)
         Me.GrpDetalle.Name = "GrpDetalle"
         Me.GrpDetalle.Size = New System.Drawing.Size(1250, 300)
         Me.GrpDetalle.TabIndex = 1
@@ -297,7 +297,7 @@ Partial Class FrmRepEstadoCuentaContrato
         Me.PnlPie.Controls.Add(Me.BtnImprimir)
         Me.PnlPie.Controls.Add(Me.BtnCerrar)
         Me.PnlPie.Controls.Add(Me.PgbExportar)
-        Me.PnlPie.Location = New System.Drawing.Point(15, 542)
+        Me.PnlPie.Location = New System.Drawing.Point(15, 508)
         Me.PnlPie.Name = "PnlPie"
         Me.PnlPie.Size = New System.Drawing.Size(1250, 115)
         Me.PnlPie.TabIndex = 0

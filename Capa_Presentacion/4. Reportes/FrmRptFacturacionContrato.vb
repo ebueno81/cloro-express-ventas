@@ -1082,4 +1082,118 @@ Public Class FrmRptFacturacionContrato
 
     End Function
 
+    Private Sub TxtContrato_TextChanged(sender As Object, e As EventArgs) Handles TxtContrato.TextChanged
+
+    End Sub
+
+    Private Sub TxtContrato_KeyDown(sender As Object, e As KeyEventArgs) Handles TxtContrato.KeyDown
+        If e.KeyCode = Keys.Enter Then
+
+            e.SuppressKeyPress = True
+
+            Call BuscarContratoDirecto()
+
+        End If
+
+    End Sub
+
+    Private Sub BuscarContratoDirecto()
+
+        Try
+
+            If Trim(TxtContrato.Text) = "" Then
+
+                MsgBox(
+                    "Ingrese el código del contrato.",
+                    vbExclamation,
+                    Compañia)
+
+                TxtContrato.Focus()
+
+                Exit Sub
+
+            End If
+
+
+            Dgv01.Rows.Clear()
+
+            Call LimpiarTotales()
+
+            ListaFacturacionContrato.Clear()
+
+            Cursor = Cursors.WaitCursor
+
+
+            '=======================================================
+            ' 1. CONSULTAR FACTURACION DEL CONTRATO
+            '    SIN CONSIDERAR LAS FECHAS DEL FORMULARIO
+            '=======================================================
+            Dim DtFacturacion As DataTable
+
+            DtFacturacion =
+                c_Neg_SalAlmContrato.get_SalAlmContrato_Reporte(
+                    New Date(2000, 1, 1),
+                    New Date(2100, 12, 31),
+                    "",
+                    Trim(TxtContrato.Text))
+
+
+            '=======================================================
+            ' 2. VALIDAR CONTRATO
+            '=======================================================
+            If DtFacturacion Is Nothing OrElse
+               DtFacturacion.Rows.Count = 0 Then
+
+                MsgBox(
+                    "No se encontró información de facturación " &
+                    "para el contrato " &
+                    Trim(TxtContrato.Text) & ".",
+                    vbExclamation,
+                    Compañia)
+
+                TxtContrato.Focus()
+
+                Exit Sub
+
+            End If
+
+
+            '=======================================================
+            ' 3. GENERAR LISTA DE FACTURACION
+            '=======================================================
+            ListaFacturacionContrato =
+                GenerarListaFacturacion(DtFacturacion)
+
+
+            '=======================================================
+            ' 4. MOSTRAR RESULTADO
+            '=======================================================
+            Call Cargar_Grid(ListaFacturacionContrato)
+
+
+            '=======================================================
+            ' 5. TOTALIZAR FACTURACION
+            '=======================================================
+            Call TotalizarFacturacion(ListaFacturacionContrato)
+
+
+        Catch ex As Exception
+
+            ListaFacturacionContrato.Clear()
+
+            MsgBox(
+                "Error al consultar la facturación " &
+                "del contrato:" &
+                vbCrLf &
+                ex.Message,
+                vbCritical,
+                Compañia)
+
+        Finally
+
+            Cursor = Cursors.Default
+
+        End Try
+
+    End Sub
 End Class
